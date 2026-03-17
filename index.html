@@ -344,9 +344,29 @@
 
   /* ── Tablet 860px ── */
   @media (max-width: 860px) {
-    .hero-visual { display: none; }
-    .hero-inner { padding-top: 60px; padding-bottom: 60px; }
+    /* Nav: show hamburger, hide desktop links */
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .hero-visual { 
+      display: block; 
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      margin: 20px auto;
+    }
+    .hero-visual img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+    }
+    .hero-inner { 
+      padding-top: 40px; 
+      padding-bottom: 40px; 
+      flex-direction: column;
+    }
     .hero-content { max-width: 100%; }
+
     .family-grid { grid-template-columns: 1fr; gap: 28px; }
     .family-img-wrap img { height: 280px; }
     /* slightly larger call button on tablet */
