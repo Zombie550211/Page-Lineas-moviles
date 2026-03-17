@@ -46,11 +46,12 @@
      NAV
   ════════════════════════════ */
   nav {
-    position: fixed; top: 0; width: 100%; z-index: 1000;
+    position: fixed; bottom: 0; top: auto; width: 100%; z-index: 1000;
     background: rgba(2,0,36,0.95);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: none;
   }
   .nav-inner {
     max-width: var(--max-w);
@@ -102,15 +103,15 @@
   /* Mobile drawer */
   .mobile-menu {
     display: none;
-    position: fixed; top: 67px; left: 0; right: 0;
+    position: fixed; bottom: 67px; top: auto; left: 0; right: 0;
     background: rgba(2,0,36,0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border);
     padding: 1.5rem 24px 2rem;
     flex-direction: column; gap: 0;
     z-index: 999;
-    transform: translateY(-10px); opacity: 0;
+    transform: translateY(10px); opacity: 0;
     transition: transform .3s ease, opacity .3s ease;
   }
   .mobile-menu.open {
@@ -173,7 +174,7 @@
     max-width: var(--max-w);
     margin: 0 auto;
     width: 100%;
-    padding: 120px 24px 80px;
+    padding: 60px 24px 100px;
     position: relative;
     z-index: 2;
     display: flex;
@@ -453,7 +454,7 @@
     .hamburger { display: flex; }
 
     .hero-visual { display: none; }
-    .hero-inner { padding-top: 100px; }
+    .hero-inner { padding-top: 40px; padding-bottom: 90px; }
     .hero-content { max-width: 100%; }
 
     .family-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -465,9 +466,9 @@
     section { padding: 60px 0; }
     .container { padding: 0 18px; }
     .nav-inner { padding: 12px 18px; }
-    .mobile-menu { padding: 1.2rem 18px 1.8rem; top: 63px; }
+    .mobile-menu { padding: 1.2rem 18px 1.8rem; bottom: 63px; top: auto; }
 
-    .hero-inner { padding: 90px 18px 60px; }
+    .hero-inner { padding: 40px 18px 90px; }
     .badge { font-size: .7rem; letter-spacing: 2px; padding: 5px 14px; }
     .btn-group { flex-direction: column; }
     .btn-primary, .btn-secondary { width: 100%; text-align: center; padding: 14px 20px; }
