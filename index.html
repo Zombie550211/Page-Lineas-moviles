@@ -23,6 +23,7 @@
     --card-bg: rgba(0,180,216,0.07);
     --border: rgba(0,229,255,0.18);
     --max-w: 1200px;
+    --btn-h: 64px; /* height of fixed bottom button */
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,7 +33,44 @@
     background: var(--midnight);
     color: var(--white);
     overflow-x: hidden;
+    /* leave room at bottom so content isn't hidden behind the button */
+    padding-bottom: var(--btn-h);
   }
+
+  /* ════════════════════════════
+     FIXED CALL BUTTON (always visible)
+  ════════════════════════════ */
+  .call-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 9999;
+    height: var(--btn-h);
+  }
+  .call-bar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--cyan), var(--electric));
+    color: var(--deep);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: 0 -4px 30px rgba(0,229,255,.35);
+    transition: filter .2s, box-shadow .2s;
+  }
+  .call-bar a:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 -4px 45px rgba(0,229,255,.6);
+  }
+  .call-bar a:active {
+    filter: brightness(.95);
+  }
+  .call-icon { font-size: 1.3rem; }
 
   /* ── CONTAINER ── */
   .container {
@@ -40,102 +78,6 @@
     margin: 0 auto;
     width: 100%;
     padding: 0 24px;
-  }
-
-  /* ════════════════════════════
-     NAV
-  ════════════════════════════ */
-  nav {
-    position: fixed; bottom: 0; top: auto; width: 100%; z-index: 1000;
-    background: rgba(2,0,36,0.95);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-top: 1px solid var(--border);
-    border-bottom: none;
-  }
-  .nav-inner {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 24px;
-  }
-  .logo img { height: 38px; width: auto; display: block; }
-
-  /* Desktop links */
-  .nav-links { display: flex; align-items: center; gap: 0; }
-  .nav-links a {
-    color: var(--white); text-decoration: none;
-    font-weight: 600; font-size: .95rem;
-    margin-left: 2rem; transition: color .25s;
-  }
-  .nav-links a:hover { color: var(--cyan); }
-  .nav-cta {
-    background: var(--cyan) !important; color: var(--deep) !important;
-    padding: 9px 22px; border-radius: 50px;
-    font-weight: 800 !important;
-    box-shadow: 0 0 18px rgba(0,229,255,.4);
-    transition: box-shadow .3s, transform .2s !important;
-  }
-  .nav-cta:hover { box-shadow: 0 0 28px rgba(0,229,255,.7) !important; transform: scale(1.05) !important; }
-
-  /* Hamburger button */
-  .hamburger {
-    display: none;
-    flex-direction: column; justify-content: center; align-items: center;
-    width: 40px; height: 40px; gap: 5px;
-    background: none; border: none; cursor: pointer;
-    padding: 4px; border-radius: 8px;
-    transition: background .2s;
-  }
-  .hamburger:hover { background: rgba(0,229,255,.1); }
-  .hamburger span {
-    display: block; width: 24px; height: 2px;
-    background: var(--white); border-radius: 2px;
-    transition: transform .3s, opacity .3s, background .2s;
-    transform-origin: center;
-  }
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--cyan); }
-  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--cyan); }
-
-  /* Mobile drawer */
-  .mobile-menu {
-    display: none;
-    position: fixed; bottom: 67px; top: auto; left: 0; right: 0;
-    background: rgba(2,0,36,0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-top: 1px solid var(--border);
-    padding: 1.5rem 24px 2rem;
-    flex-direction: column; gap: 0;
-    z-index: 999;
-    transform: translateY(10px); opacity: 0;
-    transition: transform .3s ease, opacity .3s ease;
-  }
-  .mobile-menu.open {
-    display: flex;
-    transform: translateY(0); opacity: 1;
-  }
-  .mobile-menu a {
-    color: var(--white); text-decoration: none;
-    font-weight: 600; font-size: 1.1rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border);
-    transition: color .2s;
-    display: block;
-  }
-  .mobile-menu a:last-child { border-bottom: none; }
-  .mobile-menu a:hover { color: var(--cyan); }
-  .mobile-menu .mob-cta {
-    margin-top: 1rem;
-    background: linear-gradient(135deg, var(--cyan), var(--electric));
-    color: var(--deep) !important;
-    text-align: center; padding: 14px !important;
-    border-radius: 50px; font-weight: 800 !important;
-    font-size: 1rem !important; border: none !important;
-    box-shadow: 0 0 20px rgba(0,229,255,.3);
   }
 
   /* ════════════════════════════
@@ -174,7 +116,7 @@
     max-width: var(--max-w);
     margin: 0 auto;
     width: 100%;
-    padding: 60px 24px 100px;
+    padding: 80px 24px 80px;
     position: relative;
     z-index: 2;
     display: flex;
@@ -184,16 +126,6 @@
   }
   .hero-content { max-width: 560px; flex: 1; }
 
-  .badge {
-    display: inline-block;
-    background: rgba(0,229,255,.12);
-    border: 1px solid var(--cyan);
-    color: var(--cyan);
-    padding: 6px 18px; border-radius: 50px;
-    font-size: .78rem; font-weight: 700; letter-spacing: 3px;
-    text-transform: uppercase; margin-bottom: 1.4rem;
-    animation: fadeUp .7s ease both;
-  }
   .hero h1 {
     font-family: 'Rajdhani', sans-serif;
     font-size: clamp(2.2rem, 5vw, 4.5rem);
@@ -230,60 +162,21 @@
   }
   .btn-secondary:hover { background: var(--cyan); color: var(--deep); }
 
-  /* Floating phone */
+  /* Floating image */
   .hero-visual {
     flex-shrink: 0;
     animation: float 4s ease-in-out infinite;
     position: relative;
+    max-width: 480px;
+    width: 45%;
   }
-  @keyframes float {
-    0%,100% { transform: translateY(0); }
-    50%      { transform: translateY(-18px); }
-  }
-  .phone-wrap {
-    width: 210px; height: 410px;
-    background: linear-gradient(145deg, #0a1628, #0d2240);
-    border-radius: 36px;
-    border: 2px solid rgba(0,229,255,.35);
-    box-shadow: 0 0 60px rgba(0,229,255,.2), 0 40px 80px rgba(0,0,0,.5);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-  .phone-wrap::before {
-    content: '';
-    position: absolute; top: -60%; left: -30%;
-    width: 160%; height: 100%;
-    background: radial-gradient(ellipse, rgba(0,229,255,.12) 0%, transparent 70%);
-  }
-  .phone-screen {
-    width: 175px; height: 345px;
-    background: linear-gradient(180deg, #020f1f 0%, #041229 100%);
+  .hero-visual img {
+    width: 100%;
+    height: auto;
     border-radius: 24px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 10px; padding: 20px; position: relative; z-index: 1;
+    display: block;
+    filter: drop-shadow(0 0 40px rgba(0,229,255,.25));
   }
-  .signal-icon { font-size: 3rem; line-height: 1; }
-  .phone-text {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.5rem; font-weight: 700; color: var(--cyan);
-    text-align: center; letter-spacing: 2px;
-  }
-  .phone-sub { font-size: .68rem; color: rgba(240,250,255,.5); text-align: center; }
-  .price-tag {
-    background: var(--gold); color: #000;
-    font-weight: 800; font-size: .82rem;
-    padding: 5px 14px; border-radius: 50px; margin-top: 8px;
-  }
-  .ring {
-    position: absolute; border-radius: 50%;
-    border: 1px solid rgba(0,229,255,.15);
-    animation: pulse 3s ease-in-out infinite;
-    pointer-events: none;
-  }
-  .ring-1 { width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-  .ring-2 { width: 420px; height: 420px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: .8s; }
-  .ring-3 { width: 540px; height: 540px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 1.6s; }
-  @keyframes pulse { 0%,100%{opacity:.4;} 50%{opacity:.1;} }
   @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
 
   /* ════════════════════════════
@@ -346,7 +239,7 @@
      PLANS
   ════════════════════════════ */
   .plans-header { text-align: center; max-width: 600px; margin: 0 auto 2.5rem; }
-  .plans-header .section-sub { margin: 0 auto; }
+  .plans-header .section-sub { margin: 0 auto; text-align: center; }
   .plans-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -358,6 +251,7 @@
     position: relative; overflow: hidden;
     transition: transform .3s, box-shadow .3s, border-color .3s;
     display: flex; flex-direction: column;
+    align-items: center; text-align: center;
   }
   .plan-card:hover {
     transform: translateY(-6px);
@@ -402,7 +296,7 @@
   ════════════════════════════ */
   .benefits-section { background: rgba(3,4,94,.3); border-top: 1px solid var(--border); }
   .benefits-header { text-align: center; max-width: 600px; margin: 0 auto; }
-  .benefits-header .section-sub { margin: 0 auto; }
+  .benefits-header .section-sub { margin: 0 auto; text-align: center; }
   .benefits-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -410,7 +304,9 @@
   }
   .benefit-card {
     background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 20px; padding: 1.8rem 1.2rem; text-align: center;
+    border-radius: 20px; padding: 1.8rem 1.2rem;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center;
     transition: transform .3s, border-color .3s;
   }
   .benefit-card:hover { transform: translateY(-5px); border-color: var(--cyan); }
@@ -436,7 +332,6 @@
   .contact-item a { color: var(--cyan); text-decoration: none; font-weight: 700; }
   .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.2rem; font-size: .78rem; color: rgba(240,250,255,.35); margin-top: 2rem; }
 
-
   /* ════════════════════════════════════════
      RESPONSIVE BREAKPOINTS
   ════════════════════════════════════════ */
@@ -449,36 +344,29 @@
 
   /* ── Tablet 860px ── */
   @media (max-width: 860px) {
-    /* Nav: show hamburger, hide desktop links */
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
-
     .hero-visual { display: none; }
-    .hero-inner { padding-top: 40px; padding-bottom: 90px; }
+    .hero-inner { padding-top: 60px; padding-bottom: 60px; }
     .hero-content { max-width: 100%; }
-
     .family-grid { grid-template-columns: 1fr; gap: 28px; }
     .family-img-wrap img { height: 280px; }
+    /* slightly larger call button on tablet */
+    .call-bar a { font-size: 1.05rem; }
   }
 
   /* ── Mobile 600px ── */
   @media (max-width: 600px) {
     section { padding: 60px 0; }
     .container { padding: 0 18px; }
-    .nav-inner { padding: 12px 18px; }
-    .mobile-menu { padding: 1.2rem 18px 1.8rem; bottom: 63px; top: auto; }
-
-    .hero-inner { padding: 40px 18px 90px; }
-    .badge { font-size: .7rem; letter-spacing: 2px; padding: 5px 14px; }
+    .hero-inner { padding: 50px 18px 60px; }
     .btn-group { flex-direction: column; }
     .btn-primary, .btn-secondary { width: 100%; text-align: center; padding: 14px 20px; }
-
     .plans-grid { grid-template-columns: 1fr; gap: 1rem; }
     .benefits-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
-
     .family-img-wrap img { height: 220px; }
     .footer-inner { padding: 0 18px; }
     footer { padding: 40px 0 24px; }
+    /* full-width pill on small screens */
+    .call-bar a { font-size: 1rem; gap: 8px; }
   }
 
   /* ── Small mobile 420px ── */
@@ -487,36 +375,20 @@
     .contact-info { flex-direction: column; gap: .8rem; }
     .hero h1 { font-size: 2rem; }
     .plan-card { padding: 1.5rem 1.2rem; }
+    .call-bar a { font-size: .88rem; letter-spacing: 0; }
   }
 </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav>
-  <div class="nav-inner">
-    <div class="logo">
-      <img src="https://dou401363619.wpcomstaging.com/wp-content/uploads/2026/03/Connecting.png" alt="Connecting S.A DE C.V">
-    </div>
-    <!-- Desktop links -->
-    <div class="nav-links">
-      <a href="#planes">Planes</a>
-      <a href="#beneficios">Beneficios</a>
-      <a href="tel:+18884601317" class="nav-cta">Contáctanos</a>
-    </div>
-    <!-- Hamburger -->
-    <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- Mobile drawer -->
-<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Menú móvil">
-  <a href="#planes"     onclick="closeMenu()">📱 Planes</a>
-  <a href="#beneficios" onclick="closeMenu()">⭐ Beneficios</a>
-  <a href="#familiar"   onclick="closeMenu()">👨‍👩‍👧‍👦 Familia</a>
-  <a href="tel:+18884601317" class="mob-cta">📞 Llamar ahora: +1 (888) 460-1317</a>
+<!-- ════════════════════════════════════════
+     FIXED CALL BUTTON — always at bottom
+════════════════════════════════════════ -->
+<div class="call-bar">
+  <a href="tel:+18884601317">
+    <span class="call-icon">📞</span>
+    Llámanos al &nbsp;<strong>+1 (888) 460-1317</strong>
+  </a>
 </div>
 
 <!-- ── HERO ── -->
@@ -532,19 +404,9 @@
       </div>
     </div>
 
-    <!-- Floating Phone (hidden on mobile) -->
+    <!-- Hero image (hidden on mobile) -->
     <div class="hero-visual">
-      <div class="ring ring-1"></div>
-      <div class="ring ring-2"></div>
-      <div class="ring ring-3"></div>
-      <div class="phone-wrap">
-        <div class="phone-screen">
-          <div class="signal-icon">📶</div>
-          <div class="phone-text">5G<br>ACTIVO</div>
-          <div class="phone-sub">Red más rápida de USA</div>
-          <div class="price-tag">desde $55/mes</div>
-        </div>
-      </div>
+      <img src="images/navegacion.jpeg" alt="Red 5G sin límites">
     </div>
   </div>
 </section>
@@ -684,44 +546,9 @@
       <div class="contact-item">📞 <a href="tel:+18884601317">+1 (888) 460-1317</a></div>
       <div class="contact-item">🕐 Lun-Dom, 8:00AM – 9:00PM</div>
     </div>
-    <br>
-    <a href="tel:+18884601317" class="btn-primary" style="margin-bottom:2rem; font-size:.95rem;">
-      📞 Llámanos Ahora
-    </a>
     <div class="footer-bottom">© Todos los Derechos Reservados. Connecting S.A DE C.V</div>
   </div>
 </footer>
 
-<script>
-  const hamburger   = document.getElementById('hamburger');
-  const mobileMenu  = document.getElementById('mobileMenu');
-
-  function closeMenu() {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  }
-
-  hamburger.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    hamburger.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-
-  // Close on outside click
-  document.addEventListener('click', e => {
-    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-      closeMenu();
-    }
-  });
-
-  // Close on resize back to desktop
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 860) closeMenu();
-  });
-</script>
-
 </body>
-</html>
+</html> 
