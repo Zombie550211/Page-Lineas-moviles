@@ -60,6 +60,33 @@
     background: var(--bg);
     color: var(--text);
     overflow-x: hidden;
+    padding-bottom: 60px; /* espacio para la barra fija */
+  }
+
+  /* ── BARRA DE LLAMADA FIJA ── */
+  .call-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    z-index: 99998;
+    height: 60px;
+  }
+  .call-bar a {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, #00BCD4 0%, #00E5FF 50%, #00BCD4 100%);
+    color: #00274D;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 -3px 16px rgba(0,229,255,.35);
+    transition: filter .2s;
+  }
+  .call-bar a:hover { filter: brightness(1.08); }
+  .call-bar a:active { filter: brightness(.95); }
+  .call-bar-icon {
+    font-size: 1.3rem;
+    color: #E91E8C;
   }
 
   /* ── NAV ── */
@@ -328,7 +355,7 @@
   /* ── COOKIE BANNER ── */
   #cookie-banner {
     display: none;
-    position: fixed; bottom: 0; left: 0; right: 0;
+    position: fixed; bottom: 60px; left: 0; right: 0;
     z-index: 99999;
     background: var(--blue-dark);
     border-top: 3px solid var(--green);
@@ -571,6 +598,14 @@
     <a href="#" id="ccpa-link" style="color:#60A5FA; text-decoration:underline; font-size:.78rem;">No vender mis datos (CCPA)</a>
   </div>
 </footer>
+
+<!-- BARRA DE LLAMADA FIJA -->
+<div class="call-bar">
+  <a href="tel:+18884601317">
+    <span class="call-bar-icon">📞</span>
+    Llámanos al &nbsp;<strong>+1 (888) 460-1317</strong>
+  </a>
+</div>
 
 <!-- COOKIE CONSENT BANNER -->
 <div id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
