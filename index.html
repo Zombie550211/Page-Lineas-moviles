@@ -10,6 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://www.googletagmanager.com">
+<!-- Preload hero image: mejora LCP -->
+<link rel="preload" as="image" href="images/familiaconectada.jpg" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=optional" rel="stylesheet">
 <!-- Google Ads tag + Consent Mode v2 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11148367992"></script>
@@ -115,6 +117,7 @@
   }
   .hero-bg {
     position: absolute; inset: 0;
+    background-color: #071E33; /* fallback mientras carga la imagen */
     background-image: url('images/familiaconectada.jpg');
     background-size: cover; background-position: center;
     z-index: 0;
