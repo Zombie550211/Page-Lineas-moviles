@@ -1,28 +1,24 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conexión Sin Límites | Red 5G</title>
+<title>Líneas Móviles | Planes 5G para tu Familia</title>
 <meta name="description" content="Planes de líneas móviles 5G desde $55/mes. Sin contratos, soporte en español, activación instantánea. La red más rápida de Estados Unidos para tu familia.">
 <link rel="canonical" href="https://lineas-moviles.com">
 <meta name="robots" content="index, follow">
-<!-- Preconnect: reduce latencia de fuentes y GTM -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://www.googletagmanager.com">
-<!-- Google Fonts: display=optional elimina CLS por font-swap -->
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Nunito:wght@300;400;600;800&display=optional" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=optional" rel="stylesheet">
 <!-- Google Ads tag + Consent Mode v2 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11148367992"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
 
-  // Consent Mode v2: leer decisión previa antes de configurar
   var _storedConsent = localStorage.getItem('cookie_consent');
   var _consentState  = _storedConsent === 'granted' ? 'granted' : 'denied';
-
   gtag('consent', 'default', {
     ad_storage:        _consentState,
     analytics_storage: _consentState,
@@ -30,621 +26,475 @@
     ad_personalization: _consentState,
     wait_for_update:   _storedConsent ? 0 : 600
   });
-
   gtag('js', new Date());
   gtag('config', 'AW-11148367992');
 </script>
 <style>
   :root {
-    --blue:        #0057B8;
-    --blue-dark:   #003D7A;
-    --blue-mid:    #0069D9;
-    --blue-light:  #E8F2FC;
-    --green:       #00A651;
-    --green-dark:  #007A3D;
-    --green-light: #E6F7EE;
-    --text:        #1A2744;
-    --text-muted:  #5A6A7A;
-    --bg:          #F2F6FA;
-    --white:       #FFFFFF;
-    --border:      #D4DCE8;
-    --shadow-sm:   0 1px 4px rgba(0,61,122,.07);
-    --shadow-md:   0 4px 16px rgba(0,61,122,.10);
-    --shadow-lg:   0 10px 36px rgba(0,61,122,.16);
+    --teal:       #0A6E78;
+    --teal-dark:  #085A62;
+    --teal-deep:  #064A52;
+    --teal-light: #0D8A96;
+    --white:      #FFFFFF;
+    --text:       #1A2744;
+    --text-muted: #6B7280;
+    --border:     #E5E7EB;
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; font-size: 16px; }
   body {
-    font-family: 'Nunito', sans-serif;
-    background: var(--bg);
+    font-family: 'Inter', sans-serif;
+    background: #fff;
     color: var(--text);
     overflow-x: hidden;
-    padding-bottom: 60px; /* espacio para la barra fija */
+    padding-bottom: 60px;
   }
 
-  /* ── BARRA DE LLAMADA FIJA ── */
+  /* ── CALL BAR FIJA ── */
   .call-bar {
     position: fixed; bottom: 0; left: 0; right: 0;
-    z-index: 99998;
-    height: 60px;
+    z-index: 99998; height: 60px;
   }
   .call-bar a {
     display: flex; align-items: center; justify-content: center;
-    gap: 12px;
-    width: 100%; height: 100%;
+    gap: 12px; width: 100%; height: 100%;
     background: linear-gradient(90deg, #00BCD4 0%, #00E5FF 50%, #00BCD4 100%);
-    color: #00274D;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.1rem; font-weight: 700;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    text-decoration: none;
+    color: #003344;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
     box-shadow: 0 -3px 16px rgba(0,229,255,.35);
     transition: filter .2s;
   }
   .call-bar a:hover { filter: brightness(1.08); }
-  .call-bar a:active { filter: brightness(.95); }
-  .call-bar-icon {
-    font-size: 1.3rem;
-    color: #E91E8C;
-  }
+  .call-bar-icon { font-size: 1.3rem; color: #E91E8C; }
 
   /* ── NAV ── */
   nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    background: var(--blue-dark);
-    border-bottom: 3px solid var(--green);
-    padding: 0 max(6%, calc((100% - 1280px) / 2));
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 0 max(5%, calc((100% - 1200px) / 2));
+    height: 68px;
     display: flex; align-items: center; justify-content: space-between;
-    height: 64px;
-    box-shadow: 0 2px 12px rgba(0,0,0,.18);
+    box-shadow: 0 1px 8px rgba(0,0,0,.07);
   }
-  nav a {
-    color: rgba(255,255,255,.75); text-decoration: none;
-    font-weight: 600; font-size: .92rem;
-    margin-left: 2rem; transition: color .2s;
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
   }
-  nav a:hover { color: #fff; }
+  .nav-logo img { height: 34px; width: auto; }
+  .nav-logo-text { font-size: 1.05rem; font-weight: 700; color: var(--text); }
+  .nav-links { display: flex; align-items: center; }
+  .nav-links a {
+    color: var(--text); text-decoration: none;
+    font-weight: 500; font-size: .86rem;
+    padding: 0 .9rem; height: 68px;
+    display: flex; align-items: center;
+    border-bottom: 3px solid transparent;
+    transition: color .2s, border-color .2s;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--teal); border-bottom-color: var(--teal); }
   .nav-cta {
-    background: var(--green) !important;
-    color: #fff !important;
-    padding: 9px 22px; border-radius: 4px;
-    font-weight: 800 !important; letter-spacing: .5px;
+    background: var(--teal) !important; color: #fff !important;
+    padding: 9px 20px !important; border-radius: 6px !important;
+    border-bottom: none !important; height: auto !important;
+    font-weight: 600 !important; margin-left: .4rem;
     transition: background .2s !important;
   }
-  .nav-cta:hover { background: var(--green-dark) !important; }
+  .nav-cta:hover { background: var(--teal-dark) !important; }
 
   /* ── HERO ── */
   .hero {
     min-height: 100vh; min-height: 100dvh;
     display: flex; align-items: center; justify-content: center;
-    position: relative;
-    padding: 100px max(5%, calc((100% - 1180px) / 2)) 80px;
-    overflow: hidden;
+    position: relative; overflow: hidden;
+    padding-top: 68px;
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 80% 70% at 55% 65%, rgba(0,150,190,.3) 0%, transparent 60%),
-      radial-gradient(ellipse 55% 45% at 15% 85%, rgba(0,70,120,.2) 0%, transparent 55%),
-      linear-gradient(160deg, #050F1C 0%, #071E33 55%, #040D19 100%);
+    background-image: url('images/familia_conectada.png');
+    background-size: cover; background-position: center;
     z-index: 0;
   }
   .hero-bg::after {
     content: '';
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--green) 30%, #00D46A 50%, var(--green) 70%, transparent);
+    position: absolute; inset: 0;
+    background: rgba(5,25,55,.65);
   }
-  /* Glass card */
-  .hero-card {
-    position: relative; z-index: 2;
-    width: 100%; max-width: 980px;
-    background: rgba(10,30,60,.45);
-    border: 1px solid rgba(255,255,255,.13);
-    border-radius: 20px;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    padding: 52px 48px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
-    box-shadow: 0 8px 48px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08);
-    animation: fadeUp .7s .1s ease both;
+  .hero-inner {
+    position: relative; z-index: 1;
+    text-align: center; max-width: 720px;
+    padding: 0 24px;
+    animation: fadeUp .8s ease both;
   }
-  .hero-content { position: relative; }
-  .badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--green); color: #fff;
-    padding: 5px 14px; border-radius: 3px;
-    font-size: .72rem; font-weight: 800; letter-spacing: 2px;
-    text-transform: uppercase; margin-bottom: 1.4rem;
-  }
-  .badge-wave { opacity: .75; letter-spacing: 0; }
   .hero h1 {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: clamp(2.4rem, 5vw, 4.2rem);
-    font-weight: 700; line-height: 1.05; color: #fff;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 1.2rem;
   }
-  .hero h1 em  { font-style: normal; color: #7DD3FC; }
-  .hero h1 span { color: #86EFAC; }
   .hero-sub {
-    margin: 1.3rem 0 2rem;
-    font-size: 1rem; line-height: 1.75;
-    color: rgba(255,255,255,.72);
+    font-size: clamp(.95rem, 2vw, 1.1rem);
+    color: rgba(255,255,255,.82); line-height: 1.7; margin-bottom: 2.4rem;
+    max-width: 560px; margin-left: auto; margin-right: auto;
   }
-  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--green); color: #fff;
-    font-weight: 800; font-size: 1rem;
-    padding: 14px 32px; border-radius: 4px; text-decoration: none;
-    box-shadow: 0 4px 16px rgba(0,166,81,.4);
-    transition: background .2s, box-shadow .2s, transform .15s;
-    display: inline-block; letter-spacing: .3px;
-  }
-  .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 6px 22px rgba(0,166,81,.5); }
-  .btn-secondary {
-    border: 2px solid rgba(255,255,255,.45); color: #fff;
+  .btn-hero {
+    display: inline-block;
+    background: var(--teal); color: #fff;
     font-weight: 700; font-size: 1rem;
-    padding: 14px 32px; border-radius: 4px; text-decoration: none;
-    transition: background .2s, border-color .2s;
-    display: inline-block;
+    padding: 14px 36px; border-radius: 6px;
+    text-decoration: none;
+    transition: background .2s, transform .15s;
+    box-shadow: 0 4px 20px rgba(10,110,120,.45);
   }
-  .btn-secondary:hover { background: rgba(255,255,255,.1); border-color: #fff; }
-  /* Stats panel (glass card right column) */
-  .stats-list { display: flex; flex-direction: column; }
-  .stat-item {
-    display: flex; align-items: flex-start; gap: 10px;
-    padding: 13px 0;
-    border-bottom: 1px solid rgba(255,255,255,.09);
-  }
-  .stat-item:last-child { border-bottom: none; }
-  .stat-dot { color: var(--green); font-size: 1rem; line-height: 1.6; flex-shrink: 0; }
-  .stat-body { display: flex; flex-direction: column; gap: 3px; }
-  .stat-slabel { font-size: .72rem; color: rgba(255,255,255,.5); font-weight: 600; letter-spacing: .5px; }
-  .stat-sval { font-family: 'Rajdhani', sans-serif; font-size: 1.65rem; font-weight: 700; color: #fff; line-height: 1.1; }
-  .stat-sval small { font-size: .78rem; font-weight: 400; color: rgba(255,255,255,.4); display: block; margin-top: 1px; }
-  .stat-sval.green { color: #86EFAC; }
-  .stat-chip {
-    display: inline-block;
-    background: var(--green); color: #fff;
-    font-size: .78rem; font-weight: 800; letter-spacing: 1px;
-    padding: 3px 10px; border-radius: 4px; margin-top: 3px;
-  }
-
-  /* hero visual — tarjetas de stats corporativas */
-  .hero-visual {
-    position: absolute; right: max(6%, calc((100% - 1280px) / 2)); top: 50%;
-    transform: translateY(-50%);
-    z-index: 1; display: flex; flex-direction: column; gap: 14px;
-    animation: fadeUp .8s .4s ease both;
-  }
-  .phone-wrap {
-    width: 240px;
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 8px;
-    backdrop-filter: blur(8px);
-    overflow: hidden;
-  }
-  .phone-screen {
-    padding: 20px 22px;
-    display: flex; flex-direction: column; gap: 14px;
-  }
-  .stat-row {
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .stat-label { font-size: .75rem; color: rgba(255,255,255,.55); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
-  .stat-value { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; font-weight: 700; color: #fff; }
-  .stat-value.green { color: #86EFAC; }
-  .stat-divider { height: 1px; background: rgba(255,255,255,.1); }
-  .signal-icon { display: none; }
-  .phone-text, .phone-sub, .price-tag { display: none; }
-  .ring { display: none; }
+  .btn-hero:hover { background: var(--teal-dark); transform: translateY(-2px); }
 
   @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
-  /* ── SECCIONES COMPARTIDAS ── */
-  section { padding: 80px max(6%, calc((100% - 1280px) / 2)); }
-  .section-label {
-    font-size: .7rem; font-weight: 800; letter-spacing: 4px;
-    text-transform: uppercase; color: var(--green); margin-bottom: .6rem;
+  /* ── SHARED SECTION ── */
+  .section-teal {
+    background: var(--teal);
+    padding: 72px max(5%, calc((100% - 1200px) / 2));
   }
   .section-title {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    font-weight: 700; line-height: 1.1; color: var(--text); margin-bottom: 1rem;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800; color: #fff; margin-bottom: .6rem; text-align: center;
   }
-  .section-title em { font-style: normal; color: var(--blue); }
-  .section-sub { color: var(--text-muted); max-width: 560px; line-height: 1.75; font-size: 1rem; }
+  .section-sub {
+    font-size: .95rem; color: rgba(255,255,255,.75);
+    text-align: center; max-width: 560px;
+    margin: 0 auto 2.8rem; line-height: 1.65;
+  }
 
-  /* ── FAMILY ── */
-  .family-section {
-    background: var(--white);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
+  /* ── FAMILY CARDS ── */
   .family-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 64px; align-items: center; margin-top: 48px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
   }
-  .family-img-wrap { position: relative; border-radius: 6px; overflow: hidden; }
-  .family-img-wrap img {
-    width: 100%; height: 380px; object-fit: cover;
-    border-radius: 6px; display: block;
+  .family-card {
+    background: #fff; border-radius: 10px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,.18);
+    transition: transform .25s, box-shadow .25s;
   }
-  .family-img-wrap::after {
-    content: '';
-    position: absolute; inset: 0; border-radius: 6px;
-    box-shadow: inset 0 0 0 2px rgba(0,87,184,.1);
+  .family-card:hover { transform: translateY(-5px); box-shadow: 0 10px 36px rgba(0,0,0,.22); }
+  .family-card img {
+    width: 100%; height: 200px; object-fit: cover; display: block;
   }
-  .family-features { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.8rem; }
-  .feat-item { display: flex; align-items: flex-start; gap: 1rem; }
-  .feat-icon {
-    width: 42px; height: 42px; min-width: 42px;
-    background: var(--green-light);
-    border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem;
+  .family-card-body { padding: 1.4rem 1.3rem 1.6rem; }
+  .family-card-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: .5rem; }
+  .family-card-desc { font-size: .84rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.2rem; }
+  .btn-card {
+    display: inline-block; background: var(--teal); color: #fff;
+    font-size: .82rem; font-weight: 600;
+    padding: 8px 20px; border-radius: 5px;
+    text-decoration: none; transition: background .2s;
   }
-  .feat-title { font-weight: 700; font-size: .95rem; color: var(--text); margin-bottom: .15rem; }
-  .feat-desc { font-size: .85rem; color: var(--text-muted); line-height: 1.55; }
+  .btn-card:hover { background: var(--teal-dark); }
+  .btn-card-outline {
+    display: inline-block; background: transparent; color: var(--teal);
+    font-size: .82rem; font-weight: 600;
+    padding: 7px 20px; border-radius: 5px; border: 1.5px solid var(--teal);
+    text-decoration: none; transition: background .2s, color .2s;
+  }
+  .btn-card-outline:hover { background: var(--teal); color: #fff; }
 
   /* ── PLANS ── */
-  #planes { background: var(--bg); }
-  .plans-header { text-align: center; max-width: 600px; margin: 0 auto 3rem; }
-  .plans-header .section-sub { margin: 0 auto; }
   .plans-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
-    gap: 1.4rem;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    align-items: start;
   }
   .plan-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-top: 3px solid var(--border);
-    border-radius: 6px; padding: 2rem 1.8rem;
-    position: relative; overflow: hidden;
-    transition: box-shadow .25s, border-top-color .25s, transform .25s;
-    display: flex; flex-direction: column;
+    background: #fff; border-radius: 10px;
+    padding: 2.2rem 1.8rem;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,.14);
+    transition: transform .25s;
   }
-  .plan-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-top-color: var(--blue);
+  .plan-card:hover { transform: translateY(-4px); }
+  .plan-card.recommended {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 36px rgba(0,0,0,.2);
   }
-  .plan-card.featured {
-    border-top-color: var(--green);
-    box-shadow: 0 4px 24px rgba(0,166,81,.15);
+  .plan-card.recommended:hover { transform: translateY(-14px); }
+  .plan-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: #1A2744; color: #fff;
+    font-size: .68rem; font-weight: 700; letter-spacing: 1px;
+    padding: 4px 14px; border-radius: 4px; white-space: nowrap;
   }
-  .plan-card.featured::before {
-    content: 'MÁS POPULAR';
-    position: absolute; top: 0; right: 0;
-    background: var(--green); color: #fff;
-    font-size: .58rem; font-weight: 800; letter-spacing: 2px;
-    padding: 4px 12px; border-radius: 0 6px 0 6px;
+  .plan-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .plan-name { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: .8rem; }
+  .plan-price {
+    font-size: 2.2rem; font-weight: 800; color: var(--teal); margin-bottom: 1.2rem; line-height: 1;
   }
-  .plan-icon { font-size: 2rem; margin-bottom: .9rem; }
-  .plan-name { font-family: 'Rajdhani', sans-serif; font-size: 1.35rem; font-weight: 700; color: var(--text); margin-bottom: .4rem; }
-  .plan-desc { font-size: .85rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.3rem; flex: 1; }
-  .plan-price { font-family: 'Rajdhani', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--blue); }
-  .plan-price sup { font-size: 1.1rem; vertical-align: super; }
-  .plan-price span { font-size: .95rem; color: var(--text-muted); font-weight: 400; }
-  .plan-cond { font-size: .72rem; color: #94A3B8; margin-top: .3rem; margin-bottom: 1.4rem; }
-  .plan-btn {
-    display: block; text-align: center; text-decoration: none;
-    padding: 11px 16px; border-radius: 4px;
-    font-weight: 700; font-size: .88rem; transition: all .2s;
-    background: var(--blue-light); color: var(--blue);
-    border: 1px solid rgba(0,87,184,.2);
-    margin-top: auto; letter-spacing: .3px;
+  .plan-price span { font-size: .88rem; font-weight: 400; color: var(--text-muted); }
+  .btn-plan {
+    display: block; background: var(--teal); color: #fff;
+    font-weight: 700; font-size: .9rem;
+    padding: 11px; border-radius: 6px;
+    text-decoration: none; margin-bottom: 1.4rem;
+    transition: background .2s;
   }
-  .plan-card.featured .plan-btn { background: var(--green); color: #fff; border-color: var(--green); }
-  .plan-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
-  .plan-card.featured .plan-btn:hover { background: var(--green-dark); border-color: var(--green-dark); }
-  .plan-card.special { border-top-color: var(--blue-mid); }
-  .plan-card.special .plan-price { color: var(--blue-mid); font-size: 2.2rem; }
-  .plan-card.special .plan-btn { background: var(--blue-light); color: var(--blue); border-color: rgba(0,87,184,.2); }
-  .plan-card.special:hover .plan-btn { background: var(--blue); color: #fff; }
+  .btn-plan:hover { background: var(--teal-dark); }
+  .plan-features { list-style: none; text-align: left; }
+  .plan-features li {
+    font-size: .84rem; color: var(--text-muted);
+    padding: .32rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .plan-features li:last-child { border-bottom: none; }
+  .plan-features li::before { content: '• '; color: var(--teal); font-weight: 700; }
+  .plan-cond-link {
+    display: block; font-size: .72rem; color: #94A3B8;
+    margin-top: .9rem; text-decoration: underline;
+  }
 
-  /* ── BENEFITS ── */
-  .benefits-section { background: var(--white); border-top: 1px solid var(--border); }
-  .benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.4rem; margin-top: 2.8rem;
+  /* ── COVERAGE ── */
+  .coverage-grid { display: flex; flex-direction: column; gap: 1.8rem; }
+  .coverage-item {
+    display: grid; grid-template-columns: 300px 1fr; gap: 0;
+    background: rgba(255,255,255,.07);
+    border-radius: 10px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,.15);
   }
-  .benefit-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--green);
-    border-radius: 6px; padding: 1.8rem 1.5rem;
-    text-align: left;
-    transition: box-shadow .25s, transform .25s;
+  .coverage-item img {
+    width: 100%; height: 210px; object-fit: cover; display: block;
   }
-  .benefit-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-  .benefit-icon { font-size: 2.2rem; margin-bottom: .8rem; }
-  .benefit-title { font-family: 'Rajdhani', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: .4rem; }
-  .benefit-desc { font-size: .85rem; color: var(--text-muted); line-height: 1.6; }
+  .coverage-body { padding: 1.8rem 2rem; display: flex; flex-direction: column; justify-content: center; }
+  .coverage-title { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: .6rem; }
+  .coverage-desc { font-size: .88rem; color: rgba(255,255,255,.72); line-height: 1.7; }
 
   /* ── FOOTER ── */
   footer {
-    background: var(--blue-dark);
-    border-top: 3px solid var(--green);
-    padding: 48px max(6%, calc((100% - 1280px) / 2)) 24px;
+    background: var(--teal-deep);
+    padding: 48px max(5%, calc((100% - 1200px) / 2)) 28px;
     text-align: center;
   }
   .footer-logo { margin-bottom: 1rem; }
-  .contact-info { margin: 1.2rem 0; display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; align-items: center; }
-  .contact-item { display: flex; align-items: center; gap: .5rem; font-size: .95rem; color: rgba(255,255,255,.65); }
-  .contact-item a { color: #86EFAC; text-decoration: none; font-weight: 700; transition: color .2s; }
+  .footer-logo img { height: 42px; width: auto; }
+  .contact-info {
+    margin: 1.2rem 0; display: flex; flex-wrap: wrap;
+    gap: 1.5rem; justify-content: center; align-items: center;
+  }
+  .contact-item { display: flex; align-items: center; gap: .5rem; font-size: .95rem; color: rgba(255,255,255,.68); }
+  .contact-item a { color: #7DD3FC; text-decoration: none; font-weight: 700; transition: color .2s; }
   .contact-item a:hover { color: #fff; }
-  .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.2rem; font-size: .8rem; color: rgba(255,255,255,.35); margin-top: 2rem; }
-  .footer-bottom a { color: #86EFAC; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.12);
+    padding-top: 1.2rem; font-size: .8rem;
+    color: rgba(255,255,255,.38); margin-top: 2rem;
+  }
+  .footer-bottom a { color: #7DD3FC; }
 
   /* ── COOKIE BANNER ── */
   #cookie-banner {
-    display: none;
-    position: fixed; bottom: 60px; left: 0; right: 0;
-    z-index: 99999;
-    background: var(--blue-dark);
-    border-top: 3px solid var(--green);
+    display: none; position: fixed; bottom: 60px; left: 0; right: 0;
+    z-index: 99999; background: var(--teal-deep);
+    border-top: 3px solid #00D46A;
     box-shadow: 0 -4px 24px rgba(0,0,0,.2);
     padding: 16px 24px;
-    align-items: center;
-    justify-content: space-between;
+    align-items: center; justify-content: space-between;
     gap: 16px; flex-wrap: wrap;
   }
-  .cookie-text { font-size: .85rem; color: rgba(255,255,255,.7); line-height: 1.5; flex: 1; min-width: 240px; }
-  .cookie-text a { color: #86EFAC; text-decoration: underline; }
+  .cookie-text { font-size: .85rem; color: rgba(255,255,255,.75); line-height: 1.5; flex: 1; min-width: 240px; }
+  .cookie-text a { color: #7DD3FC; text-decoration: underline; }
   .cookie-actions { display: flex; gap: 10px; flex-shrink: 0; }
-  .cookie-accept {
-    background: var(--green); color: #fff;
-    border: none; font-weight: 800; font-size: .85rem;
-    padding: 10px 22px; border-radius: 4px; cursor: pointer;
-    transition: background .2s;
-  }
-  .cookie-accept:hover { background: var(--green-dark); }
-  .cookie-reject {
-    background: transparent; color: rgba(255,255,255,.6);
-    border: 1px solid rgba(255,255,255,.25); font-size: .85rem;
-    padding: 10px 18px; border-radius: 4px; cursor: pointer;
-    transition: border-color .2s, color .2s;
-  }
+  .cookie-accept { background: #00A651; color: #fff; border: none; font-weight: 800; font-size: .85rem; padding: 10px 22px; border-radius: 4px; cursor: pointer; transition: background .2s; }
+  .cookie-accept:hover { background: #007A3D; }
+  .cookie-reject { background: transparent; color: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.25); font-size: .85rem; padding: 10px 18px; border-radius: 4px; cursor: pointer; transition: border-color .2s, color .2s; }
   .cookie-reject:hover { border-color: rgba(255,255,255,.6); color: #fff; }
 
   /* ── RESPONSIVE ── */
-  @media(max-width: 860px) {
-    .hero-card { grid-template-columns: 1fr; padding: 36px 28px; gap: 0; }
-    .stats-list { display: none; }
-    .family-grid { grid-template-columns: 1fr; }
-    nav .nav-links { display: none; }
+  @media (max-width: 1024px) {
+    .plans-grid { grid-template-columns: repeat(2, 1fr); }
+    .plan-card.recommended { transform: none; }
+    .plan-card.recommended:hover { transform: translateY(-4px); }
+    .family-grid { grid-template-columns: repeat(2, 1fr); }
   }
-  @media(max-width: 600px) {
-    section { padding: 60px 5%; }
-    .btn-group { flex-direction: column; }
-    .btn-primary, .btn-secondary { text-align: center; }
+  @media (max-width: 768px) {
+    nav .nav-links { display: none; }
+    .family-grid { grid-template-columns: 1fr; }
+    .plans-grid { grid-template-columns: 1fr; }
+    .coverage-item { grid-template-columns: 1fr; }
+    .coverage-body { padding: 1.2rem; }
+    .section-teal { padding: 56px 5%; }
+  }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 2rem; }
+    .section-teal { padding: 48px 5%; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <img src="images/Connecting.png" alt="Connecting" style="height:36px; width:auto;">
-  <div class="nav-links">
-    <a href="#planes">Planes</a>
-    <a href="#beneficios">Beneficios</a>
-    <a href="tel:+18884601317" class="nav-cta">Contáctanos</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-card">
-    <div class="hero-content">
-      <div class="badge"><span class="badge-wave">(( </span>RED 5G EN ESTADOS UNIDOS<span class="badge-wave"> ))</span></div>
-      <h1>Libertad <em>sin</em> contratos:<br><span>Conexión</span> sin límites.</h1>
-      <p class="hero-sub">Únete a la red 5G más confiable de Estados Unidos. Planes desde <strong>$55</strong>, con activación instantánea y soporte en tu idioma.</p>
-      <div class="btn-group">
-        <a href="#planes" class="btn-primary">Ver Planes</a>
-        <a href="tel:+18884601317" class="btn-secondary">Contáctanos</a>
-      </div>
-    </div>
-    <div class="stats-list">
-      <div class="stat-item">
-        <span class="stat-dot">•</span>
-        <div class="stat-body">
-          <span class="stat-slabel">Cobertura</span>
-          <span class="stat-chip">99% USA</span>
-        </div>
-      </div>
-      <div class="stat-item">
-        <span class="stat-dot">•</span>
-        <div class="stat-body">
-          <span class="stat-slabel">Velocidad</span>
-          <span class="stat-sval">1 Gbps<small>5G</small></span>
-        </div>
-      </div>
-      <div class="stat-item">
-        <span class="stat-dot">•</span>
-        <div class="stat-body">
-          <span class="stat-slabel">Desde</span>
-          <span class="stat-sval green">$55 / mes</span>
-        </div>
-      </div>
-      <div class="stat-item">
-        <span class="stat-dot">•</span>
-        <div class="stat-body">
-          <span class="stat-slabel">Contrato</span>
-          <span class="stat-sval">Sin compromiso</span>
-        </div>
-      </div>
-      <div class="stat-item">
-        <span class="stat-dot">•</span>
-        <div class="stat-body">
-          <span class="stat-slabel">En Español / Soporte</span>
-          <span class="stat-sval green">24/7</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAMILY SECTION -->
-<section class="family-section" id="familiar">
-  <div class="family-grid">
-    <div>
-      <div class="section-label">Planes Familiares</div>
-      <h2 class="section-title">Ahorras más en<br><em>planes familiares</em></h2>
-      <p class="section-sub">Incluye planes familiares desde $55.00 c/m. Añade teléfonos de alta gama adaptados a tu presupuesto y disfruta de más por menos.</p>
-      <div class="family-features">
-        <div class="feat-item">
-          <div class="feat-icon">👨‍👩‍👧‍👦</div>
-          <div>
-            <div class="feat-title">Hasta 4 líneas</div>
-            <div class="feat-desc">Datos 5G ilimitados y llamadas para toda la familia sin costo adicional.</div>
-          </div>
-        </div>
-        <div class="feat-item">
-          <div class="feat-icon">📱</div>
-          <div>
-            <div class="feat-title">Teléfonos de alta gama</div>
-            <div class="feat-desc">Los mejores dispositivos móviles incluidos en tus planes familiares.</div>
-          </div>
-        </div>
-        <div class="feat-item">
-          <div class="feat-icon">💰</div>
-          <div>
-            <div class="feat-title">Ahorro garantizado</div>
-            <div class="feat-desc">Mientras más líneas agregues, más ahorras cada mes.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="family-img-wrap">
-      <img src="images/familia_conectada.png"
-           alt="Familia conectada"
-           width="600" height="380"
-           loading="lazy">
-    </div>
-  </div>
-</section>
-
-<!-- PLANS -->
-<section id="planes">
-  <div class="plans-header">
-    <div class="section-label">Nuestros Planes</div>
-    <h2 class="section-title">Planes que te pueden <em>interesar</em></h2>
-    <p class="section-sub">Planes personalizados que se adaptan a tus necesidades e intereses.</p>
-  </div>
-  <div class="plans-grid">
-
-    <!-- Plan Premium -->
-    <div class="plan-card">
-      <div class="plan-icon">👑</div>
-      <div class="plan-name">Plan Premium</div>
-      <p class="plan-desc">Navega a la máxima velocidad. Incluye Hotspot ilimitado y suscripción a streaming. La mejor red de Estados Unidos en tu bolsillo.</p>
-      <div class="plan-price"><sup>$</sup>65<span>/mes</span></div>
-      <p class="plan-cond"><a href="terminos.html" style="color:inherit;text-decoration:underline;">*Condiciones Aplican</a></p>
-      <a href="tel:+18884601317" class="plan-btn">Obtener Plan</a>
-    </div>
-
-    <!-- Plan Ilimitado Plus (featured) -->
-    <div class="plan-card featured">
-      <div class="plan-icon">📈</div>
-      <div class="plan-name">Plan Ilimitado Plus</div>
-      <p class="plan-desc">Trae a toda la familia y ahorra. Hasta 4 líneas con datos 5G ilimitados y llamadas sin costo adicional.</p>
-      <div class="plan-price"><sup>$</sup>55<span>/mes</span></div>
-      <p class="plan-cond"><a href="terminos.html" style="color:inherit;text-decoration:underline;">*Condiciones Aplican</a></p>
-      <a href="tel:+18884601317" class="plan-btn">Obtener Plan</a>
-    </div>
-
-    <!-- Plan Global Connect -->
-    <div class="plan-card">
-      <div class="plan-icon">🌎</div>
-      <div class="plan-name">Plan Global Connect</div>
-      <p class="plan-desc">Navega a la máxima velocidad. La mejor red de Estados Unidos en tu bolsillo. Conectividad global donde la necesites.</p>
-      <div class="plan-price"><sup>$</sup>80<span>/mes</span></div>
-      <p class="plan-cond"><a href="terminos.html" style="color:inherit;text-decoration:underline;">*Condiciones Aplican</a></p>
-      <a href="tel:+18884601317" class="plan-btn">Obtener Plan</a>
-    </div>
-
-    <!-- Plan Todo en uno (special) -->
-    <div class="plan-card special">
-      <div class="plan-icon">📦</div>
-      <div class="plan-name">Plan Todo en Uno</div>
-      <p class="plan-desc">Ahorra más con nuestro paquete especial: teléfono móvil favorito, Smartwatch moderno y tablet práctica incluidos.</p>
-      <div class="plan-price" style="color:var(--gold);">💰</div>
-      <p class="plan-cond" style="margin-top:.4rem;">*Consulta por precio personalizado</p>
-      <a href="tel:+18884601317" class="plan-btn">Consultar</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- BENEFITS -->
-<section class="benefits-section" id="beneficios">
-  <div style="text-align:center; max-width:600px; margin:0 auto;">
-    <div class="section-label">¿Por qué elegirnos?</div>
-    <h2 class="section-title">Beneficios que <em>obtienes</em></h2>
-    <p class="section-sub" style="margin:0 auto;">Todo lo que necesitas para estar siempre conectado, al mejor precio.</p>
-  </div>
-  <div class="benefits-grid">
-    <div class="benefit-card">
-      <div class="benefit-icon">💸</div>
-      <div class="benefit-title">Mayor Ahorro</div>
-      <p class="benefit-desc">Planes desde $55 mensuales. Sin contratos que te amarren. *Condiciones aplican*</p>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">🚀</div>
-      <div class="benefit-title">Mayor Velocidad</div>
-      <p class="benefit-desc">Navega con una de las redes más rápidas de Estados Unidos y disfruta de velocidad sin precedentes.</p>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">📞</div>
-      <div class="benefit-title">Soporte Personalizado</div>
-      <p class="benefit-desc">Atención al cliente personalizada los 7 días de la semana, en tu idioma.</p>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">📈</div>
-      <div class="benefit-title">Conexión Ilimitada</div>
-      <p class="benefit-desc">Navega, habla y disfruta de la conexión más estable y llamadas ilimitadas.</p>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER / CONTACTO -->
-<footer id="contacto">
-  <div class="footer-logo">
-    <img src="images/Connecting.png" alt="Connecting" style="height:44px; width:auto;">
-  </div>
-  <p style="color:#94A3B8; max-width:480px; margin:0 auto 1.2rem;">Sin contratos. Sin límites. Connecting es un <strong style="color:#60A5FA;">Authorized Reseller</strong> de las mejores redes 5G de Estados Unidos.</p>
-  <div class="contact-info">
-    <div class="contact-item">📞 <a href="tel:+18884601317">+1 (888) 460-1317</a></div>
-    <div class="contact-item">🕐 Lun-Dom, 8:00AM a 9:00PM</div>
-  </div>
-  <br>
-  <a href="tel:+18884601317" class="btn-primary" style="display:inline-block; margin-bottom:2rem; background:#F59E0B; color:#000; box-shadow:0 4px 20px rgba(245,158,11,.4);">📞 Llámanos Ahora</a>
-  <div class="footer-bottom">
-    © 2026 Connecting S.A. de C.V. Todos los derechos reservados. Authorized Reseller.
-    <br><a href="privacidad.html" style="color:#60A5FA; text-decoration:underline; font-size:.78rem;">Política de Privacidad</a>
-    &nbsp;·&nbsp;
-    <a href="terminos.html" style="color:#60A5FA; text-decoration:underline; font-size:.78rem;">Términos y Condiciones</a>
-    &nbsp;·&nbsp;
-    <a href="#" id="ccpa-link" style="color:#60A5FA; text-decoration:underline; font-size:.78rem;">No vender mis datos (CCPA)</a>
-  </div>
-</footer>
-
-<!-- BARRA DE LLAMADA FIJA -->
+<!-- CALL BAR FIJA -->
 <div class="call-bar">
   <a href="tel:+18884601317">
     <span class="call-bar-icon">📞</span>
     Llámanos al &nbsp;<strong>+1 (888) 460-1317</strong>
   </a>
 </div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="images/Connecting.png" alt="Líneas Móviles">
+    <span class="nav-logo-text">Líneas Móviles</span>
+  </a>
+  <div class="nav-links">
+    <a href="#servicios">Nuestros Servicios</a>
+    <a href="#familiar">Planes Familiares</a>
+    <a href="#planes">Nuestros Planes</a>
+    <a href="#cobertura">Cobertura y Velocidad</a>
+    <a href="tel:+18884601317" class="nav-cta">Contáctanos</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="servicios">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <h1>Planes Móviles para Todos</h1>
+    <p class="hero-sub">Ofrecemos paquetes de líneas móviles diseñados especialmente para la comunidad latina en Estados Unidos.</p>
+    <a href="tel:+18884601317" class="btn-hero">Contáctanos</a>
+  </div>
+</section>
+
+<!-- PLANES FAMILIARES -->
+<section class="section-teal" id="familiar">
+  <h2 class="section-title">Planes para Familias Conectadas</h2>
+  <p class="section-sub">Conéctate y ahorra con nuestros planes familiares diseñados especialmente para ti y tu familia.</p>
+  <div class="family-grid">
+    <div class="family-card">
+      <img src="images/familia_conectada.png" alt="Ahorra más por línea">
+      <div class="family-card-body">
+        <div class="family-card-title">Ahorra Más por Línea</div>
+        <p class="family-card-desc">Agrega hasta 4 líneas a tu plan familiar y disfruta de tarifas reducidas. Cuantas más líneas, más ahorras.</p>
+        <a href="#planes" class="btn-card">Ver planes</a>
+      </div>
+    </div>
+    <div class="family-card">
+      <img src="images/navegacion.jpeg" alt="Datos ilimitados">
+      <div class="family-card-body">
+        <div class="family-card-title">Datos Ilimitados</div>
+        <p class="family-card-desc">Cada miembro de la familia disfruta de datos ilimitados permitiendo que todos se mantengan conectados en todo momento.</p>
+        <a href="#planes" class="btn-card-outline">Más información</a>
+      </div>
+    </div>
+    <div class="family-card">
+      <img src="images/navegacion.jpeg" alt="Teléfonos de alta gama" style="object-position: right;">
+      <div class="family-card-body">
+        <div class="family-card-title">Teléfonos de Alta Gama</div>
+        <p class="family-card-desc">Elige entre una amplia gama de teléfonos de alta gama adaptados a tu presupuesto y a las necesidades de tu familia.</p>
+        <a href="tel:+18884601317" class="btn-card-outline">Explora dispositivos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUESTROS PLANES -->
+<section class="section-teal" id="planes" style="background: var(--teal-dark);">
+  <h2 class="section-title">Paquetes de Servicios Móviles</h2>
+  <p class="section-sub">Encuentra el plan perfecto que se ajusta a tus necesidades y presupuesto.</p>
+  <div class="plans-grid">
+
+    <div class="plan-card">
+      <div class="plan-icon">📱</div>
+      <div class="plan-name">Plan Básico</div>
+      <div class="plan-price">$55.00<span>/mes</span></div>
+      <a href="tel:+18884601317" class="btn-plan">Selecciona</a>
+      <ul class="plan-features">
+        <li>Datos ilimitados 5G</li>
+        <li>Llamadas y mensajes ilimitados</li>
+        <li>Soporte 24/7 en español</li>
+      </ul>
+      <a href="terminos.html" class="plan-cond-link">*Condiciones Aplican</a>
+    </div>
+
+    <div class="plan-card recommended">
+      <div class="plan-badge">Recomendado</div>
+      <div class="plan-icon">👨‍👩‍👧‍👦</div>
+      <div class="plan-name">Plan Familiar</div>
+      <div class="plan-price">$150.00<span>/mes</span></div>
+      <a href="tel:+18884601317" class="btn-plan">Selecciona</a>
+      <ul class="plan-features">
+        <li>Hasta 4 líneas</li>
+        <li>Datos ilimitados para todos</li>
+        <li>Descuentos por líneas adicionales</li>
+      </ul>
+      <a href="terminos.html" class="plan-cond-link">*Condiciones Aplican</a>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-icon">👑</div>
+      <div class="plan-name">Plan Premium</div>
+      <div class="plan-price">$75.00<span>/mes</span></div>
+      <a href="tel:+18884601317" class="btn-plan">Selecciona</a>
+      <ul class="plan-features">
+        <li>Datos ilimitados 5G</li>
+        <li>Incluye un dispositivo de alta gama</li>
+        <li>Soporte en español 24/7</li>
+      </ul>
+      <a href="terminos.html" class="plan-cond-link">*Condiciones Aplican</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- COBERTURA Y VELOCIDAD -->
+<section class="section-teal" id="cobertura" style="background: var(--teal-deep);">
+  <h2 class="section-title">Cobertura y Velocidad</h2>
+  <p class="section-sub">La red más rápida y confiable de Estados Unidos, siempre contigo.</p>
+  <div class="coverage-grid">
+    <div class="coverage-item">
+      <img src="images/familia_conectada.png" alt="Cobertura Nacional">
+      <div class="coverage-body">
+        <div class="coverage-title">Cobertura Nacional</div>
+        <p class="coverage-desc">Nuestra red cubre el 99% del territorio de Estados Unidos, garantizando que siempre estés conectado sin importar dónde te encuentres.</p>
+      </div>
+    </div>
+    <div class="coverage-item">
+      <img src="images/navegacion.jpeg" alt="Velocidades de Alta Velocidad">
+      <div class="coverage-body">
+        <div class="coverage-title">Velocidades de Alta Velocidad</div>
+        <p class="coverage-desc">Disfruta de velocidades de hasta 1 Gbps en nuestra red 5G. Streaming en HD, videollamadas y gaming sin interrupciones.</p>
+      </div>
+    </div>
+    <div class="coverage-item">
+      <img src="images/familia_conectada.png" alt="Conexión Estable" style="object-position: top;">
+      <div class="coverage-body">
+        <div class="coverage-title">Conexión Estable</div>
+        <p class="coverage-desc">Tecnología avanzada que garantiza una conexión estable y sin interrupciones, incluso en zonas de alta densidad de usuarios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contacto">
+  <div class="footer-logo">
+    <img src="images/Connecting.png" alt="Connecting S.A. de C.V.">
+  </div>
+  <p style="color:rgba(255,255,255,.55); max-width:480px; margin:0 auto 1.2rem; font-size:.9rem; line-height:1.6;">
+    Sin contratos. Sin límites. Connecting es un <strong style="color:#7DD3FC;">Authorized Reseller</strong> de las mejores redes 5G de Estados Unidos.
+  </p>
+  <div class="contact-info">
+    <div class="contact-item">📞 <a href="tel:+18884601317">+1 (888) 460-1317</a></div>
+    <div class="contact-item">🕐 Lun-Dom, 8:00AM a 9:00PM</div>
+  </div>
+  <br>
+  <a href="tel:+18884601317" class="btn-hero" style="margin-bottom:2rem;">📞 Llámanos Ahora</a>
+  <div class="footer-bottom">
+    © 2026 Connecting S.A. de C.V. Todos los derechos reservados. Authorized Reseller.
+    <br>
+    <a href="privacidad.html">Política de Privacidad</a>
+    &nbsp;·&nbsp;
+    <a href="terminos.html">Términos y Condiciones</a>
+    &nbsp;·&nbsp;
+    <a href="#" id="ccpa-link">No vender mis datos (CCPA)</a>
+  </div>
+</footer>
 
 <!-- COOKIE CONSENT BANNER -->
 <div id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
@@ -660,19 +510,15 @@
 
 <script>
 (function () {
-  var banner  = document.getElementById('cookie-banner');
-  var stored  = localStorage.getItem('cookie_consent');
-
-  // Mostrar banner solo si no hay decisión previa
+  var banner = document.getElementById('cookie-banner');
+  var stored = localStorage.getItem('cookie_consent');
   if (!stored) banner.style.display = 'flex';
 
   document.getElementById('cookie-accept').addEventListener('click', function () {
     localStorage.setItem('cookie_consent', 'granted');
     gtag('consent', 'update', {
-      ad_storage:         'granted',
-      analytics_storage:  'granted',
-      ad_user_data:       'granted',
-      ad_personalization: 'granted'
+      ad_storage: 'granted', analytics_storage: 'granted',
+      ad_user_data: 'granted', ad_personalization: 'granted'
     });
     banner.style.display = 'none';
   });
@@ -682,34 +528,23 @@
     banner.style.display = 'none';
   });
 
-  // ── Conversión de llamada ──
-  // IMPORTANTE: reemplaza CONVERSION_LABEL con el label de tu acción de conversión
-  // en Google Ads → Herramientas → Conversiones → detalle de la conversión
+  // IMPORTANTE: reemplaza CONVERSION_LABEL con el label real de Google Ads → Conversiones
   var _conversionId = 'AW-11148367992/CONVERSION_LABEL';
-
   document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
     link.addEventListener('click', function () {
-      gtag('event', 'conversion', {
-        send_to: _conversionId,
-        event_callback: function () {}
-      });
-      gtag('event', 'phone_call_click', {
-        phone_number: link.href.replace('tel:', '')
-      });
+      gtag('event', 'conversion', { send_to: _conversionId, event_callback: function () {} });
+      gtag('event', 'phone_call_click', { phone_number: link.href.replace('tel:', '') });
     });
   });
 
-  // CCPA: "No vender mis datos" resetea a denied
   var ccpaLink = document.getElementById('ccpa-link');
   if (ccpaLink) {
     ccpaLink.addEventListener('click', function (e) {
       e.preventDefault();
       localStorage.setItem('cookie_consent', 'denied');
       gtag('consent', 'update', {
-        ad_storage:         'denied',
-        analytics_storage:  'denied',
-        ad_user_data:       'denied',
-        ad_personalization: 'denied'
+        ad_storage: 'denied', analytics_storage: 'denied',
+        ad_user_data: 'denied', ad_personalization: 'denied'
       });
       banner.style.display = 'flex';
     });
