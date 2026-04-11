@@ -29,7 +29,7 @@
     wait_for_update:   _storedConsent ? 0 : 600
   });
   gtag('js', new Date());
-  gtag('config', 'AW-11148367992');
+  gtag('config', 'AW-11148367992', { url_passthrough: true });
 </script>
 <style>
   :root {
@@ -823,6 +823,10 @@
 
   document.getElementById('cookie-reject').addEventListener('click', function () {
     localStorage.setItem('cookie_consent', 'denied');
+    gtag('consent', 'update', {
+      ad_storage: 'denied', analytics_storage: 'denied',
+      ad_user_data: 'denied', ad_personalization: 'denied'
+    });
     banner.style.display = 'none';
   });
 
