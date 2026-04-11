@@ -251,6 +251,69 @@
 
   @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
+  /* ── CARRUSEL DISPOSITIVOS ── */
+  .carousel-section {
+    background: #F8FAFC;
+    border-top: 1px solid var(--border);
+    padding: 72px max(5%, calc((100% - 1200px) / 2));
+  }
+  .carousel-wrapper { position: relative; overflow: hidden; }
+  .carousel-track {
+    display: flex; transition: transform .6s ease;
+  }
+  .carousel-slide {
+    min-width: 100%; display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px; align-items: center;
+  }
+  .carousel-img-wrap {
+    display: flex; align-items: center; justify-content: center;
+    background: #fff; border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  }
+  .carousel-img-wrap img {
+    max-height: 340px; width: auto; object-fit: contain;
+  }
+  .carousel-info { display: flex; flex-direction: column; gap: 8px; }
+  .carousel-name {
+    font-size: 1.5rem; font-weight: 800; color: var(--text); margin-bottom: 1rem;
+  }
+  .carousel-specs {
+    list-style: none; display: flex; flex-direction: column; gap: .55rem;
+  }
+  .carousel-specs li {
+    font-size: .85rem; color: var(--text-muted); line-height: 1.5;
+    padding: .45rem 0; border-bottom: 1px solid var(--border);
+    display: flex; gap: 8px;
+  }
+  .carousel-specs li:last-child { border-bottom: none; }
+  .spec-label { font-weight: 700; color: var(--text); min-width: 90px; flex-shrink: 0; }
+  /* Controles */
+  .carousel-controls {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; margin-top: 28px;
+  }
+  .carousel-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 2px solid var(--teal); background: #fff; color: var(--teal);
+    font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background .2s, color .2s;
+  }
+  .carousel-btn:hover { background: var(--teal); color: #fff; }
+  .carousel-dots { display: flex; gap: 8px; }
+  .carousel-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--border); cursor: pointer; transition: background .3s;
+  }
+  .carousel-dot.active { background: var(--teal); }
+  @media (max-width: 768px) {
+    .carousel-slide { grid-template-columns: 1fr; gap: 24px; }
+    .carousel-img-wrap { padding: 20px; }
+    .carousel-img-wrap img { max-height: 220px; }
+  }
+
   /* ── SHARED SECTION ── */
   .section-teal {
     background: #fff;
@@ -269,7 +332,8 @@
 
   /* ── FAMILY CARDS ── */
   .family-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+    max-width: 800px; margin: 0 auto;
   }
   .family-card {
     background: #fff; border-radius: 10px; overflow: hidden;
@@ -512,14 +576,107 @@
         <a href="#planes" class="btn-card-outline">Contactar con un Asesor</a>
       </div>
     </div>
-    <div class="family-card">
-      <img src="images/telefono de alta gama.jpg" alt="Teléfonos de alta gama">
-      <div class="family-card-body">
-        <div class="family-card-title">Teléfonos de Alta Gama</div>
-        <p class="family-card-desc">Elige entre una amplia gama de teléfonos de alta gama adaptados a tu presupuesto y a las necesidades de tu familia.</p>
-        <a href="tel:+18884601317" class="btn-card-outline">Contactar con un Asesor</a>
+  </div>
+</section>
+
+<!-- CARRUSEL DISPOSITIVOS -->
+<section class="carousel-section" id="dispositivos">
+  <h2 class="section-title">Teléfonos de Alta Gama</h2>
+  <p class="section-sub" style="text-align:center; margin: 0 auto 2.5rem;">Los mejores dispositivos disponibles para tu plan móvil.</p>
+  <div class="carousel-wrapper">
+    <div class="carousel-track" id="carouselTrack">
+
+      <!-- Slide 1: Galaxy Z Flip4 -->
+      <div class="carousel-slide">
+        <div class="carousel-img-wrap">
+          <img src="images/carrusel/Galaxy_Z_Flip4_detail.png" alt="Samsung Galaxy Z Flip4">
+        </div>
+        <div class="carousel-info">
+          <div class="carousel-name">Samsung Galaxy Z Flip4</div>
+          <ul class="carousel-specs">
+            <li><span class="spec-label">OS</span> Android 12</li>
+            <li><span class="spec-label">Red</span> 5G+ (mmWave & C-Band), 4G LTE</li>
+            <li><span class="spec-label">Batería</span> 3,700 mAh · Hasta 32h de llamadas</li>
+            <li><span class="spec-label">Memoria</span> 128GB / 256GB · 8GB RAM</li>
+            <li><span class="spec-label">Procesador</span> Snapdragon 8+ Gen 1</li>
+            <li><span class="spec-label">Pantalla</span> 6.7" (abierto) · 1.9" (cerrado)</li>
+            <li><span class="spec-label">Cámara</span> 12MP + 12MP trasera · 10MP frontal</li>
+            <li><span class="spec-label">Carga</span> Inalámbrica + Rápida 25W · USB-C</li>
+          </ul>
+          <a href="tel:+18884601317" class="btn-card" style="margin-top:1.2rem; width:fit-content;">Contactar con un Asesor</a>
+        </div>
       </div>
+
+      <!-- Slide 2: iPhone 17 Pro -->
+      <div class="carousel-slide">
+        <div class="carousel-img-wrap">
+          <img src="images/carrusel/iPhone17pro.png" alt="iPhone 17 Pro">
+        </div>
+        <div class="carousel-info">
+          <div class="carousel-name">iPhone 17 Pro</div>
+          <ul class="carousel-specs">
+            <li><span class="spec-label">OS</span> iOS 18</li>
+            <li><span class="spec-label">Red</span> 5G (mmWave & Sub-6GHz), 4G LTE</li>
+            <li><span class="spec-label">Procesador</span> Apple A19 Pro</li>
+            <li><span class="spec-label">Pantalla</span> 6.3" Super Retina XDR, ProMotion 120Hz</li>
+            <li><span class="spec-label">Cámara</span> Sistema Pro 48MP + 12MP + 12MP</li>
+            <li><span class="spec-label">Batería</span> Todo el día · Carga MagSafe</li>
+            <li><span class="spec-label">Carga</span> MagSafe + USB-C</li>
+          </ul>
+          <a href="tel:+18884601317" class="btn-card" style="margin-top:1.2rem; width:fit-content;">Contactar con un Asesor</a>
+        </div>
+      </div>
+
+      <!-- Slide 3: iPhone Air -->
+      <div class="carousel-slide">
+        <div class="carousel-img-wrap">
+          <img src="images/carrusel/iPhoneAir.png" alt="iPhone Air">
+        </div>
+        <div class="carousel-info">
+          <div class="carousel-name">iPhone Air</div>
+          <ul class="carousel-specs">
+            <li><span class="spec-label">OS</span> iOS 18</li>
+            <li><span class="spec-label">Red</span> 5G, 4G LTE</li>
+            <li><span class="spec-label">Diseño</span> El iPhone más delgado de Apple</li>
+            <li><span class="spec-label">Pantalla</span> 6.6" Super Retina XDR</li>
+            <li><span class="spec-label">Cámara</span> 48MP principal · 12MP frontal</li>
+            <li><span class="spec-label">Carga</span> MagSafe + USB-C</li>
+          </ul>
+          <a href="tel:+18884601317" class="btn-card" style="margin-top:1.2rem; width:fit-content;">Contactar con un Asesor</a>
+        </div>
+      </div>
+
+      <!-- Slide 4: Samsung Galaxy Fold7 -->
+      <div class="carousel-slide">
+        <div class="carousel-img-wrap">
+          <img src="images/carrusel/samsung-galaxy-fold7-detail.png" alt="Samsung Galaxy Fold7">
+        </div>
+        <div class="carousel-info">
+          <div class="carousel-name">Samsung Galaxy Z Fold7</div>
+          <ul class="carousel-specs">
+            <li><span class="spec-label">OS</span> Android 15 · One UI 7</li>
+            <li><span class="spec-label">Red</span> 5G+ (mmWave & C-Band), 4G LTE</li>
+            <li><span class="spec-label">Pantalla</span> 8" interior · 6.5" exterior</li>
+            <li><span class="spec-label">Procesador</span> Snapdragon 8 Elite</li>
+            <li><span class="spec-label">Cámara</span> 200MP principal + 12MP ultra + 10MP zoom</li>
+            <li><span class="spec-label">Batería</span> 4,400 mAh · Carga rápida 25W</li>
+            <li><span class="spec-label">Carga</span> Inalámbrica + USB-C</li>
+          </ul>
+          <a href="tel:+18884601317" class="btn-card" style="margin-top:1.2rem; width:fit-content;">Contactar con un Asesor</a>
+        </div>
+      </div>
+
     </div>
+  </div>
+  <div class="carousel-controls">
+    <button class="carousel-btn" id="carouselPrev">&#8592;</button>
+    <div class="carousel-dots" id="carouselDots">
+      <div class="carousel-dot active"></div>
+      <div class="carousel-dot"></div>
+      <div class="carousel-dot"></div>
+      <div class="carousel-dot"></div>
+    </div>
+    <button class="carousel-btn" id="carouselNext">&#8594;</button>
   </div>
 </section>
 
@@ -690,6 +847,36 @@
       banner.style.display = 'flex';
     });
   }
+}());
+</script>
+
+<script>
+(function() {
+  var track  = document.getElementById('carouselTrack');
+  var dots   = document.querySelectorAll('.carousel-dot');
+  var total  = 4;
+  var current = 0;
+  var timer;
+
+  function goTo(n) {
+    current = (n + total) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function startTimer() { timer = setInterval(next, 5000); }
+  function resetTimer()  { clearInterval(timer); startTimer(); }
+
+  document.getElementById('carouselNext').addEventListener('click', function() { next(); resetTimer(); });
+  document.getElementById('carouselPrev').addEventListener('click', function() { prev(); resetTimer(); });
+  dots.forEach(function(d, i) {
+    d.addEventListener('click', function() { goTo(i); resetTimer(); });
+  });
+
+  startTimer();
 }());
 </script>
 
