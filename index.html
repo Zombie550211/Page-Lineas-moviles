@@ -36,7 +36,7 @@
     --teal:       #2563EB;
     --teal-dark:  #1D4ED8;
     --teal-deep:  #1E3A8A;
-    --teal-light: #DBEAFE;
+    --teal-light: #EFF6FF;
     --white:      #FFFFFF;
     --text:       #111827;
     --text-muted: #6B7280;
@@ -117,13 +117,13 @@
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background: linear-gradient(135deg, #0a192f 0%, #0d2137 60%, #0a2a4a 100%);
+    background: linear-gradient(135deg, #F0F4F8 0%, #E8EEF4 60%, #EDF2F7 100%);
     z-index: 0;
   }
   .hero-bg::after {
     content: '';
     position: absolute; inset: 0;
-    background-image: radial-gradient(ellipse 60% 80% at 75% 50%, rgba(14,165,233,.12) 0%, transparent 70%);
+    background-image: radial-gradient(ellipse 60% 80% at 75% 50%, rgba(14,165,233,.08) 0%, transparent 70%);
   }
   /* Grid asimétrico */
   .hero-grid {
@@ -139,6 +139,11 @@
     padding: 80px 60px 80px 8%;
     animation: fadeUp .8s ease both;
     display: flex; flex-direction: column; justify-content: center; gap: 20px;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
   }
   /* Imagen derecha — ocupa toda la columna */
   .hero-person {
@@ -157,11 +162,10 @@
   /* Badge activo */
   .hero-badge {
     display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.18);
-    backdrop-filter: blur(4px);
+    background: rgba(14,165,233,.1);
+    border: 1px solid rgba(14,165,233,.3);
     padding: 4px 12px; border-radius: 50px;
-    color: #67E8F9; font-size: .75rem; font-weight: 600;
+    color: #0284C7; font-size: .75rem; font-weight: 700;
     letter-spacing: .3px;
     width: fit-content;
   }
@@ -176,16 +180,16 @@
   }
   /* Social proof */
   .hero-proof {
-    font-size: .9rem; color: rgba(255,255,255,.65);
+    font-size: .9rem; color: #6B7280;
   }
   .hero h1 {
     font-size: clamp(2.4rem, 4vw, 4rem);
-    font-weight: 800; color: #fff; line-height: 1.1;
+    font-weight: 800; color: #111827; line-height: 1.1;
   }
-  .hero h1 span { color: #22D3EE; }
+  .hero h1 span { color: #0284C7; }
   .hero-sub {
     font-size: 1rem;
-    color: rgba(255,255,255,.72); line-height: 1.75;
+    color: #4B5563; line-height: 1.75;
     max-width: 440px;
   }
   /* Checkmarks */
@@ -194,7 +198,7 @@
     gap: .7rem;
   }
   .hero-check {
-    font-size: .95rem; color: rgba(255,255,255,.85);
+    font-size: .95rem; color: #374151;
     display: flex; align-items: center; gap: 8px;
   }
   .hero-check::before { content: '✅'; font-size: .85rem; }
@@ -212,21 +216,22 @@
   }
   .btn-hero:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(34,197,94,.6); }
   .btn-hero:active { transform: translateY(0); }
-  .hero-microcopy { font-size: .78rem; color: rgba(255,255,255,.45); }
+  .hero-microcopy { font-size: .78rem; color: #9CA3AF; }
 
   @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
   /* ── SHARED SECTION ── */
   .section-teal {
-    background: var(--teal);
+    background: #fff;
+    border-top: 1px solid var(--border);
     padding: 72px max(5%, calc((100% - 1200px) / 2));
   }
   .section-title {
     font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-    font-weight: 800; color: #fff; margin-bottom: .6rem; text-align: center;
+    font-weight: 800; color: var(--text); margin-bottom: .6rem; text-align: center;
   }
   .section-sub {
-    font-size: .95rem; color: rgba(255,255,255,.75);
+    font-size: .95rem; color: var(--text-muted);
     text-align: center; max-width: 560px;
     margin: 0 auto 2.8rem; line-height: 1.65;
   }
@@ -247,6 +252,7 @@
   .family-card-body { padding: 1.4rem 1.3rem 1.6rem; }
   .family-card-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: .5rem; }
   .family-card-desc { font-size: .84rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.2rem; }
+  .family-card { box-shadow: 0 2px 12px rgba(0,0,0,.08); border: 1px solid var(--border); }
   .btn-card {
     display: inline-block; background: var(--teal); color: #fff;
     font-size: .82rem; font-weight: 600;
@@ -317,20 +323,22 @@
   .coverage-grid { display: flex; flex-direction: column; gap: 1.8rem; }
   .coverage-item {
     display: grid; grid-template-columns: 300px 1fr; gap: 0;
-    background: rgba(255,255,255,.07);
+    background: #fff;
+    border: 1px solid var(--border);
     border-radius: 10px; overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
   }
   .coverage-item img {
     width: 100%; height: 210px; object-fit: cover; display: block;
   }
   .coverage-body { padding: 1.8rem 2rem; display: flex; flex-direction: column; justify-content: center; }
-  .coverage-title { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: .6rem; }
-  .coverage-desc { font-size: .88rem; color: rgba(255,255,255,.72); line-height: 1.7; }
+  .coverage-title { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: .6rem; }
+  .coverage-desc { font-size: .88rem; color: var(--text-muted); line-height: 1.7; }
 
   /* ── FOOTER ── */
   footer {
-    background: var(--teal-deep);
+    background: #F8FAFC;
+    border-top: 1px solid var(--border);
     padding: 48px max(5%, calc((100% - 1200px) / 2)) 28px;
     text-align: center;
   }
@@ -340,20 +348,20 @@
     margin: 1.2rem 0; display: flex; flex-wrap: wrap;
     gap: 1.5rem; justify-content: center; align-items: center;
   }
-  .contact-item { display: flex; align-items: center; gap: .5rem; font-size: .95rem; color: rgba(255,255,255,.68); }
-  .contact-item a { color: #7DD3FC; text-decoration: none; font-weight: 700; transition: color .2s; }
-  .contact-item a:hover { color: #fff; }
+  .contact-item { display: flex; align-items: center; gap: .5rem; font-size: .95rem; color: var(--text-muted); }
+  .contact-item a { color: var(--teal); text-decoration: none; font-weight: 700; transition: color .2s; }
+  .contact-item a:hover { color: var(--teal-dark); }
   .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,.12);
+    border-top: 1px solid var(--border);
     padding-top: 1.2rem; font-size: .8rem;
-    color: rgba(255,255,255,.38); margin-top: 2rem;
+    color: #9CA3AF; margin-top: 2rem;
   }
-  .footer-bottom a { color: #7DD3FC; }
+  .footer-bottom a { color: var(--teal); }
 
   /* ── COOKIE BANNER ── */
   #cookie-banner {
     display: none; position: fixed; bottom: 60px; left: 0; right: 0;
-    z-index: 99999; background: var(--teal-deep);
+    z-index: 99999; background: #1E3A8A;
     border-top: 3px solid #00D46A;
     box-shadow: 0 -4px 24px rgba(0,0,0,.2);
     padding: 16px 24px;
@@ -452,7 +460,7 @@
 </section>
 
 <!-- PLANES FAMILIARES -->
-<section class="section-teal" id="familiar">
+<section class="section-teal" id="familiar" style="background:#F8FAFC;">
   <h2 class="section-title">Planes para Familias Conectadas</h2>
   <p class="section-sub">Conéctate y ahorra con nuestros planes familiares diseñados especialmente para ti y tu familia.</p>
   <div class="family-grid">
@@ -484,7 +492,7 @@
 </section>
 
 <!-- NUESTROS PLANES -->
-<section class="section-teal" id="planes" style="background: var(--teal-dark);">
+<section class="section-teal" id="planes" style="background:#fff;">
   <h2 class="section-title">Paquetes de Servicios Móviles</h2>
   <p class="section-sub">Encuentra el plan perfecto que se ajusta a tus necesidades y presupuesto.</p>
   <div class="plans-grid">
@@ -533,7 +541,7 @@
 </section>
 
 <!-- COBERTURA Y VELOCIDAD -->
-<section class="section-teal" id="cobertura" style="background: var(--teal-deep);">
+<section class="section-teal" id="cobertura" style="background:#F8FAFC;">
   <h2 class="section-title">Cobertura y Velocidad</h2>
   <p class="section-sub">La red más rápida y confiable de Estados Unidos, siempre contigo.</p>
   <div class="coverage-grid">
@@ -566,7 +574,7 @@
   <div class="footer-logo">
     <img src="images/Connecting_logo.png" alt="Connecting S.A. de C.V.">
   </div>
-  <p style="color:rgba(255,255,255,.55); max-width:480px; margin:0 auto 1.2rem; font-size:.9rem; line-height:1.6;">
+  <p style="color:#6B7280; max-width:480px; margin:0 auto 1.2rem; font-size:.9rem; line-height:1.6;">
     Sin contratos. Sin límites. Connecting es un <strong style="color:#7DD3FC;">Authorized Reseller</strong> de las mejores redes 5G de Estados Unidos.
   </p>
   <div class="contact-info">
