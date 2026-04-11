@@ -292,7 +292,12 @@
     background: #1A2744; color: #fff;
     font-size: .68rem; font-weight: 700; letter-spacing: 1px;
   }
-  .plan-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .plan-icon {
+    width: 72px; height: 72px;
+    background: #EFF6FF; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.2rem;
+  }
   .plan-name { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: .8rem; }
   .plan-price {
     font-size: 2.2rem; font-weight: 800; color: var(--teal); margin-bottom: 1.2rem; line-height: 1;
@@ -498,7 +503,11 @@
   <div class="plans-grid">
 
     <div class="plan-card">
-      <div class="plan-icon">📱</div>
+      <div class="plan-icon">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+        </svg>
+      </div>
       <div class="plan-name">Plan Básico</div>
       <div class="plan-price">$55.00<span>/mes</span></div>
       <a href="tel:+18884601317" class="btn-plan">Selecciona</a>
@@ -512,7 +521,11 @@
 
     <div class="plan-card recommended">
       <div class="plan-badge">Recomendado</div>
-      <div class="plan-icon">👨‍👩‍👧‍👦</div>
+      <div class="plan-icon">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
       <div class="plan-name">Plan Familiar</div>
       <div class="plan-price">$150.00<span>/mes</span></div>
       <a href="tel:+18884601317" class="btn-plan">Selecciona</a>
@@ -525,7 +538,11 @@
     </div>
 
     <div class="plan-card">
-      <div class="plan-icon">👑</div>
+      <div class="plan-icon">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
       <div class="plan-name">Plan Premium</div>
       <div class="plan-price">$90.00<span>/mes</span></div>
       <a href="tel:+18884601317" class="btn-plan">Selecciona</a>
