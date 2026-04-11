@@ -5,17 +5,8 @@ const { z } = require("zod");
 const app = express();
 app.use(express.json());
 
-const ALLOWED_ORIGINS = [
-  "https://page-lineas-moviles.onrender.com",
-  "http://127.0.0.1:5500",
-  "http://localhost:5500",
-];
-
 app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (ALLOWED_ORIGINS.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   if (req.method === "OPTIONS") return res.sendStatus(204);
