@@ -3,3 +3,12 @@ services:
     name: lineas-moviles
     runtime: static
     staticPublishPath: .
+
+  - type: web
+    name: lineas-moviles-api
+    runtime: node
+    buildCommand: npm install
+    startCommand: node api.js
+    envVars:
+      - key: RESEND_API_KEY
+        sync: false

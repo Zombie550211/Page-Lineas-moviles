@@ -770,6 +770,56 @@
   </div>
 </section>
 
+<!-- LEAD MAGNET -->
+<section style="background:#F8FAFC;padding:56px max(5%,calc((100% - 700px)/2));text-align:center;border-top:1px solid #E5E7EB;">
+  <h2 style="font-size:1.5rem;font-weight:800;color:#111827;margin-bottom:8px;">¿No puedes llamar ahora?</h2>
+  <p style="color:#6B7280;font-size:.95rem;margin-bottom:28px;">Déjanos tu número y un asesor te contactará en menos de 10 minutos.</p>
+  <form id="lead-magnet-form" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;max-width:520px;margin:0 auto;">
+    <input id="lm-name" type="text" placeholder="Tu nombre" required
+      style="flex:1;min-width:160px;padding:13px 18px;border:1px solid #D1D5DB;border-radius:50px;font-size:.92rem;outline:none;font-family:inherit;">
+    <input id="lm-phone" type="tel" placeholder="Tu teléfono" required
+      style="flex:1;min-width:160px;padding:13px 18px;border:1px solid #D1D5DB;border-radius:50px;font-size:.92rem;outline:none;font-family:inherit;">
+    <button type="submit"
+      style="padding:13px 28px;background:linear-gradient(180deg,#7DB8F7,#2563EB);color:#fff;font-weight:700;border:none;border-radius:50px;cursor:pointer;font-size:.92rem;font-family:inherit;box-shadow:1px 3px 0 #1D4ED8;">
+      Que me llamen →
+    </button>
+  </form>
+  <p id="lm-success" style="display:none;margin-top:16px;color:#16A34A;font-weight:600;">✅ ¡Recibido! Te llamamos en menos de 10 minutos.</p>
+  <p id="lm-error" style="display:none;margin-top:16px;color:#DC2626;font-size:.9rem;">Error al enviar. Intenta de nuevo.</p>
+  <p style="font-size:.75rem;color:#9CA3AF;margin-top:14px;">No compartimos tus datos. Solo te contactamos una vez.</p>
+</section>
+
+<script>
+(function(){
+  var form = document.getElementById('lead-magnet-form');
+  var btn  = form.querySelector('button[type="submit"]');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name  = document.getElementById('lm-name').value.trim();
+    var phone = document.getElementById('lm-phone').value.trim();
+    if (!name || !phone) return;
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    fetch('https://lineas-moviles-api.onrender.com/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, phone: phone })
+    })
+    .then(function(res){ return res.json(); })
+    .then(function(){
+      if (window.gtag) gtag('event', 'lead_magnet_submit', { name: name, phone: phone });
+      form.style.display = 'none';
+      document.getElementById('lm-success').style.display = 'block';
+    })
+    .catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Que me llamen →';
+      document.getElementById('lm-error').style.display = 'block';
+    });
+  });
+})();
+</script>
+
 <!-- FOOTER -->
 <footer id="contacto">
   <div class="footer-logo">
