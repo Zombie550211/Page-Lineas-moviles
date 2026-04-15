@@ -51,12 +51,12 @@
   }
 
   /* ── FADE-IN ON SCROLL ── */
-  .reveal {
+  .js-ready .reveal {
     opacity: 0;
     transform: translateY(32px);
     transition: opacity .7s ease, transform .7s ease;
   }
-  .reveal.visible {
+  .js-ready .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -1064,12 +1064,17 @@
 <script>
 /* Reveal on scroll */
 (function(){
+  document.documentElement.classList.add('js-ready');
   var els = document.querySelectorAll('.reveal');
-  var io  = new IntersectionObserver(function(entries){
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(el){ el.classList.add('visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.08 });
   els.forEach(function(el){ io.observe(el); });
 }());
 </script>
