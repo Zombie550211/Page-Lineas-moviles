@@ -64,21 +64,28 @@
   .reveal-delay-2 { transition-delay: .2s; }
   .reveal-delay-3 { transition-delay: .3s; }
 
-  /* ── FAB ── */
-  .call-fab {
-    position: fixed; bottom: 32px; left: 24px; z-index: 99999;
-    width: 52px; height: 52px;
-    background: var(--black);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(0,0,0,.2);
-    transition: transform .25s ease, box-shadow .25s ease;
+  /* ── FOOTER CALL BUTTON ── */
+  .footer-call {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%;
+    padding: 16px;
+    background: #fff; color: var(--black);
+    font-size: .85rem; font-weight: 700; letter-spacing: .5px;
+    text-transform: uppercase; text-decoration: none;
+    border-radius: 2px;
+    transition: background .2s;
+    margin-top: 1.5rem;
   }
-  .call-fab:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 32px rgba(0,0,0,.3);
+  .footer-call:hover { background: var(--cream); }
+
+  /* Botpress widget — desplazarlo arriba del footer en mobile */
+  #bp-web-widget-container {
+    bottom: 80px !important;
+  }
+  @media (min-width: 769px) {
+    #bp-web-widget-container {
+      bottom: 24px !important;
+    }
   }
 
   /* ── NAV ── */
@@ -634,9 +641,6 @@
 </head>
 <body>
 
-<!-- FAB -->
-<a class="call-fab" href="tel:+18884601317" aria-label="Llamar ahora">📞</a>
-
 <!-- NAV -->
 <nav>
   <div class="nav-left">
@@ -1038,6 +1042,8 @@
       <a>Texas, Estados Unidos</a>
     </div>
   </div>
+  <a href="tel:+18884601317" class="footer-call">📞 &nbsp;Llamar ahora — +1 (888) 460-1317</a>
+
   <div class="footer-bottom">
     <span>© 2026 Connecting S.A. de C.V. · Proveedor independiente de servicios móviles.</span>
     <span>
