@@ -14,8 +14,10 @@ app.use((req, res, next) => {
 });
 
 const ContactSchema = z.object({
-  name: z.string().min(2).max(80),
-  phone: z.string().regex(/^\+?1?\s?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{4}$/, "Teléfono inválido"),
+  name:    z.string().min(2).max(80),
+  phone:   z.string().regex(/^\+?1?\s?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{4}$/, "Teléfono inválido"),
+  email:   z.string().email("Correo inválido"),
+  address: z.string().min(4).max(200),
 });
 
 app.post("/api/contact", async (req, res) => {
@@ -24,7 +26,7 @@ app.post("/api/contact", async (req, res) => {
     return res.status(422).json({ error: "Datos inválidos.", details: parsed.error.flatten().fieldErrors });
   }
 
-  const { name, phone } = parsed.data;
+  const { name, phone, email, address } = parsed.data;
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
@@ -43,6 +45,14 @@ app.post("/api/contact", async (req, res) => {
             <tr style="border-top:1px solid #F3F4F6;">
               <td style="padding:10px 0;font-weight:700;color:#374151;">Teléfono</td>
               <td style="padding:10px 0;"><a href="tel:${phone}" style="color:#2563EB;">${phone}</a></td>
+            </tr>
+            <tr style="border-top:1px solid #F3F4F6;">
+              <td style="padding:10px 0;font-weight:700;color:#374151;">Correo</td>
+              <td style="padding:10px 0;"><a href="mailto:${email}" style="color:#2563EB;">${email}</a></td>
+            </tr>
+            <tr style="border-top:1px solid #F3F4F6;">
+              <td style="padding:10px 0;font-weight:700;color:#374151;">Dirección</td>
+              <td style="padding:10px 0;color:#111827;">${address}</td>
             </tr>
             <tr style="border-top:1px solid #F3F4F6;">
               <td style="padding:10px 0;font-weight:700;color:#374151;">Fuente</td>

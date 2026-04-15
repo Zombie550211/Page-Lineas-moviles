@@ -4,14 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Líneas Móviles | Planes 5G para tu Familia</title>
-<meta name="description" content="Planes de líneas móviles 5G desde $55/mes. Sin contratos, soporte en español, activación instantánea. La red más rápida de Estados Unidos para tu familia.">
+<meta name="description" content="Planes de líneas móviles 5G desde $55/mes. Sin contratos, soporte en español, activación rápida. Cobertura en el 99% de Estados Unidos para tu familia.">
 <link rel="canonical" href="https://lineas-moviles.com">
 <meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="preload" as="image" href="images/hablando_por_telefono.png" fetchpriority="high">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=optional" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
 <!-- Google Ads tag + Consent Mode v2 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11148367992"></script>
 <script>
@@ -33,7 +34,7 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; font-size: 16px; }
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
     background: #FAFAF8;
     color: #0A0A0A;
     overflow-x: hidden;
@@ -51,12 +52,13 @@
   }
 
   /* ── FADE-IN ON SCROLL ── */
-  .js-ready .reveal {
+  .reveal {
     opacity: 0;
-    transform: translateY(32px);
-    transition: opacity .7s ease, transform .7s ease;
+    transform: translateY(28px);
+    transition: opacity .65s ease, transform .65s ease;
+    will-change: opacity, transform;
   }
-  .js-ready .reveal.visible {
+  .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -106,7 +108,7 @@
   .nav-logo { text-decoration: none; display: flex; align-items: center; gap: 9px; }
   .nav-logo img { height: 32px; }
   .nav-logo-text {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     font-size: 1.2rem; font-weight: 700;
     color: var(--black); letter-spacing: .3px;
   }
@@ -164,7 +166,7 @@
     margin-bottom: 1rem;
   }
   .hero h1 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     font-size: clamp(3.2rem, 7vw, 7rem);
     font-weight: 600; color: #fff;
     line-height: 1.0; letter-spacing: -1px;
@@ -223,7 +225,7 @@
   }
   .stat-item:last-child { border-right: none; }
   .stat-num {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     font-size: 2.4rem; font-weight: 700;
     line-height: 1; letter-spacing: -1px;
   }
@@ -237,7 +239,7 @@
     display: block; margin-bottom: 1rem;
   }
   .section-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     font-size: clamp(2.4rem, 4vw, 3.8rem);
     font-weight: 600; color: var(--black);
     line-height: 1.08; letter-spacing: -.5px;
@@ -270,7 +272,7 @@
     text-transform: uppercase; color: var(--muted);
   }
   .split-content h2 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     font-size: clamp(2rem, 3.5vw, 3.2rem);
     font-weight: 600; color: var(--black);
     line-height: 1.08; letter-spacing: -.3px;
@@ -351,7 +353,7 @@
   .carousel-img-wrap:hover img { transform: scale(1.04); }
   .carousel-info { display: flex; flex-direction: column; gap: 1.4rem; }
   .carousel-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     font-size: 2.4rem; font-weight: 600;
     color: var(--black); letter-spacing: -.3px; line-height: 1.1;
   }
@@ -373,7 +375,7 @@
     padding: 0 max(4%, calc((100% - 1360px) / 2));
   }
   .carousel-counter {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     font-size: 1rem; color: var(--muted);
     letter-spacing: 1px;
   }
@@ -430,7 +432,7 @@
   }
   .plan-card.featured .plan-badge { color: rgba(255,255,255,.4); }
   .plan-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     font-size: 2rem; font-weight: 600; color: var(--black);
     line-height: 1;
   }
@@ -524,7 +526,7 @@
     display: block; margin-bottom: 1rem;
   }
   .lead-section h2 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     font-size: clamp(2.4rem, 5vw, 4rem);
     font-weight: 600; color: #fff;
     letter-spacing: -.5px; margin-bottom: .8rem; line-height: 1.05;
@@ -667,10 +669,10 @@
       <img src="images/hablando_por_telefono.png" alt="Planes Móviles">
     </div>
     <div class="hero-slide">
-      <img src="images/familiaconectada.webp" alt="Familia Conectada">
+      <img src="images/familiaconectada.webp" loading="lazy" alt="Familia Conectada">
     </div>
     <div class="hero-slide">
-      <img src="images/altavelocidad.png" alt="Alta Velocidad 5G">
+      <img src="images/altavelocidad.png" loading="lazy" alt="Alta Velocidad 5G">
     </div>
   </div>
   <div class="hero-content">
@@ -717,7 +719,7 @@
 <!-- SPLIT 1: Familias -->
 <section class="split" id="familiar">
   <div class="split-image reveal">
-    <img src="images/familiaconectada.webp" alt="Familia Conectada">
+    <img src="images/familiaconectada.webp" loading="lazy" alt="Familia Conectada">
   </div>
   <div class="split-content reveal reveal-delay-1">
     <span class="split-tag">Planes Familiares</span>
@@ -740,7 +742,7 @@
     </div>
   </div>
   <div class="split-image reveal reveal-delay-1">
-    <img src="images/datos ilimitados.png" alt="Datos Ilimitados">
+    <img src="images/datos ilimitados.png" loading="lazy" alt="Datos Ilimitados">
   </div>
 </section>
 
@@ -757,7 +759,7 @@
       <div class="carousel-slide">
         <div class="carousel-slide-inner">
           <div class="carousel-img-wrap">
-            <img src="images/carrusel/Galaxy_Z_Flip4_detail.png" alt="Samsung Galaxy Z Flip4">
+            <img src="images/carrusel/Galaxy_Z_Flip4_detail.png" loading="lazy" alt="Samsung Galaxy Z Flip4">
           </div>
           <div class="carousel-info">
             <div class="carousel-name">Samsung Galaxy Z Flip4</div>
@@ -778,7 +780,7 @@
       <div class="carousel-slide">
         <div class="carousel-slide-inner">
           <div class="carousel-img-wrap">
-            <img src="images/carrusel/iPhone17pro.png" alt="iPhone 17 Pro">
+            <img src="images/carrusel/iPhone17pro.png" loading="lazy" alt="iPhone 17 Pro">
           </div>
           <div class="carousel-info">
             <div class="carousel-name">iPhone 17 Pro</div>
@@ -798,7 +800,7 @@
       <div class="carousel-slide">
         <div class="carousel-slide-inner">
           <div class="carousel-img-wrap">
-            <img src="images/carrusel/iPhoneAir.png" alt="iPhone Air">
+            <img src="images/carrusel/iPhoneAir.png" loading="lazy" alt="iPhone Air">
           </div>
           <div class="carousel-info">
             <div class="carousel-name">iPhone Air</div>
@@ -818,7 +820,7 @@
       <div class="carousel-slide">
         <div class="carousel-slide-inner">
           <div class="carousel-img-wrap">
-            <img src="images/carrusel/samsung-galaxy-fold7-detail.png" alt="Samsung Galaxy Fold7">
+            <img src="images/carrusel/samsung-galaxy-fold7-detail.png" loading="lazy" alt="Samsung Galaxy Fold7">
           </div>
           <div class="carousel-info">
             <div class="carousel-name">Samsung Galaxy Z Fold7</div>
@@ -911,7 +913,7 @@
 <!-- SPLIT 3: Cobertura -->
 <section class="split split-cream" id="cobertura">
   <div class="split-image reveal">
-    <img src="images/mapa_de_cobertura.jpg" alt="Cobertura Nacional">
+    <img src="images/mapa_de_cobertura.jpg" loading="lazy" alt="Cobertura Nacional">
   </div>
   <div class="split-content reveal reveal-delay-1" style="background:var(--cream-dark);">
     <span class="split-tag">Cobertura y Velocidad</span>
@@ -934,7 +936,7 @@
     </div>
   </div>
   <div class="split-image reveal reveal-delay-1">
-    <img src="images/altavelocidad.png" alt="Alta Velocidad 5G">
+    <img src="images/altavelocidad.png" loading="lazy" alt="Alta Velocidad 5G">
   </div>
 </section>
 
@@ -1009,6 +1011,9 @@
     <input id="lm-address" class="lead-input" type="text"  placeholder="Dirección"          required>
     <button type="submit" class="lead-btn">Que me llamen →</button>
   </form>
+  <p style="font-size:.72rem;color:rgba(255,255,255,.25);max-width:540px;margin:12px auto 0;line-height:1.6;">
+    Al enviar este formulario, usted acepta recibir llamadas y mensajes de texto de Connecting relacionados con nuestros servicios. Puede solicitar que lo retiremos de nuestra lista de contacto en cualquier momento. Aplican tarifas de mensajes y datos.
+  </p>
   <p id="lm-success" style="display:none;margin-top:16px;color:rgba(255,255,255,.7);font-size:.9rem;">✓ Recibido. Te llamamos en menos de 10 minutos.</p>
   <p id="lm-error"   style="display:none;margin-top:16px;color:#F87171;font-size:.85rem;">Error al enviar. Intenta de nuevo.</p>
   <p class="lead-note">No compartimos tus datos. Solo te contactamos una vez.</p>
@@ -1057,7 +1062,7 @@
 <!-- COOKIE -->
 <div id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
   <p class="cookie-text">
-    Usamos cookies para mejorar tu experiencia.
+    Usamos cookies propias y de terceros (incluido Google Ads) para mejorar tu experiencia y mostrarte publicidad relevante.
     <a href="privacidad.html">Política de Privacidad</a>.
   </p>
   <div class="cookie-actions">
@@ -1070,18 +1075,24 @@
 <script>
 /* Reveal on scroll */
 (function(){
-  document.documentElement.classList.add('js-ready');
   var els = document.querySelectorAll('.reveal');
   if(!('IntersectionObserver' in window)){
-    els.forEach(function(el){ el.classList.add('visible'); });
-    return;
+    els.forEach(function(el){ el.classList.add('visible'); }); return;
   }
+  var vh = window.innerHeight;
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.08 });
-  els.forEach(function(el){ io.observe(el); });
+  }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(el){
+    /* Elementos ya visibles en el primer render — mostrar sin animación */
+    if(el.getBoundingClientRect().top < vh){
+      el.classList.add('visible');
+    } else {
+      io.observe(el);
+    }
+  });
 }());
 </script>
 
@@ -1218,7 +1229,7 @@
 </script>
 
 <!-- Botpress Webchat -->
-<script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+<script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js" defer></script>
 <script src="https://files.bpcontent.cloud/2026/04/13/20/20260413205510-0XESYKD8.js" defer></script>
 
 </body>
