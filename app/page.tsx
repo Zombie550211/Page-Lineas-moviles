@@ -300,7 +300,7 @@ export default function Home() {
           <div><a href={`tel:${PHONE}`} className="btn-outline-white" onClick={onPhoneClick}>Conocer Más</a></div>
         </div>
         <div className="split-image reveal reveal-delay-1">
-          <Image src="/images/datos ilimitados.webp" alt="Datos Ilimitados" fill style={{ objectFit: 'cover' }} />
+          <Image src="/images/datos-ilimitados.webp" alt="Datos Ilimitados" fill style={{ objectFit: 'cover' }} />
         </div>
       </section>
 
