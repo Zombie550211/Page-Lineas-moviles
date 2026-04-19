@@ -1,14 +1,11 @@
 services:
   - type: web
     name: lineas-moviles
-    runtime: static
-    staticPublishPath: .
-
-  - type: web
-    name: lineas-moviles-api
     runtime: node
-    buildCommand: npm install
-    startCommand: node api.js
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
     envVars:
       - key: RESEND_API_KEY
         sync: false
+      - key: NODE_ENV
+        value: production
