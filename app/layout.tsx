@@ -43,7 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               var _cs=_sc==='granted'?'granted':'denied';
               gtag('consent','default',{ad_storage:_cs,analytics_storage:_cs,ad_user_data:_cs,ad_personalization:_cs,wait_for_update:_sc?0:600});
               gtag('js',new Date());
-              gtag('config','AW-11148367992',{url_passthrough:true});
+              gtag('config','AW-18041554210',{url_passthrough:true});
             `,
           }}
         />
@@ -54,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {children}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-11148367992"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18041554210"
           strategy="afterInteractive"
         />
         <Script
