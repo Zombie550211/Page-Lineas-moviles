@@ -141,6 +141,38 @@ export default function Home() {
     if (!localStorage.getItem('cookie_consent')) setCookieVisible(true)
   }, [])
 
+  /* botpress lead capture — client-side relay */
+  useEffect(() => {
+    let lastBotText = ''
+    let capturedNombre = ''
+
+    const onMsg = (e: MessageEvent) => {
+      try {
+        const d = e.data
+        if (!d || typeof d !== 'object') return
+        const text: string = d.text || d.payload?.text || d.message?.text || ''
+        const isBot  = d.direction === 'outgoing' || d.fromBot  === true || d.author === 'bot'
+        const isUser = d.direction === 'incoming' || d.fromUser === true || d.author === 'user'
+        if (!text) return
+        if (isBot)  { lastBotText = text.toLowerCase() }
+        if (isUser) {
+          if (lastBotText.includes('nombre'))                                          capturedNombre = text
+          else if ((lastBotText.includes('teléfono') || lastBotText.includes('telefono')) && capturedNombre) {
+            fetch('/api/chatbot-lead', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ nombre: capturedNombre, telefono: text, fuente: 'Chatbot AI' }),
+            }).catch(() => {})
+            capturedNombre = ''
+          }
+        }
+      } catch { /* silencioso */ }
+    }
+
+    window.addEventListener('message', onMsg)
+    return () => window.removeEventListener('message', onMsg)
+  }, [])
+
   /* reveal on scroll */
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>('.reveal')
