@@ -146,30 +146,64 @@ export default function Home() {
     let lastBotText = ''
     let capturedNombre = ''
 
+    const sendLead = (nombre: string, telefono: string) => {
+      fetch('/api/chatbot-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, telefono, fuente: 'Chatbot AI' }),
+      }).catch(() => {})
+    }
+
+    const process = (text: string, isBot: boolean) => {
+      if (!text) return
+      if (isBot) {
+        lastBotText = text.toLowerCase()
+      } else {
+        if (lastBotText.includes('nombre')) {
+          capturedNombre = text
+        } else if ((lastBotText.includes('teléfono') || lastBotText.includes('telefono')) && capturedNombre) {
+          sendLead(capturedNombre, text)
+          capturedNombre = ''
+        }
+      }
+    }
+
+    // API nativa window.botpress.on('message', ...) — Botpress webchat v3
+    const setupBotpress = () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const bp = (window as any).botpress
+      if (!bp?.on) return
+      bp.on('message', (msg: Record<string, unknown>) => {
+        const text = String(
+          (msg as Record<string, unknown>)?.payload && typeof (msg as Record<string, unknown>).payload === 'object'
+            ? ((msg as Record<string, Record<string, unknown>>).payload?.text ?? '')
+            : (msg as Record<string, unknown>)?.text ?? ''
+        )
+        const direction = String((msg as Record<string, unknown>)?.direction ?? '')
+        const author    = String((msg as Record<string, unknown>)?.author    ?? '')
+        const isBot  = direction === 'outgoing' || author === 'bot'
+        const isUser = direction === 'incoming' || author === 'user'
+        if (isBot || isUser) process(text, isBot)
+      })
+    }
+
+    // postMessage fallback (iframe → parent)
     const onMsg = (e: MessageEvent) => {
       try {
         const d = e.data
         if (!d || typeof d !== 'object') return
-        const text: string = d.text || d.payload?.text || d.message?.text || ''
+        const text = String(d.text || d.payload?.text || d.message?.text || '')
         const isBot  = d.direction === 'outgoing' || d.fromBot  === true || d.author === 'bot'
         const isUser = d.direction === 'incoming' || d.fromUser === true || d.author === 'user'
-        if (!text) return
-        if (isBot)  { lastBotText = text.toLowerCase() }
-        if (isUser) {
-          if (lastBotText.includes('nombre'))                                          capturedNombre = text
-          else if ((lastBotText.includes('teléfono') || lastBotText.includes('telefono')) && capturedNombre) {
-            fetch('/api/chatbot-lead', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ nombre: capturedNombre, telefono: text, fuente: 'Chatbot AI' }),
-            }).catch(() => {})
-            capturedNombre = ''
-          }
-        }
+        if (isBot)  process(text, true)
+        if (isUser) process(text, false)
       } catch { /* silencioso */ }
     }
 
     window.addEventListener('message', onMsg)
+    if ((window as any).botpress?.on) setupBotpress()   // eslint-disable-line @typescript-eslint/no-explicit-any
+    else setTimeout(setupBotpress, 4000)
+
     return () => window.removeEventListener('message', onMsg)
   }, [])
 
