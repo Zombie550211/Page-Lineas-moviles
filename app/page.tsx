@@ -169,34 +169,29 @@ export default function Home() {
     }
 
     // API nativa window.botpress.on('message', ...) — Botpress webchat v3
+    // Payload structure: { id, authorId, block: { block: { text } }, metadata?: { clientMessageId } }
+    // User messages have metadata.clientMessageId; bot messages don't
     const setupBotpress = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const bp = (window as any).botpress
       if (!bp?.on) return
-      bp.on('message', (msg: Record<string, unknown>) => {
-        const text = String(
-          (msg as Record<string, unknown>)?.payload && typeof (msg as Record<string, unknown>).payload === 'object'
-            ? ((msg as Record<string, Record<string, unknown>>).payload?.text ?? '')
-            : (msg as Record<string, unknown>)?.text ?? ''
-        )
-        const direction = String((msg as Record<string, unknown>)?.direction ?? '')
-        const author    = String((msg as Record<string, unknown>)?.author    ?? '')
-        const isBot  = direction === 'outgoing' || author === 'bot'
-        const isUser = direction === 'incoming' || author === 'user'
-        if (isBot || isUser) process(text, isBot)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      bp.on('message', (msg: any) => {
+        const text  = String(msg?.block?.block?.text ?? '')
+        const isUser = !!msg?.metadata?.clientMessageId
+        if (text) process(text, !isUser)
       })
     }
 
-    // postMessage fallback (iframe → parent)
+    // postMessage fallback
     const onMsg = (e: MessageEvent) => {
       try {
         const d = e.data
         if (!d || typeof d !== 'object') return
-        const text = String(d.text || d.payload?.text || d.message?.text || '')
-        const isBot  = d.direction === 'outgoing' || d.fromBot  === true || d.author === 'bot'
-        const isUser = d.direction === 'incoming' || d.fromUser === true || d.author === 'user'
-        if (isBot)  process(text, true)
-        if (isUser) process(text, false)
+        const text = String(d?.block?.block?.text || d?.payload?.block?.block?.text || '')
+        if (!text) return
+        const isUser = !!(d?.metadata?.clientMessageId || d?.payload?.metadata?.clientMessageId)
+        process(text, !isUser)
       } catch { /* silencioso */ }
     }
 
