@@ -68,17 +68,30 @@
 
   /* ── FOOTER CALL BUTTON ── */
   .footer-call {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    width: 100%;
-    padding: 16px;
-    background: #fff; color: var(--black);
-    font-size: .85rem; font-weight: 700; letter-spacing: .5px;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+    z-index: 998;
+    width: auto; padding: 18px 48px;
+    background: linear-gradient(90deg, #2563EB 0%, #0A0A0A 100%);
+    color: #fff;
+    font-size: 1.1rem; font-weight: 900; letter-spacing: 1.2px;
     text-transform: uppercase; text-decoration: none;
-    border-radius: 2px;
-    transition: background .2s;
-    margin-top: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 24px 0 rgba(37,99,235,0.25);
+    animation: pulse-call 1.5s infinite;
+    border: 2.5px solid #fff;
+    transition: box-shadow .18s;
+    white-space: nowrap;
   }
-  .footer-call:hover { background: var(--cream); }
+  .footer-call:hover {
+    box-shadow: 0 6px 32px 0 rgba(37,99,235,0.4);
+    background: linear-gradient(90deg, #0A0A0A 0%, #2563EB 100%);
+  }
+  @keyframes pulse-call {
+    0% { box-shadow: 0 0 0 0 rgba(37,99,235,0.18); }
+    70% { box-shadow: 0 0 0 12px rgba(37,99,235,0.08); }
+    100% { box-shadow: 0 0 0 0 rgba(37,99,235,0.18); }
+  }
 
   /* Botpress widget — desplazarlo arriba del footer en mobile */
   #bp-web-widget-container {
@@ -658,7 +671,29 @@
   </div>
   <div class="nav-right">
     <a href="#faq" class="nav-link">Preguntas</a>
-    <a href="tel:+18884601317" class="nav-cta">Llamar</a>
+    <a href="tel:+18884601317" class="nav-cta nav-cta-llamativo">📞 ¡LLAMA YA!</a>
+      <style>
+      /* Botón de llamada llamativo en navbar */
+      .nav-cta-llamativo {
+        background: linear-gradient(90deg, #000000 0%, #0A0A0A 100%);
+        color: #fa8601;
+        font-size: 1.02rem;
+        font-weight: 900;
+        letter-spacing: 1.2px;
+        border-radius: 8px;
+        border: 2px solid #fa8601;
+        box-shadow: 0 2px 12px 0 rgba(37,99,235,0.13);
+        padding: 10px 26px;
+        text-transform: uppercase;
+        animation: pulse-call 1.5s infinite;
+        transition: transform .18s, box-shadow .18s;
+      }
+      .nav-cta-llamativo:hover {
+        transform: scale(1.06);
+        box-shadow: 0 6px 32px 0 rgba(37,99,235,0.28);
+        background: linear-gradient(90deg, #0A0A0A 0%, #2563EB 100%);
+      }
+      </style>
   </div>
 </nav>
 
@@ -1047,7 +1082,7 @@
       <a>Texas, Estados Unidos</a>
     </div>
   </div>
-  <a href="tel:+18884601317" class="footer-call">📞 &nbsp;Llamar ahora — +1 (888) 460-1317</a>
+  <a href="tel:+18884601317" class="footer-call">🔥 &nbsp;¡LLAMA AHORA!</a>
 
   <div class="footer-bottom">
     <span>© 2026 Connecting S.A. de C.V. · Proveedor independiente de servicios móviles.</span>
@@ -1059,17 +1094,6 @@
   </div>
 </footer>
 
-<!-- COOKIE -->
-<div id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
-  <p class="cookie-text">
-    Usamos cookies propias y de terceros (incluido Google Ads) para mejorar tu experiencia y mostrarte publicidad relevante.
-    <a href="privacidad.html">Política de Privacidad</a>.
-  </p>
-  <div class="cookie-actions">
-    <button class="cookie-reject" id="cookie-reject">Rechazar</button>
-    <button class="cookie-accept" id="cookie-accept">Aceptar</button>
-  </div>
-</div>
 
 <!-- ── SCRIPTS ── -->
 <script>
@@ -1192,24 +1216,8 @@
 </script>
 
 <script>
-/* Cookie consent + conversiones */
+/* Conversiones de llamadas */
 (function(){
-  var banner = document.getElementById('cookie-banner');
-  var stored = localStorage.getItem('cookie_consent');
-  if(!stored) banner.style.display='flex';
-
-  document.getElementById('cookie-accept').addEventListener('click',function(){
-    localStorage.setItem('cookie_consent','granted');
-    gtag('consent','update',{ad_storage:'granted',analytics_storage:'granted',ad_user_data:'granted',ad_personalization:'granted'});
-    banner.style.display='none';
-  });
-  document.getElementById('cookie-reject').addEventListener('click',function(){
-    localStorage.setItem('cookie_consent','denied');
-    gtag('consent','update',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
-    banner.style.display='none';
-  });
-
-  // IMPORTANTE: reemplaza CONVERSION_LABEL con el label real de Google Ads
   var _conversionId = 'AW-11148367992/CONVERSION_LABEL';
   document.querySelectorAll('a[href^="tel:"]').forEach(function(link){
     link.addEventListener('click',function(){
@@ -1219,12 +1227,7 @@
   });
 
   var ccpa = document.getElementById('ccpa-link');
-  if(ccpa) ccpa.addEventListener('click',function(e){
-    e.preventDefault();
-    localStorage.setItem('cookie_consent','denied');
-    gtag('consent','update',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
-    banner.style.display='flex';
-  });
+  if(ccpa) ccpa.addEventListener('click',function(e){ e.preventDefault(); });
 }());
 </script>
 
