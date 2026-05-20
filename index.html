@@ -106,14 +106,12 @@
     100% { box-shadow: 0 0 0 0 rgba(37,99,235,0.18); }
   }
 
-  /* Botpress widget — desplazarlo arriba del footer en mobile */
-  #bp-web-widget-container {
-    bottom: 80px !important;
-  }
-  @media (min-width: 769px) {
-    #bp-web-widget-container {
-      bottom: 24px !important;
-    }
+  /* Botpress — ocultar burbuja flotante nativa; usamos el botón propio */
+  #bp-web-widget-container .bpw-floating-button,
+  #bp-web-widget-container [class*="floating"],
+  #bp-web-widget-container [class*="Floating"] {
+    display: none !important;
+    pointer-events: none !important;
   }
 
   /* ── NAV ── */
@@ -1097,7 +1095,7 @@
       <a>Texas, Estados Unidos</a>
     </div>
   </div>
-  <a href="tel:+18884601317" class="footer-call">🔥 &nbsp;¡LLAMA AHORA!</a>
+  <button type="button" class="footer-call" id="llama-ahora-btn">🔥 &nbsp;¡LLAMA AHORA!</button>
 
   <div class="footer-bottom">
     <span>© 2026 Connecting S.A. de C.V. · Proveedor independiente de servicios móviles.</span>
@@ -1249,6 +1247,19 @@
 <!-- Botpress Webchat -->
 <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
 <script src="https://files.bpcontent.cloud/2026/04/18/01/20260418013659-Y2Z6AC4H.js" defer></script>
+<script>
+(function(){
+  var btn = document.getElementById('llama-ahora-btn');
+  function openChat(){
+    if(window.botpress && typeof window.botpress.open === 'function'){
+      window.botpress.open();
+    } else if(window.botpressWebChat && typeof window.botpressWebChat.sendEvent === 'function'){
+      window.botpressWebChat.sendEvent({ type: 'show' });
+    }
+  }
+  btn.addEventListener('click', openChat);
+}());
+</script>
 
 </body>
 </html>
