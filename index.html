@@ -67,32 +67,32 @@
   .reveal-delay-3 { transition-delay: .3s; }
 
   /* ── FOOTER CALL BUTTON ── */
+  /* LLAMA AHORA — píldora pegada a la burbuja Botpress */
   .footer-call {
-    display: flex; align-items: center; justify-content: center; gap: 12px;
-    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    position: fixed; bottom: 24px; right: 84px; /* 24px + ~60px burbuja */
     z-index: 998;
-    width: max-content; max-width: calc(100vw - 48px);
-    padding: 16px 40px;
+    height: 56px; padding: 0 22px;
     background: linear-gradient(90deg, #2563EB 0%, #0A0A0A 100%);
     color: #fff;
-    font-size: 1rem; font-weight: 900; letter-spacing: 1.2px;
-    text-transform: uppercase; text-decoration: none;
-    border-radius: 8px;
-    box-shadow: 0 4px 24px 0 rgba(37,99,235,0.25);
+    font-size: .88rem; font-weight: 900; letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 28px 0 0 28px; /* píldora, lado derecho recto para tocar la burbuja */
+    border: none; cursor: pointer;
+    box-shadow: -4px 0 18px rgba(37,99,235,0.22);
     animation: pulse-call 1.5s infinite;
-    border: 2.5px solid #fff;
-    transition: box-shadow .18s;
+    white-space: nowrap;
+    transition: box-shadow .18s, background .18s;
   }
   .footer-call:hover {
-    box-shadow: 0 6px 32px 0 rgba(37,99,235,0.4);
+    box-shadow: -4px 0 28px rgba(37,99,235,0.4);
     background: linear-gradient(90deg, #0A0A0A 0%, #2563EB 100%);
   }
   @media (max-width: 768px) {
     .footer-call {
-      left: 16px; right: 16px;
-      transform: none;
-      width: auto; max-width: none;
-      font-size: .9rem; padding: 15px 20px;
+      right: 76px;
+      height: 50px; padding: 0 16px;
+      font-size: .78rem; border-radius: 25px 0 0 25px;
     }
     .nav-cta-llamativo {
       font-size: .78rem !important;
@@ -106,12 +106,10 @@
     100% { box-shadow: 0 0 0 0 rgba(37,99,235,0.18); }
   }
 
-  /* Botpress — ocultar burbuja flotante nativa; usamos el botón propio */
-  #bp-web-widget-container .bpw-floating-button,
-  #bp-web-widget-container [class*="floating"],
-  #bp-web-widget-container [class*="Floating"] {
-    display: none !important;
-    pointer-events: none !important;
+  /* Botpress — burbuja nativa visible, pegada a LLAMA AHORA */
+  #bp-web-widget-container {
+    bottom: 24px !important;
+    right: 24px !important;
   }
 
   /* ── NAV ── */
