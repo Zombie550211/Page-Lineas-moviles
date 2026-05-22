@@ -113,6 +113,115 @@ export default function Home() {
   const [form, setForm]                 = useState({ name: '', phone: '', email: '', address: '' })
   const [formState, setFormState]       = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [cookieVisible, setCookieVisible] = useState(false)
+  const [scrollPct, setScrollPct]       = useState(0)
+  const [statsVisible, setStatsVisible] = useState(false)
+  const [cnt, setCnt]                   = useState([0, 0, 0])
+  const planRefs                         = useRef<(HTMLDivElement | null)[]>([null, null, null])
+  const canvasRef                        = useRef<HTMLCanvasElement>(null)
+
+  /* canvas particles */
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    const resize = () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight }
+    resize()
+    window.addEventListener('resize', resize)
+    type P = { x:number; y:number; vx:number; vy:number; r:number; o:number }
+    const pts: P[] = Array.from({ length: 90 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - .5) * .45,
+      vy: (Math.random() - .5) * .45,
+      r: Math.random() * 1.4 + .4,
+      o: Math.random() * .45 + .1,
+    }))
+    let raf: number
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y
+          const d = Math.sqrt(dx*dx + dy*dy)
+          if (d < 130) {
+            ctx.beginPath()
+            ctx.strokeStyle = `rgba(0,212,255,${.13*(1-d/130)})`
+            ctx.lineWidth = .6
+            ctx.moveTo(pts[i].x, pts[i].y)
+            ctx.lineTo(pts[j].x, pts[j].y)
+            ctx.stroke()
+          }
+        }
+      }
+      pts.forEach(p => {
+        p.x += p.vx; p.y += p.vy
+        if (p.x < 0) p.x = canvas.width
+        if (p.x > canvas.width) p.x = 0
+        if (p.y < 0) p.y = canvas.height
+        if (p.y > canvas.height) p.y = 0
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(0,212,255,${p.o})`
+        ctx.fill()
+      })
+      raf = requestAnimationFrame(draw)
+    }
+    draw()
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize) }
+  }, [])
+
+  /* scroll progress */
+  useEffect(() => {
+    const onScroll = () => {
+      const d = document.documentElement
+      setScrollPct((d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  /* stat counters */
+  useEffect(() => {
+    const el = document.querySelector('.stats-strip')
+    if (!el) return
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setStatsVisible(true); io.disconnect() }
+    }, { threshold: 0.5 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!statsVisible) return
+    const targets = [10, 99, 55]
+    const dur = 1600
+    const t0 = performance.now()
+    const tick = (now: number) => {
+      const p = Math.min((now - t0) / dur, 1)
+      const ease = 1 - (1 - p) ** 3
+      setCnt(targets.map(v => Math.round(v * ease)))
+      if (p < 1) requestAnimationFrame(tick)
+    }
+    requestAnimationFrame(tick)
+  }, [statsVisible])
+
+  /* plan card tilt */
+  const onTiltMove = (e: React.MouseEvent, idx: number) => {
+    const el = planRefs.current[idx]
+    if (!el) return
+    const r = el.getBoundingClientRect()
+    const x = ((e.clientX - r.left) / r.width - .5) * 14
+    const y = ((e.clientY - r.top) / r.height - .5) * -14
+    el.style.transform = `perspective(900px) rotateY(${x}deg) rotateX(${y}deg) scale(1.02)`
+    el.style.transition = 'transform .1s ease'
+  }
+  const onTiltLeave = (idx: number) => {
+    const el = planRefs.current[idx]
+    if (!el) return
+    el.style.transform = ''
+    el.style.transition = 'transform .45s ease, background .3s'
+  }
 
   /* hero timer */
   const startHeroTimer = useCallback(() => {
@@ -271,6 +380,9 @@ export default function Home() {
 
   return (
     <>
+      {/* SCROLL PROGRESS */}
+      <div className="scroll-progress" style={{ width: `${scrollPct}%` }} />
+
       {/* NAV */}
       <nav>
         <div className="nav-left">
@@ -278,12 +390,7 @@ export default function Home() {
           <Link href="#familiar"  className="nav-link">Familias</Link>
           <Link href="#planes"    className="nav-link">Planes</Link>
         </div>
-        <div className="nav-center">
-          <Link className="nav-logo" href="/">
-            <Image src="/images/Connecting_logo.webp" alt="Líneas Móviles" width={80} height={32} priority />
-            <span className="nav-logo-text">Connecting</span>
-          </Link>
-        </div>
+
         <div className="nav-right">
           <Link href="#faq" className="nav-link">Preguntas</Link>
           <a href={`tel:${PHONE}`} className="nav-cta" onClick={onPhoneClick}>Llamar</a>
@@ -292,6 +399,10 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero" id="servicios">
+        <canvas ref={canvasRef} style={{ position:'absolute', inset:0, width:'100%', height:'100%', zIndex:2, pointerEvents:'none' }} />
+        <div className="hero-orb hero-orb-1" />
+        <div className="hero-orb hero-orb-2" />
+        <div className="hero-orb hero-orb-3" />
         <div className="hero-slides">
           {heroSlides.map((slide, i) => (
             <div key={i} className={`hero-slide${i === heroSlide ? ' active' : ''}`}>
@@ -301,6 +412,7 @@ export default function Home() {
         </div>
         <div className="hero-content">
           <div className="hero-text">
+            <span className="hero-badge">+10,000 Familias Conectadas en USA</span>
             <p className="hero-eyebrow">Red 5G activa en todo USA</p>
             <h1>Conecta a tu<br /><em>Familia</em> hoy.</h1>
             <p className="hero-sub">Planes sin contratos desde $55/mes. Soporte 100% en español. Activa hoy mismo.</p>
@@ -327,17 +439,68 @@ export default function Home() {
       {/* STATS */}
       <div className="stats-strip">
         {[
-          { num: '+10K', label: 'Clientes Satisfechos' },
-          { num: '99%',  label: 'Cobertura Nacional' },
-          { num: '$55',  label: 'Desde / mes' },
-          { num: '24/7', label: 'Soporte en Español' },
+          {
+            num: `+${cnt[0]}K`, label: 'Clientes Satisfechos',
+            icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+          },
+          {
+            num: `${cnt[1]}%`, label: 'Cobertura Nacional',
+            icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M10.54 16.1a6 6 0 0 1 2.92 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>,
+          },
+          {
+            num: `$${cnt[2]}`, label: 'Desde / mes',
+            icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>,
+          },
+          {
+            num: '24/7', label: 'Soporte en Español',
+            icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+          },
         ].map((s, i) => (
           <div key={i} className={`stat-item reveal${i > 0 ? ` reveal-delay-${i}` : ''}`}>
+            <div className="stat-icon">{s.icon}</div>
             <div className="stat-num">{s.num}</div>
             <div className="stat-label">{s.label}</div>
           </div>
         ))}
       </div>
+
+      {/* WHY SECTION */}
+      <section className="why-section">
+        <div className="why-header reveal">
+          <span className="section-eyebrow">Por qué elegirnos</span>
+          <h2 className="why-title">La diferencia que<br /><em>marca el servicio.</em></h2>
+        </div>
+        <div className="why-grid">
+          {[
+            {
+              title: 'Sin contratos',
+              desc: 'Cancela cuando quieras. Sin penalizaciones, sin letra chica, sin compromisos forzosos.',
+              icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>,
+            },
+            {
+              title: 'Soporte en español',
+              desc: 'Atención 24/7 por agentes nativos que te entienden. Sin barreras de idioma.',
+              icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>,
+            },
+            {
+              title: 'Red 5G nacional',
+              desc: '99% de cobertura en todo Estados Unidos. La red más rápida, siempre contigo.',
+              icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M10.54 16.1a6 6 0 0 1 2.92 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>,
+            },
+            {
+              title: 'Activación express',
+              desc: 'Tu línea activa en menos de 24 horas. Solo necesitas tu pasaporte. Así de simple.',
+              icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
+            },
+          ].map((item, i) => (
+            <div key={i} className={`why-card reveal${i > 0 ? ` reveal-delay-${i}` : ''}`}>
+              <div className="why-icon">{item.icon}</div>
+              <div className="why-card-title">{item.title}</div>
+              <div className="why-card-desc">{item.desc}</div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* SPLIT 1: Familias */}
       <section className="split" id="familiar">
@@ -354,7 +517,7 @@ export default function Home() {
 
       {/* SPLIT 2: Datos ilimitados */}
       <section className="split split-dark">
-        <div className="split-content reveal" style={{ background: 'var(--black)' }}>
+        <div className="split-content reveal">
           <span className="split-tag">Sin Límites</span>
           <h2>Datos<br /><em>ilimitados.</em></h2>
           <p>Sin data caps, sin sorpresas. Streaming en 4K, videollamadas y gaming todo el mes sin interrupciones ni cargos extra.</p>
@@ -423,7 +586,13 @@ export default function Home() {
             { badge: 'Recomendado', name: 'Familiar', price: '150', features: ['Hasta 4 líneas incluidas', 'Datos ilimitados para todos', 'Descuentos por líneas adicionales'], featured: true  },
             { badge: 'Plan 03',    name: 'Premium',  price: '90',  features: ['Datos ilimitados 5G', 'Incluye dispositivo de alta gama', 'Soporte en español 24/7'],          featured: false },
           ].map((plan, i) => (
-            <div key={i} className={`plan-card reveal${plan.featured ? ' featured' : ''}${i > 0 ? ` reveal-delay-${i}` : ''}`}>
+            <div
+              key={i}
+              ref={el => { planRefs.current[i] = el }}
+              className={`plan-card reveal${plan.featured ? ' featured' : ''}${i > 0 ? ` reveal-delay-${i}` : ''}`}
+              onMouseMove={e => onTiltMove(e, i)}
+              onMouseLeave={() => onTiltLeave(i)}
+            >
               <span className="plan-badge">{plan.badge}</span>
               <div className="plan-name">{plan.name}</div>
               <div className="plan-price"><sup>$</sup>{plan.price}<sub>/mes</sub></div>
@@ -443,7 +612,7 @@ export default function Home() {
         <div className="split-image reveal">
           <Image src="/images/mapa_de_cobertura.webp" alt="Cobertura Nacional" fill style={{ objectFit: 'cover' }} />
         </div>
-        <div className="split-content reveal reveal-delay-1" style={{ background: 'var(--cream-dark)' }}>
+        <div className="split-content reveal reveal-delay-1">
           <span className="split-tag">Cobertura y Velocidad</span>
           <h2>El 99% de<br /><em>Estados Unidos.</em></h2>
           <p>Nuestra red cubre el 99% del territorio. Siempre conectado sin importar dónde te encuentres.</p>
@@ -453,7 +622,7 @@ export default function Home() {
 
       {/* SPLIT 4: Velocidad */}
       <section className="split split-dark">
-        <div className="split-content reveal" style={{ background: 'var(--black)' }}>
+        <div className="split-content reveal">
           <span className="split-tag">5G Ultra Rápido</span>
           <h2>Hasta<br /><em>1 Gbps.</em></h2>
           <p>Streaming en HD, videollamadas y gaming sin interrupciones. La conexión más rápida para tu familia, disponible hoy.</p>
