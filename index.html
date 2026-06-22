@@ -1227,6 +1227,7 @@
   document.querySelectorAll('a[href^="tel:"]').forEach(function(link){
     link.addEventListener('click',function(){
       gtag('event','conversion',{send_to:_conversionId,event_callback:function(){}});
+      gtag('event','conversion',{send_to:'AW-18264084077/RzHpCNfQ7MMcEO2c_4RE',value:1.0,currency:'USD',transaction_id:''});
       gtag('event','phone_call_click',{phone_number:link.href.replace('tel:','')});
     });
   });

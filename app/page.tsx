@@ -333,6 +333,7 @@ export default function Home() {
   /* phone click */
   const onPhoneClick = () => {
     window.gtag?.('event', 'conversion', { send_to: CONVERSION_ID, event_callback: () => {} })
+    window.gtag?.('event', 'conversion', { send_to: 'AW-18264084077/RzHpCNfQ7MMcEO2c_4RE', value: 1.0, currency: 'USD', transaction_id: '' })
     window.gtag?.('event', 'phone_call_click', { phone_number: PHONE })
   }
 
