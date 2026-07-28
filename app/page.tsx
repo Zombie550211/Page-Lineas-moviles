@@ -11,8 +11,8 @@ declare global {
   }
 }
 
-const PHONE = '+18888617317'
-const PHONE_DISPLAY = '+1 (888) 861-7317'
+const PHONE = '+18884702820'
+const PHONE_DISPLAY = '+1 (888) 470-2820'
 
 const heroSlides = [
   { src: '/images/hablando_por_telefono.webp', alt: 'Planes Móviles' },
