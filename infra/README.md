@@ -37,20 +37,50 @@ aws iam attach-user-policy --user-name connecting-deploy \
   --policy-arn arn:aws:iam::964060772387:policy/lineas-moviles-deploy
 ```
 
-## Estado de la migracion
+## Estado de la migración — COMPLETADA
 
-Hecho con el perfil `connecting`:
+El sitio se sirve desde AWS. Recursos creados con la CLI (perfil `connecting`),
+no con CloudFormation: la plantilla queda como referencia del diseño.
 
 | Recurso | Valor |
 |---|---|
 | Hosted zone | `Z03177593JKSBRT7F0UFH` |
 | Nameservers | `ns-913.awsdns-50.net`, `ns-1233.awsdns-26.org`, `ns-1537.awsdns-00.co.uk`, `ns-454.awsdns-56.com` |
-| Certificado ACM | `arn:aws:acm:us-east-1:964060772387:certificate/7c1e1d98-a1e8-4890-8d2c-a4b251672631` (PENDING_VALIDATION) |
-| Bucket | `lineas-moviles-com-site` (us-east-1, contenido ya subido) |
+| Certificado ACM | `.../7c1e1d98-a1e8-4890-8d2c-a4b251672631` (ISSUED) |
+| Bucket | `lineas-moviles-com-site` (us-east-1, privado, OAC) |
 | OAC | `EBN3PP3TSU440` |
+| Distribución | `E1Z1L8F3TXOY24` — `d1rroc0j8ltocd.cloudfront.net` |
 
-Pendiente: los CNAME de validacion en Hostinger, y la funcion, la politica de
-cabeceras y la distribucion de CloudFront (bloqueadas por permisos).
+### Publicar cambios
+
+```bash
+export AWS_PROFILE=connecting
+BUCKET=lineas-moviles-com-site DIST=E1Z1L8F3TXOY24 ./infra/deploy.sh
+```
+
+Las páginas legales se suben además **sin extensión** (`privacidad`, `terminos`,
+con `Content-Type: text/html`). Así `/privacidad` funciona sin necesitar la
+función de CloudFront, para la que no hay permisos:
+
+```bash
+aws s3 cp dist/privacidad.html s3://lineas-moviles-com-site/privacidad \
+  --content-type "text/html; charset=utf-8" --cache-control "public, max-age=0, must-revalidate"
+```
+
+### Pendiente (requiere permisos de admin)
+
+Falta adjuntar `infra/iam-policy-deploy.json` a `connecting-deploy` para crear la
+política de cabeceras propia y la función de rewrite. Mientras tanto:
+
+- Las cabeceras las pone la política **gestionada** de AWS
+  (`67f7725c-6f97-4210-82d7-5512b31e9d03`): HSTS de 1 año sin `includeSubDomains`
+  ni `preload`, `X-Frame-Options: SAMEORIGIN` en vez de `DENY`, y sin
+  `Permissions-Policy`, `Cross-Origin-Opener-Policy` ni la CSP en Report-Only.
+- `www` **no redirige** al apex: sirve el mismo contenido con 200. El `canonical`
+  apunta al apex, así que el impacto en SEO es limitado, pero la redirección 301
+  necesita la función de CloudFront.
+
+Ambas se arreglan con un `UpdateDistribution`, sin rehacer nada.
 
 ---
 
