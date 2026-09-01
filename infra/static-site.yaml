@@ -9,6 +9,14 @@ Parameters:
     Type: String
     Default: lineas-moviles.com
     Description: Dominio apex. Se sirve tambien www.<dominio> con 301 al apex.
+  BucketName:
+    Type: String
+    Default: lineas-moviles-com-site
+    Description: >-
+      Nombre del bucket. SIN puntos: el endpoint REST de S3 se sirve como
+      <bucket>.s3.<region>.amazonaws.com y el certificado comodin de AWS no
+      cubre nombres con puntos, asi que CloudFront no podria hablar con el
+      origen por HTTPS.
   HostedZoneId:
     Type: String
     Description: ID de la hosted zone de Route 53 para DomainName.
@@ -27,7 +35,7 @@ Resources:
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
     Properties:
-      BucketName: !Sub '${DomainName}-site'
+      BucketName: !Ref BucketName
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true

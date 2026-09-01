@@ -16,9 +16,41 @@ No hay correo ni verificaciones en el dominio: mover nameservers no rompe nada m
 
 ## Permisos necesarios
 
-El usuario actual (`crm-migration`) **no sirve**: tiene denegado S3, CloudFront y CloudFormation.
-Hace falta un usuario o rol con: `cloudformation:*`, `s3:*` sobre el bucket, `cloudfront:*`,
-`route53:*` sobre la zona, `acm:RequestCertificate` y `acm:DescribeCertificate`.
+Dos usuarios en la cuenta, ninguno completo:
+
+| Usuario | Route 53 | ACM | S3 | CloudFront | CloudFormation |
+|---|---|---|---|---|---|
+| `crm-migration` | no | no | no | no | no |
+| `connecting-deploy` (perfil `connecting`) | si | si | si | parcial | no |
+
+`connecting-deploy` puede crear el OAC y leer distribuciones, pero tiene denegado
+`CreateFunction`, `CreateResponseHeadersPolicy` y `ListResponseHeadersPolicies`,
+que son justo las piezas de las URLs limpias y las cabeceras de seguridad.
+
+Para completar la migracion, un admin debe adjuntar `infra/iam-policy-deploy.json`
+a `connecting-deploy`:
+
+```bash
+aws iam create-policy --policy-name lineas-moviles-deploy \
+  --policy-document file://infra/iam-policy-deploy.json
+aws iam attach-user-policy --user-name connecting-deploy \
+  --policy-arn arn:aws:iam::964060772387:policy/lineas-moviles-deploy
+```
+
+## Estado de la migracion
+
+Hecho con el perfil `connecting`:
+
+| Recurso | Valor |
+|---|---|
+| Hosted zone | `Z03177593JKSBRT7F0UFH` |
+| Nameservers | `ns-913.awsdns-50.net`, `ns-1233.awsdns-26.org`, `ns-1537.awsdns-00.co.uk`, `ns-454.awsdns-56.com` |
+| Certificado ACM | `arn:aws:acm:us-east-1:964060772387:certificate/7c1e1d98-a1e8-4890-8d2c-a4b251672631` (PENDING_VALIDATION) |
+| Bucket | `lineas-moviles-com-site` (us-east-1, contenido ya subido) |
+| OAC | `EBN3PP3TSU440` |
+
+Pendiente: los CNAME de validacion en Hostinger, y la funcion, la politica de
+cabeceras y la distribucion de CloudFront (bloqueadas por permisos).
 
 ---
 

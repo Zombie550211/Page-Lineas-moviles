@@ -13,8 +13,10 @@ salida() {
     --query "Stacks[0].Outputs[?OutputKey=='$1'].OutputValue" --output text
 }
 
-BUCKET="$(salida BucketName)"
-DIST="$(salida DistributionId)"
+# Los recursos se crearon con la CLI, no con CloudFormation. Con BUCKET y DIST
+# en el entorno no se consulta el stack; si no, se leen de sus outputs.
+BUCKET="${BUCKET:-$(salida BucketName)}"
+DIST="${DIST:-$(salida DistributionId)}"
 [ -n "$BUCKET" ] && [ "$BUCKET" != "None" ] || { echo "No se pudo leer el bucket del stack $STACK"; exit 1; }
 
 echo "==> Ensamblando dist/"
