@@ -22,8 +22,9 @@ DIST="${DIST:-$(salida DistributionId)}"
 echo "==> Ensamblando dist/"
 rm -rf dist && mkdir -p dist
 cp index.html privacidad.html terminos.html 404.html robots.txt sitemap.xml dist/
-cp -r public dist/public
-cp -r fanpage dist/fanpage
+# public/ se vuelca en la raiz: asi /images/... y /fanpage/... resuelven igual
+# aqui que en Next (que sirve public/ desde la raiz).
+cp -r public/. dist/
 
 # Comprueba que no se cuele codigo fuente en lo publicado.
 for prohibido in package.json CLAUDE.md instrucciones.txt app node_modules infra .git; do
@@ -39,6 +40,15 @@ echo "==> Subiendo HTML (sin cache en el navegador; CloudFront cachea y se inval
 aws s3 sync dist/ "s3://$BUCKET/" --region "$REGION" --delete \
   --exclude "*" --include "*.html" --include "robots.txt" --include "sitemap.xml" \
   --cache-control "public, max-age=0, must-revalidate"
+
+# URLs limpias sin funcion de CloudFront: el mismo HTML tambien como objeto sin
+# extension. Va DESPUES del sync, que con --delete se las llevaria por delante.
+echo "==> Publicando URLs limpias (/privacidad, /terminos)"
+for p in privacidad terminos; do
+  aws s3 cp "dist/$p.html" "s3://$BUCKET/$p" --region "$REGION" \
+    --content-type "text/html; charset=utf-8" \
+    --cache-control "public, max-age=0, must-revalidate" --only-show-errors
+done
 
 echo "==> Invalidando CloudFront ($DIST)"
 ID=$(aws cloudfront create-invalidation --distribution-id "$DIST" --paths "/*" \
