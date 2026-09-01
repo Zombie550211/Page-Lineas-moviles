@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: >-
   lineas-moviles.com — sitio estatico en S3 privado + CloudFront.
-  Reemplaza el Static Site de Render. Desplegar SIEMPRE en us-east-1:
+  Desplegar SIEMPRE en us-east-1:
   CloudFront solo acepta certificados ACM de esa region.
 
 Parameters:
@@ -76,7 +76,7 @@ Resources:
         SigningProtocol: sigv4
 
   # ---------- URLs limpias + redireccion de www ----------
-  # Render resolvia /privacidad -> privacidad.html por su cuenta.
+  # El hosting anterior resolvia /privacidad -> privacidad.html por su cuenta.
   # S3 no lo hace: sin esta funcion, los enlaces a las paginas legales dan 404.
   RewriteFunction:
     Type: AWS::CloudFront::Function
@@ -139,7 +139,7 @@ Resources:
     Properties:
       ResponseHeadersPolicyConfig:
         Name: !Sub '${AWS::StackName}-security-headers'
-        Comment: Equivalente a las cabeceras que servia render.yaml
+        Comment: Cabeceras de seguridad del sitio
         SecurityHeadersConfig:
           StrictTransportSecurity:
             AccessControlMaxAgeSec: 63072000

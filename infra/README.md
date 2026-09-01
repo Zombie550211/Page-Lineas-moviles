@@ -1,4 +1,4 @@
-# Migración de Render a AWS — lineas-moviles.com
+# Despliegue en AWS — lineas-moviles.com
 
 Sitio estático en **S3 privado + CloudFront**, DNS en **Route 53**.
 Todo el stack va en `us-east-1`: CloudFront solo acepta certificados ACM de esa región.
@@ -8,8 +8,8 @@ Todo el stack va en `us-east-1`: CloudFront solo acepta certificados ACM de esa 
 | Registro | Valor actual | Dónde |
 |---|---|---|
 | NS | `helios.dns-parking.com`, `aster.dns-parking.com` | Hostinger |
-| A (apex) | `216.24.57.1` | Render |
-| CNAME `www` | `page-lineas-moviles-wl2f.onrender.com` (301 al apex) | Render |
+| A (apex) | `216.24.57.1` | hosting anterior |
+| CNAME `www` | host del proveedor anterior (301 al apex) | hosting anterior |
 | MX / TXT / CAA | **ninguno** | — |
 
 No hay correo ni verificaciones en el dominio: mover nameservers no rompe nada más que el web.
@@ -125,15 +125,15 @@ curl -so /dev/null -w '%{http_code}\n' https://lineas-moviles.com/api.js   # deb
 Y en Google Ads: que la URL final de los anuncios siga resolviendo y que el clic a
 teléfono siga registrando la conversión `Contacto`.
 
-### 9. Dar de baja Render
+### 9. Dar de baja el hosting anterior
 
-Solo cuando lleves 48h estable. Borra el Static Site en el dashboard de Render.
+Solo cuando lleves 48h estable. Borra el sitio estático en el panel del proveedor anterior.
 
 ---
 
 ## Rollback
 
-Mientras no borres el servicio de Render, revertir es volver a poner los nameservers de
+Mientras no borres el servicio del hosting anterior, revertir es volver a poner los nameservers de
 Hostinger en el registrador. Por eso se baja el TTL antes: la vuelta tarda minutos, no horas.
 
 ## Coste estimado

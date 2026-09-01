@@ -24,7 +24,7 @@ cp -r public dist/public
 cp -r fanpage dist/fanpage
 
 # Comprueba que no se cuele codigo fuente en lo publicado.
-for prohibido in package.json CLAUDE.md instrucciones.txt render.yaml app node_modules infra .git; do
+for prohibido in package.json CLAUDE.md instrucciones.txt app node_modules infra .git; do
   if [ -e "dist/$prohibido" ]; then echo "ABORTADO: dist/$prohibido no debe publicarse"; exit 1; fi
 done
 
