@@ -1,11 +1,54 @@
+# Sitio estatico de lineas-moviles.com
+#
+# IMPORTANTE: el build ensambla ./dist con SOLO los archivos publicos.
+# Antes se publicaba la raiz del repo, lo que exponia api.js, package.json,
+# CLAUDE.md, instrucciones.txt y todo app/ en el dominio.
 services:
   - type: web
     name: lineas-moviles
-    runtime: node
-    buildCommand: npm install && npm run build
-    startCommand: npm run start
-    envVars:
-      - key: RESEND_API_KEY
-        sync: false
-      - key: NODE_ENV
-        value: production
+    runtime: static
+    buildCommand: |
+      rm -rf dist && mkdir -p dist
+      cp index.html privacidad.html terminos.html robots.txt sitemap.xml dist/
+      cp -r public dist/public
+      cp -r fanpage dist/fanpage
+    staticPublishPath: ./dist
+    headers:
+      - path: /*
+        name: Strict-Transport-Security
+        value: max-age=63072000; includeSubDomains; preload
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Content-Security-Policy
+        value: frame-ancestors 'none'
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+      - path: /*
+        name: Cross-Origin-Opener-Policy
+        value: same-origin
+      # CSP completa en Report-Only: no rompe Botpress ni el tag de Ads.
+      # Revisar reportes y promover a Content-Security-Policy cuando este limpia.
+      - path: /*
+        name: Content-Security-Policy-Report-Only
+        value: >-
+          default-src 'self';
+          base-uri 'self';
+          object-src 'none';
+          form-action 'self';
+          frame-ancestors 'none';
+          script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://www.google.com https://td.doubleclick.net https://cdn.botpress.cloud https://files.bpcontent.cloud https://*.botpress.cloud;
+          style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+          font-src 'self' data: https://fonts.gstatic.com https://*.botpress.cloud;
+          img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://www.google.com https://td.doubleclick.net https://cdn.botpress.cloud https://files.bpcontent.cloud https://*.botpress.cloud;
+          connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://www.google.com https://td.doubleclick.net https://*.botpress.cloud wss://*.botpress.cloud;
+          frame-src 'self' https://www.googletagmanager.com https://td.doubleclick.net https://*.botpress.cloud;
+          upgrade-insecure-requests

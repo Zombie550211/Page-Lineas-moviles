@@ -109,9 +109,6 @@ export default function Home() {
   const [carouselIdx, setCarouselIdx]   = useState(0)
   const carouselTimer                    = useRef<ReturnType<typeof setInterval> | null>(null)
   const [openFaq, setOpenFaq]           = useState<number | null>(null)
-  const [form, setForm]                 = useState({ name: '', phone: '', email: '', address: '' })
-  const [formState, setFormState]       = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [cookieVisible, setCookieVisible] = useState(false)
   const [scrollPct, setScrollPct]       = useState(0)
   const [statsVisible, setStatsVisible] = useState(false)
   const [cnt, setCnt]                   = useState([0, 0, 0])
@@ -244,11 +241,6 @@ export default function Home() {
     return () => { if (carouselTimer.current) clearInterval(carouselTimer.current) }
   }, [startCarouselTimer])
 
-  /* cookie banner */
-  useEffect(() => {
-    if (!localStorage.getItem('cookie_consent')) setCookieVisible(true)
-  }, [])
-
   /* botpress lead capture — client-side relay */
   useEffect(() => {
     let lastBotText = ''
@@ -340,40 +332,20 @@ export default function Home() {
     startCarouselTimer()
   }
 
-  /* form */
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const { name, phone, email, address } = form
-    if (!name || !phone || !email || !address) return
-    setFormState('loading')
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone, email, address }),
-      })
-      const data = await res.json()
-      if (data.ok) {
-        window.gtag?.('event', 'lead_magnet_submit', { name, phone })
-        setFormState('success')
-      } else {
-        setFormState('error')
-      }
-    } catch {
-      setFormState('error')
-    }
+  /* cookie — el banner se oculta por atributo en <html>, sin estado de React */
+  const setConsent = (value: 'granted' | 'denied') => {
+    localStorage.setItem('cookie_consent', value)
+    window.gtag?.('consent', 'update', {
+      ad_storage: value, analytics_storage: value, ad_user_data: value, ad_personalization: value,
+    })
+    document.documentElement.setAttribute('data-consent', 'set')
   }
-
-  /* cookie */
-  const acceptCookie = () => {
-    localStorage.setItem('cookie_consent', 'granted')
-    window.gtag?.('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' })
-    setCookieVisible(false)
-  }
-  const rejectCookie = () => {
-    localStorage.setItem('cookie_consent', 'denied')
-    window.gtag?.('consent', 'update', { ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' })
-    setCookieVisible(false)
+  const acceptCookie = () => setConsent('granted')
+  const rejectCookie = () => setConsent('denied')
+  /* CCPA: aplica la exclusión y vuelve a mostrar el banner como confirmación */
+  const optOutCcpa = () => {
+    setConsent('denied')
+    document.documentElement.setAttribute('data-consent', 'pending')
   }
 
   return (
@@ -654,33 +626,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* LEAD MAGNET */}
+      {/* CTA FINAL */}
       <section className="lead-section">
         <span className="lead-eyebrow">Contacto Directo</span>
-        <h2>¿No puedes<br /><em>llamar ahora?</em></h2>
-        <p>Déjanos tus datos y un asesor te contactará en menos de 10 minutos.</p>
-        {formState === 'success' ? (
-          <p style={{ marginTop: '2rem', color: 'rgba(255,255,255,.7)', fontSize: '.9rem' }}>
-            ✓ Recibido. Te llamamos en menos de 10 minutos.
-          </p>
-        ) : (
-          <form className="lead-form" onSubmit={handleSubmit}>
-            <input className="lead-input" type="text"  placeholder="Nombre completo"    required value={form.name}    onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
-            <input className="lead-input" type="tel"   placeholder="Número de teléfono" required value={form.phone}   onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} />
-            <input className="lead-input" type="email" placeholder="Correo electrónico" required value={form.email}   onChange={e => setForm(f => ({ ...f, email: e.target.value }))} />
-            <input className="lead-input" type="text"  placeholder="Dirección"          required value={form.address} onChange={e => setForm(f => ({ ...f, address: e.target.value }))} />
-            <button type="submit" className="lead-btn" disabled={formState === 'loading'}>
-              {formState === 'loading' ? 'Enviando...' : 'Que me llamen →'}
-            </button>
-          </form>
-        )}
-        {formState === 'error' && (
-          <p style={{ marginTop: '12px', color: '#F87171', fontSize: '.85rem' }}>Error al enviar. Intenta de nuevo.</p>
-        )}
-        <p style={{ fontSize: '.72rem', color: 'rgba(255,255,255,.25)', maxWidth: '540px', margin: '12px auto 0', lineHeight: '1.6' }}>
-          Al enviar este formulario, usted acepta recibir llamadas y mensajes de texto de Connecting relacionados con nuestros servicios. Puede solicitar que lo retiremos de nuestra lista de contacto en cualquier momento. Aplican tarifas de mensajes y datos.
-        </p>
-        <p className="lead-note">No compartimos tus datos. Solo te contactamos una vez.</p>
+        <h2>Hablemos<br /><em>ahora mismo.</em></h2>
+        <p>Un asesor en español te atiende al instante. Sin esperas ni formularios.</p>
+        <a href={`tel:${PHONE}`} className="lead-btn" onClick={onPhoneClick}>
+          Llamar {PHONE_DISPLAY} →
+        </a>
+        <p className="lead-note">Atención en español. La llamada no tiene costo.</p>
       </section>
 
       {/* FOOTER */}
@@ -720,7 +674,7 @@ export default function Home() {
             <Link href="/terminos">Términos</Link> &nbsp;·&nbsp;
             <button
               style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,.3)', fontSize: '.74rem', cursor: 'pointer', padding: 0 }}
-              onClick={() => { rejectCookie(); setCookieVisible(true) }}
+              onClick={optOutCcpa}
             >
               No vender mis datos (CCPA)
             </button>
@@ -729,7 +683,7 @@ export default function Home() {
       </footer>
 
       {/* COOKIE BANNER */}
-      <div id="cookie-banner" className={cookieVisible ? 'visible' : ''} role="dialog" aria-label="Aviso de cookies">
+      <div id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
         <p className="cookie-text">
           Usamos cookies propias y de terceros (incluido Google Ads) para mejorar tu experiencia y mostrarte publicidad relevante.{' '}
           <Link href="/privacidad">Política de Privacidad</Link>.

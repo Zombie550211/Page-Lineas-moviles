@@ -42,3 +42,6 @@ next-env.d.ts
 
 # Claude Code workspace
 .claude/
+
+# build estatico de produccion
+/dist
