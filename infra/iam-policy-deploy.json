@@ -95,6 +95,35 @@
         "route53:GetChange"
       ],
       "Resource": "*"
+    },
+    {
+      "Sid": "Amplify",
+      "Effect": "Allow",
+      "Action": [
+        "amplify:CreateApp",
+        "amplify:GetApp",
+        "amplify:ListApps",
+        "amplify:UpdateApp",
+        "amplify:DeleteApp",
+        "amplify:CreateBranch",
+        "amplify:GetBranch",
+        "amplify:ListBranches",
+        "amplify:UpdateBranch",
+        "amplify:StartJob",
+        "amplify:GetJob",
+        "amplify:ListJobs",
+        "amplify:CreateDomainAssociation",
+        "amplify:GetDomainAssociation",
+        "amplify:UpdateDomainAssociation",
+        "amplify:ListDomainAssociations"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "RolDeServicioDeAmplify",
+      "Effect": "Allow",
+      "Action": "iam:CreateServiceLinkedRole",
+      "Resource": "arn:aws:iam::964060772387:role/aws-service-role/amplify.amazonaws.com/*"
     }
   ]
 }
