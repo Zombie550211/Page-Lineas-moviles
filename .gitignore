@@ -45,3 +45,7 @@ next-env.d.ts
 
 # build estatico de produccion
 /dist
+
+# Originales sin optimizar del hero: 6,3 MB en PNG. Lo que se publica son
+# las versiones WebP de public/images/. Se quedan en local como respaldo.
+/images/

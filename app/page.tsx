@@ -15,9 +15,9 @@ const PHONE = '+18884702820'
 const PHONE_DISPLAY = '+1 (888) 470-2820'
 
 const heroSlides = [
-  { src: '/images/hablando_por_telefono.webp', alt: 'Planes Móviles' },
-  { src: '/images/familiaconectada.webp',      alt: 'Familia Conectada' },
-  { src: '/images/altavelocidad.webp',          alt: 'Alta Velocidad 5G' },
+  { src: '/images/sim-entrando.webp',        alt: 'Tarjeta SIM activándose en un teléfono móvil' },
+  { src: '/images/persona-en-la-calle.webp', alt: 'Hombre hablando por su línea móvil en la calle' },
+  { src: '/images/telefonos-juntos.webp',    alt: 'Teléfonos de alta gama disponibles con tu línea' },
 ]
 
 const carouselItems = [
