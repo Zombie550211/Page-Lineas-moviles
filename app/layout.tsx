@@ -21,7 +21,7 @@ const inter = Inter({
 
 const TITLE = 'Líneas Móviles | Planes 5G para tu Familia'
 const DESCRIPTION =
-  'Planes de líneas móviles 5G desde $55/mes. Sin contratos, soporte en español, activación rápida. Cobertura en el 99% de Estados Unidos para tu familia.'
+  'Planes de líneas móviles 5G desde $55/mes + impuestos. Sin contratos, soporte en español, activación rápida. Agente independiente con varios proveedores en Estados Unidos.'
 
 export const metadata: Metadata = {
   /* metadataBase permite canonicals y OG relativos en cada página */
@@ -77,14 +77,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18023363833"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="https://files.bpcontent.cloud/2026/04/18/01/20260418013659-Y2Z6AC4H.js"
           strategy="afterInteractive"
         />
       </body>

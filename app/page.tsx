@@ -241,67 +241,6 @@ export default function Home() {
     return () => { if (carouselTimer.current) clearInterval(carouselTimer.current) }
   }, [startCarouselTimer])
 
-  /* botpress lead capture — client-side relay */
-  useEffect(() => {
-    let lastBotText = ''
-    let capturedNombre = ''
-
-    const sendLead = (nombre: string, telefono: string) => {
-      fetch('/api/chatbot-lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre, telefono, fuente: 'Chatbot AI' }),
-      }).catch(() => {})
-    }
-
-    const process = (text: string, isBot: boolean) => {
-      if (!text) return
-      if (isBot) {
-        lastBotText = text.toLowerCase()
-      } else {
-        if (lastBotText.includes('nombre')) {
-          capturedNombre = text
-        } else if ((lastBotText.includes('teléfono') || lastBotText.includes('telefono')) && capturedNombre) {
-          sendLead(capturedNombre, text)
-          capturedNombre = ''
-        }
-      }
-    }
-
-    // API nativa window.botpress.on('message', ...) — Botpress webchat v3
-    // Payload structure: { id, authorId, block: { block: { text } }, metadata?: { clientMessageId } }
-    // User messages have metadata.clientMessageId; bot messages don't
-    const setupBotpress = () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const bp = (window as any).botpress
-      if (!bp?.on) return
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      bp.on('message', (msg: any) => {
-        const text  = String(msg?.block?.block?.text ?? '')
-        const isUser = !!msg?.metadata?.clientMessageId
-        if (text) process(text, !isUser)
-      })
-    }
-
-    // postMessage fallback
-    const onMsg = (e: MessageEvent) => {
-      try {
-        const d = e.data
-        if (!d || typeof d !== 'object') return
-        const text = String(d?.block?.block?.text || d?.payload?.block?.block?.text || '')
-        if (!text) return
-        const isUser = !!(d?.metadata?.clientMessageId || d?.payload?.metadata?.clientMessageId)
-        process(text, !isUser)
-      } catch { /* silencioso */ }
-    }
-
-    window.addEventListener('message', onMsg)
-    if ((window as any).botpress?.on) setupBotpress()   // eslint-disable-line @typescript-eslint/no-explicit-any
-    else setTimeout(setupBotpress, 4000)
-
-    return () => window.removeEventListener('message', onMsg)
-  }, [])
-
   /* reveal on scroll */
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>('.reveal')
@@ -359,6 +298,7 @@ export default function Home() {
           <Link href="#servicios" className="nav-link">Servicios</Link>
           <Link href="#familiar"  className="nav-link">Familias</Link>
           <Link href="#planes"    className="nav-link">Planes</Link>
+          <Link href="#quienes-somos" className="nav-link">Nosotros</Link>
         </div>
 
         <div className="nav-right">
@@ -382,8 +322,8 @@ export default function Home() {
         </div>
         <div className="hero-content">
           <div className="hero-text">
-            <span className="hero-badge">+10,000 Familias Conectadas en USA</span>
-            <p className="hero-eyebrow">Red 5G activa en todo USA</p>
+            <span className="hero-badge">Conectamos familias en todo Estados Unidos</span>
+            <p className="hero-eyebrow">Redes 5G nacionales · Varios proveedores</p>
             <h1>Conecta a tu<br /><em>Familia</em> hoy.</h1>
             <p className="hero-sub">Planes sin contratos desde $55/mes. Soporte 100% en español. Activa hoy mismo.</p>
             <div className="hero-actions">
@@ -444,7 +384,7 @@ export default function Home() {
           {[
             {
               title: 'Sin contratos',
-              desc: 'Cancela cuando quieras. Sin penalizaciones, sin letra chica, sin compromisos forzosos.',
+              desc: 'Cancela cuando quieras. Sin penalizaciones por terminación anticipada ni permanencia forzosa.',
               icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>,
             },
             {
@@ -454,7 +394,7 @@ export default function Home() {
             },
             {
               title: 'Red 5G nacional',
-              desc: '99% de cobertura en todo Estados Unidos. La red más rápida, siempre contigo.',
+              desc: 'Cobertura nacional sobre las principales redes 5G del país. El alcance exacto depende del proveedor y plan que elijas.',
               icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M10.54 16.1a6 6 0 0 1 2.92 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>,
             },
             {
@@ -548,7 +488,7 @@ export default function Home() {
         <div className="section-header reveal">
           <span className="section-eyebrow">Precios Transparentes</span>
           <h2 className="section-title">Elige tu Plan.</h2>
-          <p className="section-sub">Sin letra chica. El precio que ves es el que pagas mes a mes.</p>
+          <p className="section-sub">Precio base del plan. Los impuestos y cargos regulatorios se facturan aparte y varían según tu estado y el proveedor.</p>
         </div>
         <div className="plans-grid">
           {[
@@ -584,8 +524,8 @@ export default function Home() {
         </div>
         <div className="split-content reveal reveal-delay-1">
           <span className="split-tag">Cobertura y Velocidad</span>
-          <h2>El 99% de<br /><em>Estados Unidos.</em></h2>
-          <p>Nuestra red cubre el 99% del territorio. Siempre conectado sin importar dónde te encuentres.</p>
+          <h2>Cobertura en<br /><em>todo el país.</em></h2>
+          <p>Trabajamos con varios proveedores sobre las principales redes 5G de Estados Unidos. Verificamos contigo la cobertura real en tu zona antes de que contrates.</p>
           <div><a href={`tel:${PHONE}`} className="btn-dark" onClick={onPhoneClick}>Verificar Cobertura</a></div>
         </div>
       </section>
@@ -604,6 +544,37 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
+      {/* QUIENES SOMOS: identidad del anunciante exigida por Google Ads */}
+      <section className="about-section" id="quienes-somos">
+        <div className="about-header reveal">
+          <span className="section-eyebrow">Quiénes somos</span>
+          <h2 className="section-title">Un agente,<br /><em>no una red.</em></h2>
+        </div>
+        <div className="about-body reveal reveal-delay-1">
+          <p className="about-disclaimer">
+            Connecting S.A. de C.V. es un agente independiente de servicios móviles. Ayudamos a
+            consumidores en Estados Unidos a conocer opciones de telefonía móvil y conectarse con
+            proveedores participantes. No somos una compañía de red móvil ni afirmamos ser
+            representantes de ningún operador salvo cuando se indique expresamente.
+          </p>
+          <p>
+            No trabajamos con un solo operador: comparamos planes de <strong>varios proveedores</strong> y
+            te mostramos cuál se ajusta mejor a tu zona, tu presupuesto y tu consumo. El contrato final
+            de servicio se establece entre tú y la compañía proveedora que elijas.
+          </p>
+          <p>
+            Las marcas, nombres comerciales y logotipos de terceros que aparezcan en este sitio
+            pertenecen a sus respectivos titulares. Los planes, precios y disponibilidad los determina
+            cada proveedor y están sujetos a cambios sin previo aviso.
+          </p>
+          <div className="about-meta">
+            <span><strong>Razón social:</strong> Connecting S.A. de C.V.</span>
+            <span><strong>Operaciones:</strong> Texas, Estados Unidos</span>
+            <span><strong>Contacto:</strong> {PHONE_DISPLAY}</span>
+          </div>
+        </div>
+      </section>
+
       <section className="faq-section" id="faq">
         <div className="section-header reveal">
           <span className="section-eyebrow">Resolvemos tus dudas</span>
@@ -641,7 +612,10 @@ export default function Home() {
       <footer className="footer" id="contacto">
         <div className="footer-grid">
           <div className="footer-brand">
-            <p>Proveedor independiente de servicios móviles en las mejores redes 5G de Estados Unidos. Texas, EE.UU.</p>
+            <h4>Quiénes Somos</h4>
+            <p>Agente independiente de servicios móviles. Comparamos planes de varios proveedores participantes en las mejores redes 5G de Estados Unidos.</p>
+            <Link href="/#quienes-somos" className="footer-brand-link">Conocer más →</Link>
+            <p className="footer-brand-loc">Texas, EE.UU.</p>
           </div>
           <div className="footer-col">
             <h4>Servicios</h4>
@@ -664,11 +638,11 @@ export default function Home() {
             <a>Texas, Estados Unidos</a>
           </div>
         </div>
-        <a href={`tel:${PHONE}`} className="footer-call" onClick={onPhoneClick}>
-          📞 &nbsp;Llamar ahora — {PHONE_DISPLAY}
+        <a href={`tel:${PHONE}`} className="footer-call" onClick={onPhoneClick} aria-label={`Llamar ahora al ${PHONE_DISPLAY}`}>
+          📞 &nbsp;¡Llama ahora!
         </a>
         <div className="footer-bottom">
-          <span>© 2026 Connecting S.A. de C.V. · Proveedor independiente de servicios móviles.</span>
+          <span>© 2026 Connecting S.A. de C.V. · Agente independiente de servicios móviles.</span>
           <span>
             <Link href="/privacidad">Privacidad</Link> &nbsp;·&nbsp;
             <Link href="/terminos">Términos</Link> &nbsp;·&nbsp;
