@@ -8,48 +8,61 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://lineas-moviles.com/terminos' },
 }
 
-const sections = [
+const sections: { title: string | null; body: string; highlight?: boolean; bullets?: string[]; after?: string; phone?: string }[] = [
   {
     title: null,
     highlight: true,
-    body: 'Este documento rige el uso de nuestro sitio web. Al navegar en lineas-moviles.com, el usuario acepta que la información de planes y precios está sujeta a cambios por parte de los proveedores. Nosotros proporcionamos asesoría informativa y técnica, pero el contrato final de servicio se establece entre el cliente y la compañía proveedora seleccionada.\n\nConnecting es un agente independiente de servicios móviles. No somos una compañía de red móvil ni representantes oficiales de ningún operador. Nuestros asesores atienden llamadas entrantes para verificar disponibilidad y conectar a los usuarios con proveedores participantes.',
-    bullets: ['No somos el proveedor directo del servicio.', 'La disponibilidad y precios pueden variar según ubicación.'],
+    body: "Entidad: Connecting\n\nSitio oficial: lineas-moviles.com",
   },
   {
-    title: 'Descripción de los Servicios',
-    body: 'lineas-moviles.com actúa como agente independiente de servicios de telecomunicaciones, facilitando el acceso a:\n• Telefonía Móvil E-SIM o SIM Física: Planes de voz, texto y datos mediante redes inalámbricas.\n• Telefonía Móvil y Dispositivos con financiamiento: Planes con datos ilimitados sujetos a la política de priorización de red de cada proveedor. El financiamiento de equipos lo otorga y aprueba el proveedor.',
+    title: "1. Aceptación de los términos",
+    body: "Al acceder, navegar o utilizar el sitio web lineas-moviles.com, así como al solicitar información o contratar servicios a través de nuestros asesores telefónicos o digitales, usted (\"el Cliente\" o \"el Usuario\") acepta cumplir y estar sujeto a los presentes Términos y Condiciones.\n\nSi no está de acuerdo con alguna parte de estas condiciones, deberá abstenerse de utilizar nuestros servicios y sitio web.",
   },
   {
-    title: 'Elegibilidad y Contratación',
-    body: 'Para contratar nuestros servicios, el usuario debe:\n• Ser mayor de 18 años.\n• Residir en una zona con cobertura garantizada (sujeta a verificación técnica).\n• Proporcionar información veraz y actualizada durante el proceso de venta telefónica.',
+    title: "2. Naturaleza del servicio: agente independiente",
+    body: "Connecting opera como un agente independiente de servicios de telefonía móvil para el mercado hispano en los Estados Unidos. No somos una compañía de red móvil ni representantes oficiales de ningún operador.",
+    bullets: ["Nuestra función: brindamos asesoría en idioma español, comparamos opciones de cobertura y facilitamos la gestión y contratación de servicios de telefonía móvil, planes y equipos con proveedores participantes.", "Relación con el proveedor: Connecting no es un proveedor directo de infraestructura o servicios de red móvil. El contrato final para la prestación del servicio, activación de líneas y provisión de equipos se establece directamente entre el Cliente y la compañía proveedora seleccionada."],
   },
   {
-    title: 'Política de Uso Aceptable',
-    body: 'Protegemos tus datos personales conforme a la ley. Los datos que nos proporcionas por teléfono se utilizan exclusivamente para contactarte y gestionar tu solicitud de servicio.\n\nDivulgación de Afiliación: lineas-moviles.com puede recibir una comisión por parte de los proveedores de servicios cuando un usuario realiza una contratación a través de nuestra plataforma. Esto no genera un costo adicional para el usuario y nos permite mantener nuestro servicio de asesoría gratuito.',
+    title: "3. Procesamiento de la contratación y gestión de órdenes",
+    body: "Para fines de transparencia con el usuario y las plataformas de verificación:",
+    bullets: ["Recopilación y asesoría: Connecting recopila la información inicial, verifica la disponibilidad de cobertura y prepara la orden en idioma español.", "Procesamiento de la orden: una vez confirmada la elección por el usuario, la orden se transmite directamente al sistema del proveedor de telecomunicaciones seleccionado.", "Ejecución y facturación: el proveedor elegido es la única entidad responsable de aprobar la solicitud, activar la línea, enviar los equipos y emitir las facturas mensuales de cobro."],
   },
   {
-    title: 'Tarifas, Facturación y Pagos',
-    body: 'Todos los precios se muestran en dólares de los Estados Unidos (USD) y podrían incluir impuestos de la zona, del estado y cargos del gobierno federal que correspondan.',
+    title: "4. Gratuidad del servicio de asesoría",
+    body: "La asesoría, verificación de cobertura, comparación de tarifas y gestión de la solicitud realizada por Connecting a través de lineas-moviles.com es 100 % gratuita para el cliente.\n\nNo cobramos cargos adicionales, recargos ni comisiones al cliente por la atención de nuestros asesores. Connecting puede recibir una comisión por parte del proveedor cuando el cliente contrata a través de nosotros; esta comisión no modifica el precio del plan ni genera un costo adicional para el cliente.",
   },
   {
-    title: 'Consentimiento para Comunicaciones (TCPA)',
-    body: 'Cuando nos da su número de teléfono durante una llamada, usted está de acuerdo en que le llamemos o le enviemos mensajes. Estos mensajes tratarán sobre cómo configurar su servicio, ayuda técnica y ofertas especiales. Si cambia de opinión, puede pedirnos que no le llamemos más, y lo añadiremos a nuestra lista interna de "No llamar".',
+    title: "5. Precios, promociones y tarifas",
+    body: "",
+    bullets: ["Estimación de precios: los precios, promociones, características de los planes y equipos mostrados en lineas-moviles.com son estimativos y están sujetos a confirmación según la dirección exacta, disponibilidad y elegibilidad del cliente. Los precios se expresan en dólares estadounidenses (USD) y no incluyen impuestos ni cargos regulatorios, que varían según el estado y el proveedor.", "Cambios por parte del proveedor: los proveedores de telecomunicaciones se reservan el derecho de modificar sus tarifas oficiales, promociones, cargos de activación, costos de equipos y demás condiciones, conforme a sus propios contratos y políticas de notificación.", "Vigencia promocional: las tarifas preferenciales o con descuento pueden tener una duración determinada. Finalizado dicho periodo, la tarifa podrá ajustarse automáticamente al precio regular establecido por el proveedor. Antes de contratar le informamos la duración de la promoción y el precio posterior."],
   },
   {
-    title: 'Limitación de Responsabilidad',
-    body: 'lineas-moviles.com no se hará cargo de:\n• Problemas con el servicio causados por el clima, arreglos en la red o errores en los aparatos del cliente.\n• La pérdida o el daño de información derivado del uso del servicio móvil.\n• La velocidad de datos móviles, que puede variar según la ubicación, cobertura y congestión de la red del operador.',
+    title: "6. Requisitos y proceso de contratación",
+    body: "",
+    bullets: ["Documentación: se requiere una identificación oficial vigente. Dependiendo de las políticas del proveedor, se podría aceptar pasaporte o identificación estatal de Estados Unidos.", "Verificación de crédito: según las políticas de la compañía proveedora seleccionada, la contratación podría requerir o no una verificación crediticia. En caso de no contar con historial en Estados Unidos, el proveedor final podría solicitar un depósito de garantía reembolsable o un pago por adelantado.", "Disponibilidad y entrega: la aprobación de la solicitud, disponibilidad de equipos, activación del servicio y tiempos de entrega dependen exclusivamente de las políticas, inventario y procesos de la compañía proveedora seleccionada."],
   },
   {
-    title: 'Privacidad de los Datos',
-    body: 'Tu privacidad es muy importante. La información que recogemos en la llamada de venta, como tu nombre y número de teléfono, se guarda de forma muy segura. Solo la compartimos con las compañías de red que necesitan esta información para que puedas usar tu servicio.',
+    title: "7. Deslinde de responsabilidad: soporte técnico y facturación",
+    body: "",
+    bullets: ["Facturación directa: las facturas son emitidas, enviadas y cobradas directamente por el proveedor de telecomunicaciones correspondiente, no por Connecting.", "Servicio técnico e interrupciones: Connecting no se hace responsable por interrupciones de señal, problemas de cobertura, fallas en los equipos, inconvenientes con la activación o dificultades relacionadas con el funcionamiento del servicio. La velocidad de datos puede variar según la ubicación, la cobertura y la congestión de la red del proveedor."],
+    after: "Nuestro equipo puede brindar orientación general en español para ayudar al cliente a identificar el canal de atención correspondiente. Sin embargo, el soporte técnico, la administración de la cuenta, las cancelaciones, devoluciones, cambios y reembolsos deben gestionarse directamente con el proveedor seleccionado.",
   },
   {
-    title: 'Modificaciones de los Términos',
-    body: 'Mantenemos nuestros términos actualizados para reflejar cambios en las promociones del mercado. Te invitamos a revisar esta sección periódicamente para conocer las condiciones vigentes que aplicarán a tu navegación.',
+    title: "8. Consentimiento para comunicaciones (TCPA)",
+    body: "Cuando nos da su número de teléfono durante una llamada, usted acepta que le llamemos o le enviemos mensajes sobre la configuración de su servicio, ayuda técnica y ofertas especiales. Este consentimiento no es condición para contratar ningún servicio. Si cambia de opinión, puede pedirnos que no le llamemos más y lo añadiremos a nuestra lista interna de \"No llamar\".",
   },
   {
-    title: 'Contacto',
-    body: 'Si tiene preguntas sobre estos Términos y Condiciones, puede contactarnos a través de los canales oficiales publicados en lineas-moviles.com o llamando al +1 (888) 470-2820.',
+    title: "9. Privacidad de los datos",
+    body: "La información que recogemos durante la llamada, como su nombre y número de teléfono, se guarda de forma segura y solo se comparte con el proveedor seleccionado en la medida necesaria para tramitar su servicio. Consulte nuestra Política de Privacidad para más detalles.",
+  },
+  {
+    title: "10. Modificaciones de los términos",
+    body: "Podemos actualizar estos Términos y Condiciones para reflejar cambios en nuestros servicios o en la normativa aplicable. La fecha de la última actualización se indica al inicio de este documento.",
+  },
+  {
+    title: "11. Contacto",
+    body: "Si tiene preguntas sobre estos Términos y Condiciones, llámenos al +1 (888) 470-2820 (lunes a domingo, 8:00 a.m. – 9:00 p.m., hora de Texas, CT).",
     phone: '+18884702820',
   },
 ]
@@ -67,9 +80,9 @@ export default function TerminosPage() {
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '60px 2.5rem 80px' }}>
         <div style={{ fontSize: '.72rem', fontWeight: 700, letterSpacing: 4, textTransform: 'uppercase', color: '#1D4ED8', marginBottom: '.6rem' }}>Legal</div>
         <h1 style={{ fontFamily: 'var(--font-cormorant, "Cormorant Garamond", Georgia, serif)', fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 700, color: '#0F172A', marginBottom: '.5rem', lineHeight: 1.1 }}>
-          Términos y Condiciones
+          Términos y condiciones de servicio
         </h1>
-        <p style={{ fontSize: '.83rem', color: '#94A3B8', marginBottom: '2.5rem' }}>Última actualización: 2026</p>
+        <p style={{ fontSize: '.83rem', color: '#94A3B8', marginBottom: '2.5rem' }}>Última actualización: septiembre de 2026</p>
 
         {sections.map((s, i) => (
           <div
@@ -88,7 +101,7 @@ export default function TerminosPage() {
                 {s.title}
               </h2>
             )}
-            {s.body.split('\n\n').map((para, j) => (
+            {s.body.split('\n\n').filter(Boolean).map((para, j) => (
               <p key={j} style={{ fontSize: '.95rem', color: '#475569', lineHeight: 1.8, marginBottom: '.8rem' }}>
                 {s.phone && para.includes('+1 (888) 470-2820') ? (
                   <>
@@ -105,13 +118,14 @@ export default function TerminosPage() {
                 ))}
               </ul>
             )}
+            {s.after && <p style={{ fontSize: '.95rem', color: '#475569', lineHeight: 1.8, marginTop: '.8rem' }}>{s.after}</p>}
           </div>
         ))}
       </div>
 
       <footer style={{ background: '#0F172A', borderTop: '1px solid #1E293B', padding: '28px max(6%, calc((100% - 1280px) / 2))', textAlign: 'center', fontSize: '.82rem', color: '#475569' }}>
         <Image src="/images/Connecting_logo.webp" alt="Connecting" width={80} height={32} style={{ display: 'block', margin: '0 auto .8rem', filter: 'brightness(10)' }} />
-        © 2026 Connecting Todos los derechos reservados. &nbsp;·&nbsp;
+        © 2026 Connecting. Todos los derechos reservados. &nbsp;·&nbsp;
         <Link href="/privacidad" style={{ color: '#60A5FA', textDecoration: 'none' }}>Política de Privacidad</Link>
       </footer>
     </>

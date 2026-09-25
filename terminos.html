@@ -18,6 +18,11 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* Consent Mode v2: igual que la home. Sin consentimiento guardado, o con GPC, todo denegado. */
+  var _sc = null;
+  try { _sc = localStorage.getItem('cookie_consent'); } catch (e) {}
+  var _cs = (_sc === 'granted' && navigator.globalPrivacyControl !== true) ? 'granted' : 'denied';
+  gtag('consent', 'default', { ad_storage: _cs, analytics_storage: _cs, ad_user_data: _cs, ad_personalization: _cs });
   gtag('js', new Date());
   gtag('config', 'AW-18023363833');
 </script>
@@ -81,6 +86,13 @@
     font-size: .82rem; color: #475569;
   }
   footer a { color: #60A5FA; text-decoration: none; }
+  .container a { color: #1D4ED8; font-weight: 700; }
+  table { width: 100%; border-collapse: collapse; margin: .5rem 0 1rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .7rem .8rem; border-bottom: 1px solid #E2E8F0; color: #475569; line-height: 1.6; vertical-align: top; }
+  th { color: #1E293B; font-weight: 700; background: #F1F5F9; }
+  td:first-child { font-weight: 700; color: #1E293B; white-space: nowrap; }
+  ol { padding-left: 1.4rem; margin: .5rem 0 .8rem; }
+  @media (max-width: 600px) { .container { padding: 40px 16px 60px; } .card { padding: 1.4rem 1.2rem; } td:first-child { white-space: normal; } }
   footer img { height: 32px; width: auto; display: block; margin: 0 auto .8rem; }
 </style>
 </head>
@@ -93,83 +105,99 @@
 
 <div class="container">
   <div class="page-label">Legal</div>
-  <h1>Términos y Condiciones</h1>
-  <p class="updated">Última actualización: 2026</p>
+  <h1>Términos y condiciones de servicio</h1>
+  <p class="updated">Última actualización: septiembre de 2026</p>
 
   <div class="card highlight">
-    <p>Este documento rige el uso de nuestro sitio web. Al navegar en <strong>lineas-moviles.com</strong>, el usuario acepta que la información de planes y precios está sujeta a cambios por parte de los proveedores. Nosotros proporcionamos asesoría informativa y técnica, pero el contrato final de servicio se establece entre el cliente y la compañía proveedora seleccionada.</p>
-    <p><strong>Connecting</strong> es un agente independiente de servicios móviles. No somos una compañía de red móvil ni representantes oficiales de ningún operador. Nuestros asesores atienden llamadas entrantes para verificar disponibilidad y conectar a los usuarios con proveedores participantes.</p>
+    <p><strong>Entidad:</strong> Connecting<br><strong>Sitio oficial:</strong> lineas-moviles.com</p>
+  </div>
+
+  <div class="card">
+    <h2>1. Aceptación de los términos</h2>
+    <p>Al acceder, navegar o utilizar el sitio web lineas-moviles.com, así como al solicitar información o contratar servicios a través de nuestros asesores telefónicos o digitales, usted ("el Cliente" o "el Usuario") acepta cumplir y estar sujeto a los presentes Términos y Condiciones.</p>
+    <p>Si no está de acuerdo con alguna parte de estas condiciones, deberá abstenerse de utilizar nuestros servicios y sitio web.</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Naturaleza del servicio: agente independiente</h2>
+    <p>Connecting opera como un agente independiente de servicios de telefonía móvil para el mercado hispano en los Estados Unidos. No somos una compañía de red móvil ni representantes oficiales de ningún operador.</p>
     <ul>
-      <li>No somos el proveedor directo del servicio.</li>
-      <li>La disponibilidad y precios pueden variar según ubicación.</li>
+      <li><strong>Nuestra función:</strong> brindamos asesoría en idioma español, comparamos opciones de cobertura y facilitamos la gestión y contratación de servicios de telefonía móvil, planes y equipos con proveedores participantes.</li>
+      <li><strong>Relación con el proveedor:</strong> Connecting no es un proveedor directo de infraestructura o servicios de red móvil. El contrato final para la prestación del servicio, activación de líneas y provisión de equipos se establece directamente entre el Cliente y la compañía proveedora seleccionada.</li>
     </ul>
   </div>
 
   <div class="card">
-    <h2>Descripción de los Servicios</h2>
-    <p><strong>lineas-moviles.com</strong> actúa como agente independiente de servicios de telecomunicaciones, facilitando el acceso a:</p>
+    <h2>3. Procesamiento de la contratación y gestión de órdenes</h2>
+    <p>Para fines de transparencia con el usuario y las plataformas de verificación:</p>
     <ul>
-      <li><strong>Telefonía Móvil E-SIM o SIM Física:</strong> Planes de voz, texto y datos mediante redes inalámbricas.</li>
-      <li><strong>Telefonía Móvil y Dispositivos con financiamiento:</strong> Planes con datos ilimitados sujetos a la política de priorización de red de cada proveedor. El financiamiento de equipos lo otorga y aprueba el proveedor.</li>
+      <li><strong>Recopilación y asesoría:</strong> Connecting recopila la información inicial, verifica la disponibilidad de cobertura y prepara la orden en idioma español.</li>
+      <li><strong>Procesamiento de la orden:</strong> una vez confirmada la elección por el usuario, la orden se transmite directamente al sistema del proveedor de telecomunicaciones seleccionado.</li>
+      <li><strong>Ejecución y facturación:</strong> el proveedor elegido es la única entidad responsable de aprobar la solicitud, activar la línea, enviar los equipos y emitir las facturas mensuales de cobro.</li>
     </ul>
   </div>
 
   <div class="card">
-    <h2>Elegibilidad y Contratación</h2>
-    <p>Para contratar nuestros servicios, el usuario debe:</p>
+    <h2>4. Gratuidad del servicio de asesoría</h2>
+    <p>La asesoría, verificación de cobertura, comparación de tarifas y gestión de la solicitud realizada por Connecting a través de lineas-moviles.com es 100 % gratuita para el cliente.</p>
+    <p>No cobramos cargos adicionales, recargos ni comisiones al cliente por la atención de nuestros asesores. Connecting puede recibir una comisión por parte del proveedor cuando el cliente contrata a través de nosotros; esta comisión no modifica el precio del plan ni genera un costo adicional para el cliente.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Precios, promociones y tarifas</h2>
     <ul>
-      <li>Ser mayor de 18 años.</li>
-      <li>Residir en una zona con cobertura garantizada (sujeta a verificación técnica).</li>
-      <li>Proporcionar información veraz y actualizada durante el proceso de venta telefónica.</li>
+      <li><strong>Estimación de precios:</strong> los precios, promociones, características de los planes y equipos mostrados en lineas-moviles.com son estimativos y están sujetos a confirmación según la dirección exacta, disponibilidad y elegibilidad del cliente. Los precios se expresan en dólares estadounidenses (USD) y no incluyen impuestos ni cargos regulatorios, que varían según el estado y el proveedor.</li>
+      <li><strong>Cambios por parte del proveedor:</strong> los proveedores de telecomunicaciones se reservan el derecho de modificar sus tarifas oficiales, promociones, cargos de activación, costos de equipos y demás condiciones, conforme a sus propios contratos y políticas de notificación.</li>
+      <li><strong>Vigencia promocional:</strong> las tarifas preferenciales o con descuento pueden tener una duración determinada. Finalizado dicho periodo, la tarifa podrá ajustarse automáticamente al precio regular establecido por el proveedor. Antes de contratar le informamos la duración de la promoción y el precio posterior.</li>
     </ul>
   </div>
 
   <div class="card">
-    <h2>Política de Uso Aceptable</h2>
-    <p>Protegemos tus datos personales conforme a la ley. Los datos que nos proporcionas por teléfono se utilizan exclusivamente para contactarte y gestionar tu solicitud de servicio.</p>
-    <p><strong>Divulgación de Afiliación:</strong> lineas-moviles.com puede recibir una comisión por parte de los proveedores de servicios cuando un usuario realiza una contratación a través de nuestra plataforma. Esto no genera un costo adicional para el usuario y nos permite mantener nuestro servicio de asesoría gratuito.</p>
-  </div>
-
-  <div class="card">
-    <h2>Tarifas, Facturación y Pagos</h2>
-    <p>Todos los precios se muestran en dólares de los Estados Unidos (USD) y podrían incluir impuestos de la zona, del estado y cargos del gobierno federal que correspondan.</p>
-  </div>
-
-  <div class="card">
-    <h2>Consentimiento para Comunicaciones (TCPA)</h2>
-    <p>Cuando nos da su número de teléfono durante una llamada, usted está de acuerdo en que le llamemos o le enviemos mensajes. Estos mensajes tratarán sobre cómo configurar su servicio, ayuda técnica y ofertas especiales. Si cambia de opinión, puede pedirnos que no le llamemos más, y lo añadiremos a nuestra lista interna de "No llamar".</p>
-  </div>
-
-  <div class="card">
-    <h2>Limitación de Responsabilidad</h2>
-    <p><strong>lineas-moviles.com</strong> no se hará cargo de:</p>
+    <h2>6. Requisitos y proceso de contratación</h2>
     <ul>
-      <li>Problemas con el servicio causados por el clima, arreglos en la red o errores en los aparatos del cliente.</li>
-      <li>La pérdida o el daño de información derivado del uso del servicio móvil.</li>
-      <li>La velocidad de datos móviles, que puede variar según la ubicación, cobertura y congestión de la red del operador.</li>
+      <li><strong>Documentación:</strong> se requiere una identificación oficial vigente. Dependiendo de las políticas del proveedor, se podría aceptar pasaporte o identificación estatal de Estados Unidos.</li>
+      <li><strong>Verificación de crédito:</strong> según las políticas de la compañía proveedora seleccionada, la contratación podría requerir o no una verificación crediticia. En caso de no contar con historial en Estados Unidos, el proveedor final podría solicitar un depósito de garantía reembolsable o un pago por adelantado.</li>
+      <li><strong>Disponibilidad y entrega:</strong> la aprobación de la solicitud, disponibilidad de equipos, activación del servicio y tiempos de entrega dependen exclusivamente de las políticas, inventario y procesos de la compañía proveedora seleccionada.</li>
     </ul>
   </div>
 
   <div class="card">
-    <h2>Privacidad de los Datos</h2>
-    <p>Tu privacidad es muy importante. La información que recogemos en la llamada de venta, como tu nombre y número de teléfono, se guarda de forma muy segura. Solo la compartimos con las compañías de red que necesitan esta información para que puedas usar tu servicio.</p>
+    <h2>7. Deslinde de responsabilidad: soporte técnico y facturación</h2>
+    <ul>
+      <li><strong>Facturación directa:</strong> las facturas son emitidas, enviadas y cobradas directamente por el proveedor de telecomunicaciones correspondiente, no por Connecting.</li>
+      <li><strong>Servicio técnico e interrupciones:</strong> Connecting no se hace responsable por interrupciones de señal, problemas de cobertura, fallas en los equipos, inconvenientes con la activación o dificultades relacionadas con el funcionamiento del servicio. La velocidad de datos puede variar según la ubicación, la cobertura y la congestión de la red del proveedor.</li>
+    </ul>
+    <p>Nuestro equipo puede brindar orientación general en español para ayudar al cliente a identificar el canal de atención correspondiente. Sin embargo, el soporte técnico, la administración de la cuenta, las cancelaciones, devoluciones, cambios y reembolsos deben gestionarse directamente con el proveedor seleccionado.</p>
   </div>
 
   <div class="card">
-    <h2>Modificaciones de los Términos</h2>
-    <p>Mantenemos nuestros términos actualizados para reflejar cambios en las promociones del mercado. Te invitamos a revisar esta sección periódicamente para conocer las condiciones vigentes que aplicarán a tu navegación.</p>
+    <h2>8. Consentimiento para comunicaciones (TCPA)</h2>
+    <p>Cuando nos da su número de teléfono durante una llamada, usted acepta que le llamemos o le enviemos mensajes sobre la configuración de su servicio, ayuda técnica y ofertas especiales. Este consentimiento no es condición para contratar ningún servicio. Si cambia de opinión, puede pedirnos que no le llamemos más y lo añadiremos a nuestra lista interna de "No llamar".</p>
   </div>
 
   <div class="card">
-    <h2>Contacto</h2>
-    <p>Si tiene preguntas sobre estos Términos y Condiciones, puede contactarnos a través de los canales oficiales publicados en <strong>lineas-moviles.com</strong> o llamando al <a href="tel:+18884702820" style="color:#1D4ED8; font-weight:700;">+1 (888) 470-2820</a>.</p>
+    <h2>9. Privacidad de los datos</h2>
+    <p>La información que recogemos durante la llamada, como su nombre y número de teléfono, se guarda de forma segura y solo se comparte con el proveedor seleccionado en la medida necesaria para tramitar su servicio. Consulte nuestra <a href="privacidad.html" style="color:#1D4ED8;">Política de Privacidad</a> para más detalles.</p>
+  </div>
+
+  <div class="card">
+    <h2>10. Modificaciones de los términos</h2>
+    <p>Podemos actualizar estos Términos y Condiciones para reflejar cambios en nuestros servicios o en la normativa aplicable. La fecha de la última actualización se indica al inicio de este documento.</p>
+  </div>
+
+  <div class="card">
+    <h2>11. Contacto</h2>
+    <p>Si tiene preguntas sobre estos Términos y Condiciones, llámenos al <a href="tel:+18884702820" style="color:#1D4ED8; font-weight:700;">+1 (888) 470-2820</a> (lunes a domingo, 8:00 a.m. – 9:00 p.m., hora de Texas, CT).</p>
   </div>
 </div>
 
 <footer>
   <img src="/images/Connecting_logo.webp" alt="Connecting">
-  © 2026 Connecting Todos los derechos reservados. &nbsp;·&nbsp;
-  <a href="privacidad.html">Política de Privacidad</a>
+  © 2026 Connecting. Todos los derechos reservados.<br>
+  <a href="terminos.html">Términos y condiciones</a> &nbsp;·&nbsp;
+  <a href="privacidad.html">Política de privacidad</a> &nbsp;·&nbsp;
+  <a href="cancelacion.html">Cancelación y reembolso</a> &nbsp;·&nbsp;
+  <a href="ayuda.html">Centro de ayuda</a>
 </footer>
 
 </body>

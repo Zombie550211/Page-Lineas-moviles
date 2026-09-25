@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- CSP por meta: el sitio se sirve estatico desde S3 y el usuario connecting-deploy
+     tiene denegado CreateResponseHeadersPolicy, asi que no se puede emitir por
+     cabecera en CloudFront. El meta no soporta frame-ancestors ni report-uri;
+     el clickjacking lo cubre X-Frame-Options, que CloudFront si envia.
+     Al retirar Botpress ya no hay terceros mas alla de Google. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google.com https://www.google.com.mx https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://td.doubleclick.net https://stats.g.doubleclick.net; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://td.doubleclick.net https://stats.g.doubleclick.net https://www.google.com; frame-src https://td.doubleclick.net https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<title>Centro de Ayuda | Connecting</title>
+<meta name="description" content="Respuestas sobre el proceso de compra, cancelaciones, envíos, devoluciones y soporte al contratar a través de lineas-moviles.com.">
+<link rel="canonical" href="https://lineas-moviles.com/ayuda">
+<!-- Google tag (gtag.js) -->
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18023363833"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  /* Consent Mode v2: igual que la home. Sin consentimiento guardado, o con GPC, todo denegado. */
+  var _sc = null;
+  try { _sc = localStorage.getItem('cookie_consent'); } catch (e) {}
+  var _cs = (_sc === 'granted' && navigator.globalPrivacyControl !== true) ? 'granted' : 'denied';
+  gtag('consent', 'default', { ad_storage: _cs, analytics_storage: _cs, ad_user_data: _cs, ad_personalization: _cs });
+  gtag('js', new Date());
+  gtag('config', 'AW-18023363833');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Nunito:wght@400;600;700&display=optional" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body { font-family: 'Nunito', sans-serif; background: #F8FAFC; color: #0F172A; }
+
+  nav {
+    background: rgba(255,255,255,.95); border-bottom: 1px solid #E2E8F0;
+    padding: 16px max(6%, calc((100% - 1280px) / 2)); display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    position: sticky; top: 0; z-index: 100;
+  }
+  nav a.back {
+    color: #1D4ED8; text-decoration: none; font-weight: 700; font-size: .92rem;
+    display: flex; align-items: center; gap: 6px;
+    transition: color .2s;
+  }
+  nav a.back:hover { color: #1E3A8A; }
+
+  .container {
+    max-width: 800px; margin: 0 auto;
+    padding: 60px 2.5rem 80px;
+  }
+  .page-label {
+    font-size: .72rem; font-weight: 700; letter-spacing: 4px;
+    text-transform: uppercase; color: #1D4ED8; margin-bottom: .6rem;
+  }
+  h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 700;
+    color: #0F172A; margin-bottom: .5rem; line-height: 1.1;
+  }
+  .updated { font-size: .83rem; color: #94A3B8; margin-bottom: 2.5rem; }
+
+  .card {
+    background: #fff; border: 1px solid #E2E8F0; border-radius: 20px;
+    padding: 2rem 2.2rem; margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  }
+  .card.highlight {
+    background: #EFF6FF; border-color: #BFDBFE;
+  }
+  h2 {
+    font-family: 'Rajdhani', sans-serif; font-size: 1.35rem; font-weight: 700;
+    color: #1D4ED8; margin-bottom: .8rem;
+  }
+  p { font-size: .95rem; color: #475569; line-height: 1.8; margin-bottom: .8rem; }
+  p:last-child { margin-bottom: 0; }
+  ul { padding-left: 1.4rem; margin: .5rem 0 .8rem; }
+  li { font-size: .95rem; color: #475569; line-height: 1.8; margin-bottom: .3rem; }
+  strong { color: #1E293B; }
+
+  footer {
+    background: #0F172A; border-top: 1px solid #1E293B;
+    padding: 28px max(6%, calc((100% - 1280px) / 2)); text-align: center;
+    font-size: .82rem; color: #475569;
+  }
+  footer a { color: #60A5FA; text-decoration: none; }
+  .container a { color: #1D4ED8; font-weight: 700; }
+  table { width: 100%; border-collapse: collapse; margin: .5rem 0 1rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .7rem .8rem; border-bottom: 1px solid #E2E8F0; color: #475569; line-height: 1.6; vertical-align: top; }
+  th { color: #1E293B; font-weight: 700; background: #F1F5F9; }
+  td:first-child { font-weight: 700; color: #1E293B; white-space: nowrap; }
+  ol { padding-left: 1.4rem; margin: .5rem 0 .8rem; }
+  @media (max-width: 600px) { .container { padding: 40px 16px 60px; } .card { padding: 1.4rem 1.2rem; } td:first-child { white-space: normal; } }
+  footer img { height: 32px; width: auto; display: block; margin: 0 auto .8rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="back">← Volver al inicio</a>
+  <img src="/images/Connecting_logo.webp" alt="Connecting" style="height:32px; width:auto;">
+</nav>
+
+<div class="container">
+  <div class="page-label">Ayuda</div>
+  <h1>Centro de ayuda</h1>
+  <p class="updated">Última actualización: septiembre de 2026</p>
+
+  <div class="card highlight">
+    <p>Encuentra respuestas sobre nuestro proceso de compra y la ayuda que podemos ofrecerte. Si necesitas más ayuda, llámanos al <a href="tel:+18884702820">+1 (888) 470-2820</a>, de lunes a domingo, de 8:00 a.m. a 9:00 p.m. (hora de Texas, CT). Te atendemos en español.</p>
+  </div>
+
+  <div class="card">
+    <h2>¿Qué es Líneas Móviles?</h2>
+    <p>Líneas Móviles (lineas-moviles.com) es un sitio operado por Connecting, un agente independiente de servicios de telefonía móvil. Te ayudamos a comparar y solicitar planes de diferentes compañías proveedoras participantes.</p>
+    <p>No somos una compañía de telefonía móvil ni representamos a ningún operador. No prestamos directamente el servicio ni administramos las cuentas después de completar la contratación. Nuestra asesoría es gratuita; podemos recibir una comisión del proveedor cuando se completa una contratación, sin costo adicional para ti.</p>
+    <p>La disponibilidad, aprobación, cobertura, precios, equipos, promociones y condiciones finales los determina la compañía proveedora que elijas.</p>
+  </div>
+
+  <div class="card">
+    <h2>Cómo funciona el proceso de compra</h2>
+    <ol>
+      <li>Te comunicas con uno de nuestros asesores.</li>
+      <li>Revisamos las opciones disponibles según tu ubicación y necesidades.</li>
+      <li>Te explicamos los precios, requisitos y condiciones que indica el proveedor, incluidos impuestos, cargos y condiciones de financiamiento si aplican.</li>
+      <li>Con tu autorización, ingresamos tu información en el sistema del proveedor.</li>
+      <li>La compañía proveedora revisa y procesa la solicitud.</li>
+      <li>Si la solicitud es aprobada, el proveedor confirma la orden y se encarga del servicio, el envío o la activación.</li>
+    </ol>
+    <p>Podemos ayudarte mientras la solicitud esté en proceso con nuestro equipo. Una vez completada o transferida al proveedor, cualquier gestión posterior debe hacerse directamente con esa compañía.</p>
+  </div>
+
+  <div class="card">
+    <h2>Estado de tu solicitud</h2>
+    <p>Los tiempos pueden variar según el proveedor. Estas son las etapas generales:</p>
+    <table>
+      <thead><tr><th scope="col">Estado</th><th scope="col">Qué significa</th></tr></thead>
+      <tbody>
+        <tr><td>Solicitud iniciada</td><td>Nuestro asesor está recopilando y procesando la información necesaria.</td></tr>
+        <tr><td>En revisión</td><td>El proveedor está verificando la solicitud, la disponibilidad o tu elegibilidad.</td></tr>
+        <tr><td>Procesada</td><td>El proveedor aceptó la solicitud y comenzó a preparar la activación o el envío.</td></tr>
+        <tr><td>Enviada</td><td>El proveedor o transportista generó la información de entrega.</td></tr>
+        <tr><td>Activada o entregada</td><td>El servicio o equipo ya está bajo la administración directa del proveedor.</td></tr>
+      </tbody>
+    </table>
+    <p>Si hiciste la solicitud con nosotros y todavía está en proceso, llámanos para consultar si aún podemos ayudarte.</p>
+  </div>
+
+  <div class="card">
+    <h2>Cancelar una solicitud en proceso</h2>
+    <p>Si todavía estás haciendo la compra con nuestro equipo y la solicitud no ha sido finalizada, enviada, activada o transferida al proveedor, llámanos de inmediato al <a href="tel:+18884702820">+1 (888) 470-2820</a>.</p>
+    <p>Verificaremos el estado de la solicitud y, si todavía tenemos acceso, te ayudaremos a detenerla sin ningún costo. No podemos garantizar la cancelación si el proveedor ya procesó la orden.</p>
+  </div>
+
+  <div class="card">
+    <h2>Cancelaciones después de completar la compra</h2>
+    <p>Si ya recibiste el equipo, la línea fue activada, la orden fue enviada o el servicio ya lo administra el proveedor, debes comunicarte directamente con esa compañía.</p>
+    <p>Connecting no tiene acceso para cancelar:</p>
+    <ul>
+      <li>Líneas o servicios activos.</li>
+      <li>Cuentas administradas por el proveedor.</li>
+      <li>Planes ya contratados.</li>
+      <li>Órdenes que ya fueron enviadas.</li>
+      <li>Cargos aplicados directamente por el proveedor.</li>
+    </ul>
+    <p>Ten en cuenta que, aunque el servicio no tenga contrato de permanencia, al cancelar el proveedor puede cobrarte el saldo pendiente de un equipo financiado o el valor de un descuento sujeto a permanencia. Consulta nuestra <a href="cancelacion.html">Política de cancelación y reembolso</a> para más detalle.</p>
+    <p>Los datos de contacto del proveedor suelen aparecer en la confirmación de la orden, el correo de bienvenida, la factura, el empaque del equipo o la documentación del servicio. Si no los encuentras, llámanos y te ayudamos a identificarlo.</p>
+  </div>
+
+  <div class="card">
+    <h2>Seguimiento y entrega de equipos</h2>
+    <p>Los equipos los prepara y envía la compañía proveedora o el distribuidor logístico que esta designe. Connecting no controla el inventario, el transportista ni la fecha de entrega.</p>
+    <p>Cuando el proveedor genere un número de seguimiento, normalmente lo enviará al correo electrónico o teléfono registrado en la solicitud.</p>
+    <p>Si tienes un retraso, una entrega marcada como completada que no recibiste o un problema con la dirección, comunícate directamente con el proveedor o el transportista indicado en la confirmación.</p>
+  </div>
+
+  <div class="card">
+    <h2>Devoluciones y cambios</h2>
+    <p>Connecting no recibe equipos ni autoriza devoluciones o cambios.</p>
+    <p>Si quieres devolver un equipo o cambiar el modelo, color u otra característica después de que la orden fue procesada, debes solicitarlo directamente a la compañía que envió o facturó el producto.</p>
+    <p>Cada proveedor establece sus propios:</p>
+    <ul>
+      <li>Plazos para devoluciones.</li>
+      <li>Requisitos sobre el estado del equipo.</li>
+      <li>Costos de envío de retorno.</li>
+      <li>Cargos aplicables.</li>
+      <li>Procedimientos de cambio o reemplazo.</li>
+      <li>Tiempos de revisión y reembolso.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Reembolsos</h2>
+    <p>Los reembolsos los evalúa y procesa exclusivamente la compañía que recibió el pago, facturó el equipo o administra el servicio.</p>
+    <p>Connecting no cobra por su asesoría y no recibe los pagos del servicio. Por eso no puede aprobar, emitir, acelerar ni garantizar reembolsos de cargos hechos por un proveedor.</p>
+    <p>Para pedir información sobre un reembolso, comunícate con el proveedor y ten a mano tu número de orden, número de cuenta o comprobante de pago.</p>
+  </div>
+
+  <div class="card">
+    <h2>Facturación y cargos</h2>
+    <p>Las facturas, pagos recurrentes, impuestos, cargos de activación y demás cobros del servicio los administra directamente la compañía proveedora.</p>
+    <p>Si no reconoces un cargo, necesitas una copia de tu factura o quieres cambiar tu método de pago, comunícate con el área de facturación del proveedor.</p>
+    <p>Connecting puede explicarte la información disponible durante la compra, pero no puede modificar facturas ni administrar pagos de una cuenta activa.</p>
+  </div>
+
+  <div class="card">
+    <h2>Activación y soporte técnico</h2>
+    <p>La activación del equipo, configuración de la línea, transferencia de número, cobertura y solución de problemas técnicos corresponden a la compañía proveedora.</p>
+    <p>Si el equipo no enciende, no reconoce la línea, no tiene señal o presenta problemas después de la entrega, comunícate directamente con el soporte técnico del proveedor.</p>
+    <p>Connecting puede orientarte para identificar el canal correcto de atención, pero no sustituye al soporte técnico del proveedor.</p>
+  </div>
+
+  <div class="card">
+    <h2>Equipo dañado, defectuoso o equivocado</h2>
+    <p>Si recibiste un equipo dañado, defectuoso o diferente al que pediste, repórtalo cuanto antes a la compañía que hizo el envío.</p>
+    <p>Conserva:</p>
+    <ul>
+      <li>El equipo y todos sus accesorios.</li>
+      <li>La caja y el material de empaque.</li>
+      <li>La confirmación o el número de orden.</li>
+      <li>Fotografías del paquete y del daño, si corresponde.</li>
+    </ul>
+    <p>El proveedor determinará si procede una devolución, reemplazo, reparación, garantía o reembolso.</p>
+  </div>
+
+  <div class="card">
+    <h2>¿Aún necesitas ayuda?</h2>
+    <p>Llámanos al <a href="tel:+18884702820">+1 (888) 470-2820</a>, de lunes a domingo, de 8:00 a.m. a 9:00 p.m. (hora de Texas, CT).</p>
+  </div>
+</div>
+
+<footer>
+  <img src="/images/Connecting_logo.webp" alt="Connecting">
+  © 2026 Connecting. Todos los derechos reservados.<br>
+  <a href="terminos.html">Términos y condiciones</a> &nbsp;·&nbsp;
+  <a href="privacidad.html">Política de privacidad</a> &nbsp;·&nbsp;
+  <a href="cancelacion.html">Cancelación y reembolso</a> &nbsp;·&nbsp;
+  <a href="ayuda.html">Centro de ayuda</a>
+</footer>
+
+</body>
+</html>

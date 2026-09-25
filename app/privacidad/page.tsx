@@ -67,7 +67,7 @@ export default function PrivacidadPage() {
 
       <footer style={{ background: '#0F172A', borderTop: '1px solid #1E293B', padding: '28px max(6%, calc((100% - 1280px) / 2))', textAlign: 'center', fontSize: '.82rem', color: '#475569' }}>
         <Image src="/images/Connecting_logo.webp" alt="Connecting" width={80} height={32} style={{ display: 'block', margin: '0 auto .8rem', filter: 'brightness(10)' }} />
-        © 2026 Connecting Todos los derechos reservados. &nbsp;·&nbsp;
+        © 2026 Connecting. Todos los derechos reservados. &nbsp;·&nbsp;
         <Link href="/terminos" style={{ color: '#60A5FA', textDecoration: 'none' }}>Términos y Condiciones</Link>
       </footer>
     </>

@@ -21,7 +21,7 @@ DIST="${DIST:-$(salida DistributionId)}"
 
 echo "==> Ensamblando dist/"
 rm -rf dist && mkdir -p dist
-cp index.html privacidad.html terminos.html 404.html robots.txt sitemap.xml dist/
+cp index.html privacidad.html terminos.html cancelacion.html ayuda.html 404.html robots.txt sitemap.xml dist/
 # public/ se vuelca en la raiz: asi /images/... y /fanpage/... resuelven igual
 # aqui que en Next (que sirve public/ desde la raiz).
 cp -r public/. dist/
@@ -43,8 +43,8 @@ aws s3 sync dist/ "s3://$BUCKET/" --region "$REGION" --delete \
 
 # URLs limpias sin funcion de CloudFront: el mismo HTML tambien como objeto sin
 # extension. Va DESPUES del sync, que con --delete se las llevaria por delante.
-echo "==> Publicando URLs limpias (/privacidad, /terminos)"
-for p in privacidad terminos; do
+echo "==> Publicando URLs limpias (/privacidad, /terminos, /cancelacion, /ayuda)"
+for p in privacidad terminos cancelacion ayuda; do
   aws s3 cp "dist/$p.html" "s3://$BUCKET/$p" --region "$REGION" \
     --content-type "text/html; charset=utf-8" \
     --cache-control "public, max-age=0, must-revalidate" --only-show-errors

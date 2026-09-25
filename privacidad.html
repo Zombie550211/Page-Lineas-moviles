@@ -10,7 +10,7 @@
      Al retirar Botpress ya no hay terceros mas alla de Google. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google.com https://www.google.com.mx https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://td.doubleclick.net https://stats.g.doubleclick.net; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://td.doubleclick.net https://stats.g.doubleclick.net https://www.google.com; frame-src https://td.doubleclick.net https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Política de Privacidad | Connecting</title>
-<meta name="description" content="Política de privacidad de lineas-moviles.com. Conoce cómo protegemos tus datos personales.">
+<meta name="description" content="Política de privacidad de lineas-moviles.com: qué datos recopilamos, cómo los usamos y cómo ejercer sus derechos.">
 <link rel="canonical" href="https://lineas-moviles.com/privacidad">
 <!-- Google tag (gtag.js) -->
 <link rel="preconnect" href="https://www.googletagmanager.com">
@@ -18,6 +18,11 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* Consent Mode v2: igual que la home. Sin consentimiento guardado, o con GPC, todo denegado. */
+  var _sc = null;
+  try { _sc = localStorage.getItem('cookie_consent'); } catch (e) {}
+  var _cs = (_sc === 'granted' && navigator.globalPrivacyControl !== true) ? 'granted' : 'denied';
+  gtag('consent', 'default', { ad_storage: _cs, analytics_storage: _cs, ad_user_data: _cs, ad_personalization: _cs });
   gtag('js', new Date());
   gtag('config', 'AW-18023363833');
 </script>
@@ -62,6 +67,9 @@
     padding: 2rem 2.2rem; margin-bottom: 1.5rem;
     box-shadow: 0 1px 3px rgba(0,0,0,.06);
   }
+  .card.highlight {
+    background: #EFF6FF; border-color: #BFDBFE;
+  }
   h2 {
     font-family: 'Rajdhani', sans-serif; font-size: 1.35rem; font-weight: 700;
     color: #1D4ED8; margin-bottom: .8rem;
@@ -69,7 +77,8 @@
   p { font-size: .95rem; color: #475569; line-height: 1.8; margin-bottom: .8rem; }
   p:last-child { margin-bottom: 0; }
   ul { padding-left: 1.4rem; margin: .5rem 0 .8rem; }
-  li { font-size: .95rem; color: #475569; line-height: 1.8; }
+  li { font-size: .95rem; color: #475569; line-height: 1.8; margin-bottom: .3rem; }
+  strong { color: #1E293B; }
 
   footer {
     background: #0F172A; border-top: 1px solid #1E293B;
@@ -77,7 +86,14 @@
     font-size: .82rem; color: #475569;
   }
   footer a { color: #60A5FA; text-decoration: none; }
-  footer img { height: 32px; width: auto; margin-bottom: .8rem; display: block; margin: 0 auto .8rem; }
+  .container a { color: #1D4ED8; font-weight: 700; }
+  table { width: 100%; border-collapse: collapse; margin: .5rem 0 1rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .7rem .8rem; border-bottom: 1px solid #E2E8F0; color: #475569; line-height: 1.6; vertical-align: top; }
+  th { color: #1E293B; font-weight: 700; background: #F1F5F9; }
+  td:first-child { font-weight: 700; color: #1E293B; white-space: nowrap; }
+  ol { padding-left: 1.4rem; margin: .5rem 0 .8rem; }
+  @media (max-width: 600px) { .container { padding: 40px 16px 60px; } .card { padding: 1.4rem 1.2rem; } td:first-child { white-space: normal; } }
+  footer img { height: 32px; width: auto; display: block; margin: 0 auto .8rem; }
 </style>
 </head>
 <body>
@@ -89,35 +105,67 @@
 
 <div class="container">
   <div class="page-label">Legal</div>
-  <h1>Política de Privacidad</h1>
-  <p class="updated">Última actualización: 2026</p>
+  <h1>Política de privacidad</h1>
+  <p class="updated">Última actualización: septiembre de 2026</p>
 
-  <div class="card">
-    <p>En <strong>lineas-moviles.com</strong>, nos preocupamos por su privacidad y nos dedicamos a cuidar sus datos personales. Este documento explica de qué manera obtenemos, manejamos y resguardamos su información cuando navega en nuestro sitio web o nos llama para contratar una línea móvil en Estados Unidos. Connecting es un agente independiente; el servicio móvil lo presta el proveedor que usted elija.</p>
+  <div class="card highlight">
+    <p><strong>Entidad responsable:</strong> Connecting<br>
+    <strong>Sitio web:</strong> lineas-moviles.com<br>
+    <strong>Normativa aplicable:</strong> TCPA (llamadas y SMS), CCPA/CPRA (California) y leyes federales de EE. UU.</p>
   </div>
 
   <div class="card">
-    <h2>1. Información que Recopilamos</h2>
-    <p>Para brindarle nuestros servicios de telecomunicaciones, es posible que recopilemos la siguiente información:</p>
+    <h2>1. Declaración de privacidad</h2>
+    <p>En Connecting, operadora de lineas-moviles.com, respetamos su privacidad y nos comprometemos a proteger sus datos personales. Esta Política de Privacidad describe cómo recopilamos, usamos, compartimos y salvaguardamos su información cuando visita nuestro sitio web o solicita nuestros servicios de asesoría.</p>
+    <p>Connecting es un agente independiente de servicios móviles; el servicio de telefonía lo presta el proveedor que usted elija.</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Información que recopilamos</h2>
+    <p>Para poder procesar sus solicitudes de verificación de cobertura y contratación, recopilamos la siguiente información personal facilitada voluntariamente por usted:</p>
     <ul>
-      <li><strong>Datos de contacto:</strong> su nombre, número de teléfono, correo electrónico e identificación necesaria para activar su línea móvil.</li>
+      <li><strong>Información de contacto:</strong> nombre, apellidos, número de teléfono y correo electrónico.</li>
+      <li><strong>Información de ubicación:</strong> dirección física exacta (calle, ciudad, estado y código postal) para determinar la disponibilidad de cobertura de red.</li>
+      <li><strong>Información de identificación (requerida por el proveedor):</strong> tipo y número de documento (pasaporte o ID estatal) y fecha de nacimiento para el alta del servicio.</li>
     </ul>
   </div>
 
   <div class="card">
-    <h2>2. Uso de la Información</h2>
-    <p>Usamos los datos que recopilamos para tramitar sus pedidos de servicio y habilitar sus líneas móviles.</p>
+    <h2>3. Uso de la información y quién la procesa</h2>
+    <p>La información recopilada por Connecting se utiliza estrictamente para:</p>
+    <ul>
+      <li>Verificar los proveedores de telefonía móvil disponibles en su dirección exacta.</li>
+      <li>Transmitir la solicitud de contratación al proveedor de telecomunicaciones seleccionado, quien procesará el alta técnica de la cuenta.</li>
+      <li>Coordinar el proceso de contratación y brindar seguimiento en idioma español.</li>
+    </ul>
+    <p>No comercializamos ni arrendamos sus datos personales. Solo los compartimos con el proveedor que usted elija, en la medida necesaria para tramitar su servicio.</p>
   </div>
 
   <div class="card">
-    <h2>3. Compartición de Datos con Terceros</h2>
-    <p>No comercializamos ni arrendamos sus datos personales a otras empresas. Solo los compartimos con el proveedor de servicio que usted elija, en la medida necesaria para tramitar su línea.</p>
+    <h2>4. Protección especial sobre SMS y llamadas (TCPA y A2P 10DLC)</h2>
+    <ul>
+      <li><strong>No compartición de SMS:</strong> la información de consentimiento y los números de teléfono recopilados para mensajes de texto (SMS) o llamadas de servicio nunca serán compartidos, vendidos, alquilados ni transferidos a terceros o afiliados con fines publicitarios o de marketing.</li>
+      <li><strong>Uso exclusivo:</strong> sus datos telefónicos se utilizan únicamente para enviarle confirmaciones de orden, actualizaciones relacionadas con su solicitud y responder a sus consultas directas.</li>
+      <li><strong>Consentimiento:</strong> al proporcionar su número de teléfono durante una llamada, usted autoriza a Connecting a contactarle por llamada o SMS en relación con su solicitud. Este consentimiento no es condición para contratar ningún servicio.</li>
+      <li><strong>Cómo dejar de recibir mensajes:</strong> responda <strong>STOP</strong> a cualquier SMS para darse de baja o <strong>HELP</strong> para obtener ayuda. La frecuencia de los mensajes varía y pueden aplicar tarifas de mensajes y datos. También puede pedir ser incluido en nuestra lista interna de "No llamar" al <a href="tel:+18884702820">+1 (888) 470-2820</a>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>5. Grabación de llamadas</h2>
+    <p>Con la finalidad de garantizar la calidad en la atención, capacitar a nuestro personal y respaldar las solicitudes de contratación ante los proveedores, las llamadas telefónicas realizadas o recibidas por nuestros asesores pueden ser grabadas de conformidad con las leyes estatales aplicables. Se le informará al inicio de la llamada cuando esta vaya a ser grabada.</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Cookies y tecnologías de seguimiento</h2>
+    <p>Nuestro sitio web lineas-moviles.com utiliza cookies y herramientas analíticas básicas para mejorar la experiencia de navegación del usuario y medir el rendimiento publicitario (Google Ads). No vendemos datos de navegación a corredores de datos (data brokers).</p>
+    <p>Las cookies analíticas y publicitarias están desactivadas por defecto y solo se activan si usted las acepta en el aviso de cookies. Puede retirar su consentimiento en cualquier momento con el botón de la sección 7, ajustar su navegador para rechazar cookies u optar por no recibir publicidad personalizada en <a href="https://www.google.com/settings/ads" rel="noopener">Configuración de anuncios de Google</a>.</p>
   </div>
 
   <div class="card" id="no-vender">
-    <h2>No vender ni compartir mis datos (CCPA/CPRA)</h2>
+    <h2>7. No vender ni compartir mis datos (CCPA/CPRA)</h2>
     <p>No vendemos su información personal. Las cookies publicitarias de Google Ads pueden considerarse "compartir" datos para publicidad personalizada según la ley de California; solo se activan si usted las acepta.</p>
-    <p>Para ejercer su derecho a no vender ni compartir sus datos, o para solicitar acceso o eliminación de su información, llame al <a href="tel:+18884702820" style="color:#1D4ED8;">+1 (888) 470-2820</a> (Lun–Dom 8 AM–9 PM, hora de Texas, CT). Atendemos las solicitudes en un plazo máximo de 45 días. También respetamos la señal Global Privacy Control (GPC) de su navegador.</p>
+    <p>Para ejercer su derecho a no vender ni compartir sus datos, o para solicitar acceso o eliminación de su información, llame al <a href="tel:+18884702820">+1 (888) 470-2820</a> (de lunes a domingo, de 8:00 a.m. a 9:00 p.m. (hora de Texas, CT)). Atendemos las solicitudes en un plazo máximo de 45 días. También respetamos la señal Global Privacy Control (GPC) de su navegador.</p>
     <p><button type="button" id="optout-btn" style="background:#0F172A;color:#fff;border:none;padding:.6rem 1.2rem;border-radius:4px;font:inherit;font-weight:700;cursor:pointer;">No vender ni compartir mis datos</button> <span id="optout-msg" role="status" style="margin-left:.5rem;"></span></p>
     <script>
     document.getElementById('optout-btn').addEventListener('click', function(){
@@ -129,38 +177,23 @@
   </div>
 
   <div class="card">
-    <h2>4. Seguridad de la Información</h2>
-    <p>Hemos puesto en marcha medidas de seguridad tanto técnicas como administrativas para resguardar su información de accesos indebidos, extravíos o modificaciones.</p>
+    <h2>8. Seguridad de la información</h2>
+    <p>Aplicamos medidas de seguridad técnicas y administrativas para proteger su información frente a accesos no autorizados, pérdida o alteración. Conservamos los datos solo durante el tiempo necesario para gestionar su solicitud y cumplir nuestras obligaciones legales.</p>
   </div>
 
   <div class="card">
-    <h2>5. Derechos del Usuario</h2>
-    <p><strong>Privacidad de la Información de Red del Cliente (CPNI):</strong> Protegemos su CPNI (datos sobre sus facturas, destinos de llamadas, etc.) de acuerdo con las leyes federales de EE. UU.</p>
-    <p><strong>Exclusión (Opt-Out):</strong> Usted puede solicitar dejar de recibir llamadas promocionales o correos electrónicos de marketing en cualquier momento.</p>
-  </div>
-
-  <div class="card">
-    <h2>6. Uso de Cookies y Publicidad</h2>
-    <p>Nuestro sitio utiliza cookies propias y de terceros con los siguientes fines:</p>
-    <ul>
-      <li><strong>Cookies funcionales:</strong> para recordar sus preferencias de navegación.</li>
-      <li><strong>Cookies analíticas:</strong> para entender cómo los usuarios interactúan con el sitio.</li>
-      <li><strong>Cookies publicitarias (Google Ads):</strong> utilizamos Google Ads para mostrar anuncios relevantes. Google puede usar cookies para mostrar anuncios basados en sus visitas anteriores a este sitio y a otros sitios en Internet.</li>
-    </ul>
-    <p>Puede optar por no recibir publicidad personalizada de Google visitando <a href="https://www.google.com/settings/ads" style="color:#1D4ED8;">Configuración de anuncios de Google</a> o el sitio <a href="https://www.aboutads.info" style="color:#1D4ED8;">www.aboutads.info</a>.</p>
-    <p>Las cookies analíticas y publicitarias están desactivadas por defecto y solo se activan si usted las acepta en el aviso de cookies de la página principal. Puede retirar su consentimiento en cualquier momento con el botón de la sección "No vender ni compartir mis datos" de esta política, o ajustar su navegador para rechazar cookies.</p>
-  </div>
-
-  <div class="card">
-    <h2>7. Consentimiento TCPA</h2>
-    <p>Al proporcionar su número de teléfono durante una llamada, usted autoriza expresamente a <strong>Connecting</strong> a contactarle mediante llamadas telefónicas y/o mensajes de texto (SMS) automatizados o preregistrados, relativos a nuestros servicios de telecomunicaciones. Este consentimiento no es condición para la compra de ningún servicio. Puede revocar su consentimiento en cualquier momento solicitando ser incluido en nuestra lista interna de "No Llamar" al <a href="tel:+18884702820" style="color:#1D4ED8;">+1 (888) 470-2820</a>. Aplican tarifas de mensajes y datos.</p>
+    <h2>9. Contacto</h2>
+    <p>Si tiene preguntas sobre esta Política de Privacidad, llámenos al <a href="tel:+18884702820">+1 (888) 470-2820</a>, de lunes a domingo, de 8:00 a.m. a 9:00 p.m. (hora de Texas, CT).</p>
   </div>
 </div>
 
 <footer>
   <img src="/images/Connecting_logo.webp" alt="Connecting">
-  © 2026 Connecting Todos los derechos reservados. &nbsp;·&nbsp;
-  <a href="terminos.html">Términos y Condiciones</a>
+  © 2026 Connecting. Todos los derechos reservados.<br>
+  <a href="terminos.html">Términos y condiciones</a> &nbsp;·&nbsp;
+  <a href="privacidad.html">Política de privacidad</a> &nbsp;·&nbsp;
+  <a href="cancelacion.html">Cancelación y reembolso</a> &nbsp;·&nbsp;
+  <a href="ayuda.html">Centro de ayuda</a>
 </footer>
 
 </body>

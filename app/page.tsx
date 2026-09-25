@@ -701,7 +701,7 @@ export default function Home() {
           <span>Llamar Gratis — Atención en Español</span>
         </a>
         <div className="footer-bottom">
-          <span>© 2026 Connecting Todos los derechos reservados.</span>
+          <span>© 2026 Connecting. Todos los derechos reservados.</span>
         </div>
       </footer>
 
