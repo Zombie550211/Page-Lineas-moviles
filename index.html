@@ -78,33 +78,23 @@
   .reveal-delay-3 { transition-delay: .3s; }
 
   /* ── FOOTER CALL BUTTON ── */
-  /* CTA de llamada flotante, centrado sobre el borde inferior. */
+  /* CTA de llamada: barra fija a todo el ancho sobre el borde inferior. */
   .footer-call {
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
-    z-index: 998;
-    height: 56px; padding: 0 30px;
-    background: linear-gradient(90deg, #2563EB 0%, #0A0A0A 100%);
-    color: #fff; white-space: nowrap;
-    font-size: .88rem; font-weight: 900; letter-spacing: 1px;
-    text-transform: uppercase; text-decoration: none;
-    border-radius: 28px;
-    border: none; cursor: pointer;
-    box-shadow: 0 6px 24px rgba(37,99,235,.32);
-    animation: pulse-call 1.8s infinite;
-    transition: box-shadow .18s, background .18s;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 998;
+    height: 58px; padding: 0 20px;
+    background: #F5A524; color: #111;
+    font-size: 1rem; font-weight: 700; letter-spacing: 0; text-transform: none;
+    text-decoration: none; white-space: nowrap;
+    border: none; border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.35);
+    transition: background .18s;
   }
-  .footer-call:hover {
-    background: linear-gradient(90deg, #0A0A0A 0%, #2563EB 100%);
-    box-shadow: 0 8px 32px rgba(37,99,235,.5);
-  }
-  @media (prefers-reduced-motion: reduce) { .footer-call { animation: none; } }
+  .footer-call:hover { background: #FFB733; }
+  .footer-call svg { width: 20px; height: 20px; flex-shrink: 0; }
   .plan-tax { font-size: .7rem; color: var(--muted); letter-spacing: .3px; margin-top: -.4rem; }
   .plan-card.featured .plan-tax { color: rgba(255,255,255,.5); }
   .plan-cond-link { margin-top: .5rem; text-decoration: underline; }
-  .footer-brand-link { display: inline-block; font-size: .78rem; color: rgba(255,255,255,.5); text-decoration: none; margin-top: .9rem; border-bottom: 1px solid rgba(255,255,255,.2); transition: color .2s, border-color .2s; }
-  .footer-brand-link:hover { color: #7DD3FC; border-color: rgba(125,211,252,.5); }
-  .footer-brand-loc { margin-top: 1.2rem; font-size: .74rem !important; color: rgba(255,255,255,.2) !important; letter-spacing: .3px; }
   .about-section {
     padding: 100px max(4%, calc((100% - 860px) / 2));
     background: var(--cream-dark);
@@ -129,10 +119,7 @@
   .about-steps strong { color: var(--black); font-weight: 600; }
   .carousel-legal { max-width: 860px; margin: 2rem auto 0; padding: 0 5%; font-size: .72rem; line-height: 1.6; color: var(--muted); text-align: center; }
   @media (max-width: 768px) {
-    .footer-call {
-      height: 50px; padding: 0 22px;
-      font-size: .78rem; max-width: calc(100vw - 32px);
-    }
+    .footer-call { height: 54px; font-size: .92rem; gap: 10px; }
     .about-section { padding: 60px 5%; }
     .about-meta { flex-direction: column; gap: .5rem; }
     .nav-cta-llamativo {
@@ -568,7 +555,7 @@
     padding: 0;
     font-size: .92rem; color: var(--muted); line-height: 1.85;
   }
-  .faq-item.open .faq-answer { max-height: 260px; padding: 0 0 1.4rem; }
+  .faq-item.open .faq-answer { max-height: 520px; padding: 0 0 1.4rem; }
 
   /* ── LEAD MAGNET ── */
   .lead-section {
@@ -605,28 +592,38 @@
   .footer {
     background: var(--black);
     border-top: 1px solid rgba(255,255,255,.06);
-    padding: 64px max(4%, calc((100% - 1360px) / 2)) 32px;
+    padding: 64px max(4%, calc((100% - 1360px) / 2)) 104px;
+  }
+  .footer-logo {
+    display: inline-block; margin-bottom: 1.75rem; text-decoration: none;
+    font-family: 'Inter', system-ui, sans-serif; font-weight: 700; color: #fff;
+    font-size: 2.6rem; line-height: .82; letter-spacing: -.055em; text-transform: lowercase;
+  }
+  .footer-logo span { display: block; }
+  .footer-disclaimer {
+    font-size: .8rem; line-height: 1.7; color: rgba(255,255,255,.55);
+    max-width: 760px; margin-bottom: 3rem;
   }
   .footer-grid {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 4rem; margin-bottom: 4rem;
-    padding-bottom: 4rem; border-bottom: 1px solid rgba(255,255,255,.06);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 3rem; margin-bottom: 3rem;
+    padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.06);
   }
-  .footer-brand img { height: 30px; margin-bottom: 1.2rem; display: block; filter: brightness(10); }
-  .footer-brand p { font-size: .82rem; color: rgba(255,255,255,.3); line-height: 1.8; max-width: 240px; }
-  .footer-brand h4,
   .footer-col h4 {
-    font-size: .65rem; font-weight: 600; color: rgba(255,255,255,.25);
-    letter-spacing: 3.5px; text-transform: uppercase; margin-bottom: 1.2rem;
+    font-size: .85rem; font-weight: 700; color: #fff;
+    letter-spacing: .5px; text-transform: uppercase; margin-bottom: 1.4rem;
   }
   .footer-col a {
-    display: block; font-size: .82rem; color: rgba(255,255,255,.45);
-    text-decoration: none; margin-bottom: .7rem; transition: color .2s;
+    display: block; font-size: .88rem; color: rgba(255,255,255,.6);
+    text-decoration: none; margin-bottom: 1rem; transition: color .2s;
   }
   .footer-col a:hover { color: #fff; }
+  .footer-contact dt { font-size: .85rem; font-weight: 700; color: #fff; margin-bottom: .4rem; }
+  .footer-contact dd { font-size: .85rem; line-height: 1.6; color: rgba(255,255,255,.6); margin-bottom: 1.2rem; }
+  .footer-contact dd a { display: inline; margin: 0; color: #fff; font-weight: 700; font-size: .88rem; }
   .footer-bottom {
-    display: flex; align-items: center; justify-content: space-between;
-    font-size: .74rem; color: rgba(255,255,255,.2);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    font-size: .74rem; color: rgba(255,255,255,.4);
     flex-wrap: wrap; gap: 1rem;
   }
   .footer-bottom a { color: rgba(255,255,255,.3); text-decoration: none; transition: color .2s; }
@@ -986,8 +983,8 @@
   </div>
   <div class="split-content reveal reveal-delay-1" style="background:var(--cream-dark);">
     <span class="split-tag">Cobertura y Señal</span>
-    <h2>Cobertura en<br><em>todo el país.</em></h2>
-    <p>Trabajamos con varios proveedores sobre las principales redes 5G de Estados Unidos. Verificamos contigo la cobertura real en tu zona antes de que contrates.</p>
+    <h2>Cobertura<br><em>donde vives.</em></h2>
+    <p>Trabajamos con varios proveedores que operan sobre las principales redes 5G de Estados Unidos. La cobertura y la velocidad varían según la zona, por eso verificamos contigo la señal disponible en tu dirección antes de que contrates.</p>
     <div>
       <a href="tel:+18884702820" class="btn-dark">Verificar mi Zona</a>
     </div>
@@ -1018,7 +1015,7 @@
   </div>
   <div class="about-body reveal reveal-delay-1">
     <p class="about-disclaimer">
-      Connecting S.A. de C.V. es un agente independiente de servicios móviles. Ayudamos a
+      Connecting es un agente independiente de servicios móviles. Ayudamos a
       consumidores en Estados Unidos a conocer opciones de telefonía móvil y conectarse con
       proveedores participantes. No somos una compañía de red móvil ni afirmamos ser
       representantes de ningún operador salvo cuando se indique expresamente.
@@ -1045,7 +1042,7 @@
       cada proveedor y están sujetos a cambios sin previo aviso.
     </p>
     <div class="about-meta">
-      <span><strong>Razón social:</strong> Connecting S.A. de C.V.</span>
+      <span><strong>Empresa:</strong> Connecting</span>
       <span><strong>Operaciones:</strong> Texas, Estados Unidos</span>
       <span><strong>Contacto:</strong> +1 (888) 470-2820</span>
     </div>
@@ -1063,63 +1060,84 @@
         ¿Tengo que firmar un contrato?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer">El plan de servicio es mes a mes y puedes cancelarlo cuando quieras. La excepción es el equipo: si lo compras financiado o con descuento, el proveedor puede cobrarte el saldo pendiente al cancelar o pedirte mantener la línea un tiempo para conservar el descuento. Te lo explicamos antes de que contrates.</div>
+      <div class="faq-answer">El plan de servicio es mes a mes y puedes cancelarlo cuando quieras directamente con tu proveedor. La excepción es el equipo: si lo compras financiado o con descuento, el proveedor puede cobrarte el saldo pendiente al cancelar o pedirte mantener la línea un tiempo para conservar el descuento. Te lo explicamos antes de que contrates.</div>
     </div>
     <div class="faq-item reveal">
       <button class="faq-question" aria-expanded="false">
         ¿Qué necesito para contratar si soy extranjero?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer">Una identificación oficial vigente. Muchos proveedores aceptan pasaporte extranjero, pero los documentos exactos dependen del proveedor y del plan; te confirmamos cuáles necesitas antes de iniciar el trámite.</div>
+      <div class="faq-answer">Una identificación oficial vigente. Muchos proveedores aceptan pasaporte extranjero, pero los documentos exactos dependen del proveedor y del plan. Te confirmamos cuáles necesitas antes de iniciar el trámite.</div>
     </div>
     <div class="faq-item reveal">
       <button class="faq-question" aria-expanded="false">
         ¿Mi factura va a subir después de unos meses?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer">El precio base del plan no sube por promociones que vencen. Aparte del plan se facturan los impuestos y cargos regulatorios, que varían según tu estado y el proveedor. Te desglosamos el total estimado antes de que contrates.</div>
+      <div class="faq-answer">Antes de contratar te confirmamos el precio total estimado: el precio del plan más los impuestos y cargos regulatorios, que varían según tu estado y el proveedor. Si el plan incluye un descuento promocional, te decimos cuánto dura y cuál será el precio al terminar. Ten en cuenta que el proveedor puede ajustar sus tarifas; si lo hace, te lo notifica directamente.</div>
     </div>
     <div class="faq-item reveal">
       <button class="faq-question" aria-expanded="false">
         ¿Qué quiere decir que los datos móviles sean "ilimitados"?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer">Que no pagas cargos extra por consumo. Ten en cuenta que los proveedores aplican priorización de red a partir de cierto consumo mensual, lo que puede reducir la velocidad en horas de congestión. El umbral en GB depende del proveedor y del plan; te lo confirmamos antes de que contrates.</div>
+      <div class="faq-answer">Que no pagas cargos extra por consumo. Los proveedores aplican priorización de red a partir de cierto consumo mensual, lo que puede reducir la velocidad en horas de congestión. Algunos planes también limitan la calidad del video. El umbral en GB y las condiciones dependen del proveedor y del plan; te los confirmamos antes de que contrates.</div>
     </div>
     <div class="faq-item reveal">
       <button class="faq-question" aria-expanded="false">
         ¿En qué condiciones viene el equipo?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer">Depende del proveedor y del plan. Según el caso el equipo puede entrar financiado a plazos, con un pago inicial o sujeto a permanencia mínima para conservar el descuento. No entregamos equipos por nuestra cuenta: las condiciones, la garantía y el financiamiento los fija el proveedor, y te las explicamos en detalle antes de que firmes.</div>
+      <div class="faq-answer">Depende del proveedor y del plan. El equipo puede venir financiado a plazos, con un pago inicial o sujeto a permanencia mínima para conservar el descuento. Nosotros no vendemos ni entregamos equipos: las condiciones, la garantía y el financiamiento los fija el proveedor, y te las explicamos en detalle antes de que contrates.</div>
     </div>
     <div class="faq-item reveal">
       <button class="faq-question" aria-expanded="false">
         ¿Con qué proveedores trabajan?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer">Somos un agente independiente y trabajamos con varios proveedores de servicios móviles en Estados Unidos. No pertenecemos a ninguno de ellos. Revisamos contigo cuál conviene más según tu zona, tu presupuesto y el uso que le des a la línea.</div>
+      <div class="faq-answer">Somos un agente independiente y trabajamos con varios proveedores de servicios móviles en Estados Unidos. No pertenecemos a ninguno de ellos ni los representamos. Revisamos contigo cuál conviene más según tu zona, tu presupuesto y el uso que le des a la línea.</div>
     </div>
     <div class="faq-item reveal">
       <button class="faq-question" aria-expanded="false">
-        ¿Me piden verificación de crédito para aplicar?
+        ¿Cobran algo por la asesoría?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer">Depende del plan. Los planes de servicio sin equipo normalmente no requieren verificación de crédito. Si financias un equipo, el proveedor sí puede revisar tu crédito, y la aprobación y las condiciones del financiamiento las decide él, no nosotros.</div>
+      <div class="faq-answer">No. Nuestra asesoría es gratuita. Recibimos una comisión del proveedor cuando contratas a través de nosotros, pero eso no cambia el precio de tu plan. Todos los pagos del servicio y del equipo se hacen directamente al proveedor.</div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-question" aria-expanded="false">
+        ¿Me piden verificación de crédito?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">Depende del plan. Los planes de servicio sin equipo normalmente no requieren verificación de crédito. Si financias un equipo, el proveedor puede revisar tu crédito, y la aprobación y las condiciones las decide él, no nosotros. Si no tienes historial de crédito en Estados Unidos, algunos proveedores pueden pedir un depósito reembolsable o un pago por adelantado.</div>
     </div>
     <div class="faq-item reveal">
       <button class="faq-question" aria-expanded="false">
         ¿Cuándo queda activa mi línea?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer">Con eSIM y un teléfono compatible, la activación suele completarse el mismo día. Si necesitas SIM física o un equipo nuevo, el envío tarda normalmente de 24 a 72 horas hábiles tras la aprobación y la línea se activa al recibirlo. El plazo final lo define el proveedor.</div>
+      <div class="faq-answer">Con eSIM y un teléfono compatible, la activación suele completarse el mismo día. Si necesitas SIM física o un equipo nuevo, el envío tarda normalmente de 24 a 72 horas hábiles tras la aprobación, y la línea se activa al recibirlo. El plazo final lo define el proveedor.</div>
     </div>
     <div class="faq-item reveal">
       <button class="faq-question" aria-expanded="false">
         ¿Puedo cambiar mi plan más adelante?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer">Sí. Como el plan es mes a mes, puedes subir o bajar de plan según lo que necesites. Como trabajamos con varios proveedores, también podemos revisar contigo si otro se ajusta mejor.</div>
+      <div class="faq-answer">Sí. Como el plan es mes a mes, puedes subir o bajar de plan directamente con tu proveedor cuando lo necesites. Si prefieres cambiarte a otro proveedor, llámanos y revisamos contigo las opciones para una nueva solicitud.</div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-question" aria-expanded="false">
+        ¿A quién llamo si tengo un problema después de contratar?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">Una vez activa tu línea, la facturación, el soporte técnico, los envíos, las devoluciones y los reembolsos los maneja directamente el proveedor. Encontrarás su contacto en la confirmación de tu orden, el correo de bienvenida o tu factura. Si no sabes a quién llamar, comunícate con nosotros y te ayudamos a identificarlo.</div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-question" aria-expanded="false">
+        ¿Puedo cancelar una solicitud que ya hice con ustedes?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">Sí, si todavía está en proceso con nuestro equipo. Llámanos al <a href="tel:+18884702820">+1 (888) 470-2820</a> lo antes posible y la detenemos sin costo. Si el proveedor ya la procesó, envió o activó, la cancelación debe hacerse directamente con él.</div>
     </div>
   </div>
 </section>
@@ -1135,45 +1153,49 @@
 
 <!-- FOOTER -->
 <footer class="footer" id="contacto">
+  <a href="#servicios" class="footer-logo" aria-label="lineas-moviles.com, volver al inicio"><span>lineas</span><span>moviles</span></a>
+  <p class="footer-disclaimer">
+    Connecting es un agente independiente de servicios móviles. No somos, ni actuamos como,
+    proveedores oficiales de las compañías. La disponibilidad, precios, promociones y condiciones finales están
+    sujetos a los términos establecidos por cada proveedor. Las marcas mencionadas pertenecen a sus respectivos propietarios.
+  </p>
   <div class="footer-grid">
-    <div class="footer-brand">
-      <h4>Quiénes Somos</h4>
-      <p>Agente independiente de servicios móviles. Comparamos planes de varios proveedores participantes en redes 5G de Estados Unidos.</p>
-      <a href="#quienes-somos" class="footer-brand-link">Conocer más →</a>
-      <p class="footer-brand-loc">Texas, EE.UU.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Servicios</h4>
-      <a href="#servicios">Planes Móviles</a>
-      <a href="#familiar">Planes Familiares</a>
+    <div class="footer-col" role="navigation" aria-label="Planes">
+      <h4>Planes</h4>
+      <a href="#servicios">Planes móviles</a>
+      <a href="#familiar">Planes familiares</a>
       <a href="#dispositivos">Dispositivos</a>
       <a href="#planes">Precios</a>
-    </div>
-    <div class="footer-col">
-      <h4>Empresa</h4>
-      <a href="#quienes-somos">Quiénes Somos</a>
       <a href="#cobertura">Cobertura</a>
-      <a href="#faq">Preguntas Frecuentes</a>
-      <a href="privacidad.html">Privacidad</a>
-      <a href="terminos.html">Términos</a>
+    </div>
+    <div class="footer-col" role="navigation" aria-label="Ayuda">
+      <h4>Ayuda</h4>
+      <a href="#faq">Preguntas frecuentes</a>
+      <a href="#quienes-somos">Quiénes somos</a>
+    </div>
+    <div class="footer-col" role="navigation" aria-label="Enlaces legales">
+      <h4>Enlaces legales</h4>
+      <a href="terminos.html">Términos y condiciones</a>
+      <a href="privacidad.html">Política de privacidad</a>
     </div>
     <div class="footer-col">
-      <h4>Contacto</h4>
-      <a href="tel:+18884702820">+1 (888) 470-2820</a>
-      <a>Lun–Dom 8 AM–9 PM (hora de Texas, CT)</a>
-      <a>Texas, Estados Unidos</a>
+      <h4>Datos de contacto</h4>
+      <dl class="footer-contact">
+        <dt>Empresa:</dt>
+        <dd>Connecting — Agente independiente de servicios móviles</dd>
+        <dt>Teléfono:</dt>
+        <dd><a href="tel:+18884702820">+1 (888) 470-2820</a></dd>
+        <dt>Horario de atención:</dt>
+        <dd>Lun a dom 8:00 a.m. – 9:00 p.m. (hora de Texas, CT)</dd>
+        <dt>Ubicación:</dt>
+        <dd>Texas, Estados Unidos</dd>
+      </dl>
     </div>
   </div>
-  <a href="tel:+18884702820" class="footer-call" aria-label="Llamar ahora al +1 (888) 470-2820">📞 &nbsp;¡Llama ahora!</a>
+  <a href="tel:+18884702820" class="footer-call" aria-label="Llamar gratis al +1 (888) 470-2820, atención en español"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Llamar Gratis — Atención en Español</span></a>
 
   <div class="footer-bottom">
-    <span>© 2026 Connecting S.A. de C.V. · Agente independiente de servicios móviles.</span>
-    <span>
-      <a href="privacidad.html">Privacidad</a> &nbsp;·&nbsp;
-      <a href="terminos.html">Términos</a> &nbsp;·&nbsp;
-      <a href="privacidad.html#no-vender">No vender ni compartir mis datos</a> &nbsp;·&nbsp;
-      <a href="#" id="cookie-prefs">Preferencias de cookies</a>
-    </span>
+    <span>© 2026 Connecting Todos los derechos reservados.</span>
   </div>
 </footer>
 
@@ -1292,9 +1314,6 @@
   }
   document.getElementById('cookie-accept').addEventListener('click', function(){ setConsent('granted'); });
   document.getElementById('cookie-reject').addEventListener('click', function(){ setConsent('denied'); });
-  document.getElementById('cookie-prefs').addEventListener('click', function(e){
-    e.preventDefault(); root.setAttribute('data-consent', 'pending');
-  });
 }());
 </script>
 

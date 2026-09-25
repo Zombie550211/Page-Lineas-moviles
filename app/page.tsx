@@ -76,39 +76,51 @@ const carouselItems = [
 const faqs = [
   {
     q: '¿Tengo que firmar un contrato?',
-    a: 'El plan de servicio es mes a mes y puedes cancelarlo cuando quieras. La excepción es el equipo: si lo compras financiado o con descuento, el proveedor puede cobrarte el saldo pendiente al cancelar o pedirte mantener la línea un tiempo para conservar el descuento. Te lo explicamos antes de que contrates.',
+    a: 'El plan de servicio es mes a mes y puedes cancelarlo cuando quieras directamente con tu proveedor. La excepción es el equipo: si lo compras financiado o con descuento, el proveedor puede cobrarte el saldo pendiente al cancelar o pedirte mantener la línea un tiempo para conservar el descuento. Te lo explicamos antes de que contrates.',
   },
   {
     q: '¿Qué necesito para contratar si soy extranjero?',
-    a: 'Una identificación oficial vigente. Muchos proveedores aceptan pasaporte extranjero, pero los documentos exactos dependen del proveedor y del plan; te confirmamos cuáles necesitas antes de iniciar el trámite.',
+    a: 'Una identificación oficial vigente. Muchos proveedores aceptan pasaporte extranjero, pero los documentos exactos dependen del proveedor y del plan. Te confirmamos cuáles necesitas antes de iniciar el trámite.',
   },
   {
     q: '¿Mi factura va a subir después de unos meses?',
-    a: 'El precio base del plan no sube por promociones que vencen. Aparte del plan se facturan los impuestos y cargos regulatorios, que varían según tu estado y el proveedor. Te desglosamos el total estimado antes de que contrates.',
+    a: 'Antes de contratar te confirmamos el precio total estimado: el precio del plan más los impuestos y cargos regulatorios, que varían según tu estado y el proveedor. Si el plan incluye un descuento promocional, te decimos cuánto dura y cuál será el precio al terminar. Ten en cuenta que el proveedor puede ajustar sus tarifas; si lo hace, te lo notifica directamente.',
   },
   {
     q: '¿Qué quiere decir que los datos móviles sean "ilimitados"?',
-    a: 'Que no pagas cargos extra por consumo. Ten en cuenta que los proveedores aplican priorización de red a partir de cierto consumo mensual, lo que puede reducir la velocidad en horas de congestión. El umbral en GB depende del proveedor y del plan; te lo confirmamos antes de que contrates.',
+    a: 'Que no pagas cargos extra por consumo. Los proveedores aplican priorización de red a partir de cierto consumo mensual, lo que puede reducir la velocidad en horas de congestión. Algunos planes también limitan la calidad del video. El umbral en GB y las condiciones dependen del proveedor y del plan; te los confirmamos antes de que contrates.',
   },
   {
     q: '¿En qué condiciones viene el equipo?',
-    a: 'Depende del proveedor y del plan. Según el caso el equipo puede entrar financiado a plazos, con un pago inicial o sujeto a permanencia mínima para conservar el descuento. No entregamos equipos por nuestra cuenta: las condiciones, la garantía y el financiamiento los fija el proveedor, y te las explicamos en detalle antes de que firmes.',
+    a: 'Depende del proveedor y del plan. El equipo puede venir financiado a plazos, con un pago inicial o sujeto a permanencia mínima para conservar el descuento. Nosotros no vendemos ni entregamos equipos: las condiciones, la garantía y el financiamiento los fija el proveedor, y te las explicamos en detalle antes de que contrates.',
   },
   {
     q: '¿Con qué proveedores trabajan?',
-    a: 'Somos un agente independiente y trabajamos con varios proveedores de servicios móviles en Estados Unidos. No pertenecemos a ninguno de ellos. Revisamos contigo cuál conviene más según tu zona, tu presupuesto y el uso que le des a la línea.',
+    a: 'Somos un agente independiente y trabajamos con varios proveedores de servicios móviles en Estados Unidos. No pertenecemos a ninguno de ellos ni los representamos. Revisamos contigo cuál conviene más según tu zona, tu presupuesto y el uso que le des a la línea.',
   },
   {
-    q: '¿Me piden verificación de crédito para aplicar?',
-    a: 'Depende del plan. Los planes de servicio sin equipo normalmente no requieren verificación de crédito. Si financias un equipo, el proveedor sí puede revisar tu crédito, y la aprobación y las condiciones del financiamiento las decide él, no nosotros.',
+    q: '¿Cobran algo por la asesoría?',
+    a: 'No. Nuestra asesoría es gratuita. Recibimos una comisión del proveedor cuando contratas a través de nosotros, pero eso no cambia el precio de tu plan. Todos los pagos del servicio y del equipo se hacen directamente al proveedor.',
+  },
+  {
+    q: '¿Me piden verificación de crédito?',
+    a: 'Depende del plan. Los planes de servicio sin equipo normalmente no requieren verificación de crédito. Si financias un equipo, el proveedor puede revisar tu crédito, y la aprobación y las condiciones las decide él, no nosotros. Si no tienes historial de crédito en Estados Unidos, algunos proveedores pueden pedir un depósito reembolsable o un pago por adelantado.',
   },
   {
     q: '¿Cuándo queda activa mi línea?',
-    a: 'Con eSIM y un teléfono compatible, la activación suele completarse el mismo día. Si necesitas SIM física o un equipo nuevo, el envío tarda normalmente de 24 a 72 horas hábiles tras la aprobación y la línea se activa al recibirlo. El plazo final lo define el proveedor.',
+    a: 'Con eSIM y un teléfono compatible, la activación suele completarse el mismo día. Si necesitas SIM física o un equipo nuevo, el envío tarda normalmente de 24 a 72 horas hábiles tras la aprobación, y la línea se activa al recibirlo. El plazo final lo define el proveedor.',
   },
   {
     q: '¿Puedo cambiar mi plan más adelante?',
-    a: 'Sí. Como el plan es mes a mes, puedes subir o bajar de plan según lo que necesites. Como trabajamos con varios proveedores, también podemos revisar contigo si otro se ajusta mejor.',
+    a: 'Sí. Como el plan es mes a mes, puedes subir o bajar de plan directamente con tu proveedor cuando lo necesites. Si prefieres cambiarte a otro proveedor, llámanos y revisamos contigo las opciones para una nueva solicitud.',
+  },
+  {
+    q: '¿A quién llamo si tengo un problema después de contratar?',
+    a: 'Una vez activa tu línea, la facturación, el soporte técnico, los envíos, las devoluciones y los reembolsos los maneja directamente el proveedor. Encontrarás su contacto en la confirmación de tu orden, el correo de bienvenida o tu factura. Si no sabes a quién llamar, comunícate con nosotros y te ayudamos a identificarlo.',
+  },
+  {
+    q: '¿Puedo cancelar una solicitud que ya hice con ustedes?',
+    a: 'Sí, si todavía está en proceso con nuestro equipo. Llámanos al +1 (888) 470-2820 lo antes posible y la detenemos sin costo. Si el proveedor ya la procesó, envió o activó, la cancelación debe hacerse directamente con él.',
   },
 ]
 
@@ -309,7 +321,6 @@ export default function Home() {
   }
   const acceptCookie = () => setConsent('granted')
   const rejectCookie = () => setConsent('denied')
-  const openCookiePrefs = () => document.documentElement.setAttribute('data-consent', 'pending')
 
   return (
     <>
@@ -550,9 +561,9 @@ export default function Home() {
           <Image src="/images/mapa_de_cobertura.webp" alt="Cobertura Nacional" fill style={{ objectFit: 'cover' }} />
         </div>
         <div className="split-content reveal reveal-delay-1">
-          <span className="split-tag">Cobertura y Velocidad</span>
-          <h2>Cobertura en<br /><em>todo el país.</em></h2>
-          <p>Trabajamos con varios proveedores sobre las principales redes 5G de Estados Unidos. Verificamos contigo la cobertura real en tu zona antes de que contrates.</p>
+          <span className="split-tag">Cobertura y Señal</span>
+          <h2>Cobertura<br /><em>donde vives.</em></h2>
+          <p>Trabajamos con varios proveedores que operan sobre las principales redes 5G de Estados Unidos. La cobertura y la velocidad varían según la zona, por eso verificamos contigo la señal disponible en tu dirección antes de que contrates.</p>
           <div><a href={`tel:${PHONE}`} className="btn-dark" onClick={onPhoneClick}>Verificar Cobertura</a></div>
         </div>
       </section>
@@ -579,7 +590,7 @@ export default function Home() {
         </div>
         <div className="about-body reveal reveal-delay-1">
           <p className="about-disclaimer">
-            Connecting S.A. de C.V. es un agente independiente de servicios móviles. Ayudamos a
+            Connecting es un agente independiente de servicios móviles. Ayudamos a
             consumidores en Estados Unidos a conocer opciones de telefonía móvil y conectarse con
             proveedores participantes. No somos una compañía de red móvil ni afirmamos ser
             representantes de ningún operador salvo cuando se indique expresamente.
@@ -604,7 +615,7 @@ export default function Home() {
             cada proveedor y están sujetos a cambios sin previo aviso.
           </p>
           <div className="about-meta">
-            <span><strong>Razón social:</strong> Connecting S.A. de C.V.</span>
+            <span><strong>Empresa:</strong> Connecting</span>
             <span><strong>Operaciones:</strong> Texas, Estados Unidos</span>
             <span><strong>Contacto:</strong> {PHONE_DISPLAY}</span>
           </div>
@@ -646,52 +657,51 @@ export default function Home() {
 
       {/* FOOTER */}
       <footer className="footer" id="contacto">
+        <Link href="#servicios" className="footer-logo" aria-label="lineas-moviles.com, volver al inicio"><span>lineas</span><span>moviles</span></Link>
+        <p className="footer-disclaimer">
+          Connecting es un agente independiente de servicios móviles. No somos, ni actuamos como,
+          proveedores oficiales de las compañías. La disponibilidad, precios, promociones y condiciones finales están
+          sujetos a los términos establecidos por cada proveedor. Las marcas mencionadas pertenecen a sus respectivos propietarios.
+        </p>
         <div className="footer-grid">
-          <div className="footer-brand">
-            <h4>Quiénes Somos</h4>
-            <p>Agente independiente de servicios móviles. Comparamos planes de varios proveedores participantes en redes 5G de Estados Unidos.</p>
-            <Link href="/#quienes-somos" className="footer-brand-link">Conocer más →</Link>
-            <p className="footer-brand-loc">Texas, EE.UU.</p>
-          </div>
-          <div className="footer-col">
-            <h4>Servicios</h4>
-            <Link href="#servicios">Planes Móviles</Link>
-            <Link href="#familiar">Planes Familiares</Link>
+          <div className="footer-col" role="navigation" aria-label="Planes">
+            <h4>Planes</h4>
+            <Link href="#servicios">Planes móviles</Link>
+            <Link href="#familiar">Planes familiares</Link>
             <Link href="#dispositivos">Dispositivos</Link>
             <Link href="#planes">Precios</Link>
-          </div>
-          <div className="footer-col">
-            <h4>Empresa</h4>
-            <Link href="#quienes-somos">Quiénes Somos</Link>
             <Link href="#cobertura">Cobertura</Link>
-            <Link href="#faq">Preguntas Frecuentes</Link>
-            <Link href="/privacidad">Privacidad</Link>
-            <Link href="/terminos">Términos</Link>
+          </div>
+          <div className="footer-col" role="navigation" aria-label="Ayuda">
+            <h4>Ayuda</h4>
+            <Link href="#faq">Preguntas frecuentes</Link>
+            <Link href="#quienes-somos">Quiénes somos</Link>
+          </div>
+          <div className="footer-col" role="navigation" aria-label="Enlaces legales">
+            <h4>Enlaces legales</h4>
+            <Link href="/terminos">Términos y condiciones</Link>
+            <Link href="/privacidad">Política de privacidad</Link>
           </div>
           <div className="footer-col">
-            <h4>Contacto</h4>
-            <a href={`tel:${PHONE}`} onClick={onPhoneClick}>{PHONE_DISPLAY}</a>
-            <a>{HORARIO}</a>
-            <a>Texas, Estados Unidos</a>
+            <h4>Datos de contacto</h4>
+            <dl className="footer-contact">
+              <dt>Empresa:</dt>
+              <dd>Connecting — Agente independiente de servicios móviles</dd>
+              <dt>Teléfono:</dt>
+              <dd><a href={`tel:${PHONE}`} onClick={onPhoneClick}>{PHONE_DISPLAY}</a></dd>
+              <dt>Horario de atención:</dt>
+              <dd>Lun a dom 8:00 a.m. – 9:00 p.m. (hora de Texas, CT)</dd>
+              <dt>Ubicación:</dt>
+              <dd>Texas, Estados Unidos</dd>
+            </dl>
           </div>
         </div>
-        <a href={`tel:${PHONE}`} className="footer-call" onClick={onPhoneClick} aria-label={`Llamar ahora al ${PHONE_DISPLAY}`}>
-          📞 &nbsp;¡Llama ahora!
+        <a href={`tel:${PHONE}`} className="footer-call" onClick={onPhoneClick} aria-label={`Llamar gratis al ${PHONE_DISPLAY}, atención en español`}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>Llamar Gratis — Atención en Español</span>
         </a>
         <div className="footer-bottom">
-          <span>© 2026 Connecting S.A. de C.V. · Agente independiente de servicios móviles.</span>
-          <span>
-            <Link href="/privacidad">Privacidad</Link> &nbsp;·&nbsp;
-            <Link href="/terminos">Términos</Link> &nbsp;·&nbsp;
-            <Link href="/privacidad#no-vender">No vender ni compartir mis datos</Link> &nbsp;·&nbsp;
-            <button
-              type="button"
-              style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,.3)', fontSize: '.74rem', cursor: 'pointer', padding: 0 }}
-              onClick={openCookiePrefs}
-            >
-              Preferencias de cookies
-            </button>
-          </span>
+          <span>© 2026 Connecting Todos los derechos reservados.</span>
         </div>
       </footer>
 

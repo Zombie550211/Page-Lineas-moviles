@@ -44,7 +44,7 @@ export default function PrivacidadPage() {
           },
           {
             title: '6. Uso de Cookies y Publicidad',
-            body: 'Nuestro sitio utiliza cookies funcionales (para recordar preferencias), analíticas (para entender interacciones) y publicitarias (Google Ads, para mostrar anuncios relevantes basados en sus visitas). Las cookies analíticas y publicitarias están desactivadas por defecto y solo se activan si usted las acepta en el aviso de cookies; puede cambiar su elección desde "Preferencias de cookies" al pie de la página principal. Puede optar por no recibir publicidad personalizada visitando google.com/settings/ads o aboutads.info.',
+            body: 'Nuestro sitio utiliza cookies funcionales (para recordar preferencias), analíticas (para entender interacciones) y publicitarias (Google Ads, para mostrar anuncios relevantes basados en sus visitas). Las cookies analíticas y publicitarias están desactivadas por defecto y solo se activan si usted las acepta en el aviso de cookies; puede retirar su consentimiento con el botón de la sección "No vender ni compartir mis datos" de esta política. Puede optar por no recibir publicidad personalizada visitando google.com/settings/ads o aboutads.info.',
           },
           {
             title: '7. Consentimiento TCPA',
@@ -67,7 +67,7 @@ export default function PrivacidadPage() {
 
       <footer style={{ background: '#0F172A', borderTop: '1px solid #1E293B', padding: '28px max(6%, calc((100% - 1280px) / 2))', textAlign: 'center', fontSize: '.82rem', color: '#475569' }}>
         <Image src="/images/Connecting_logo.webp" alt="Connecting" width={80} height={32} style={{ display: 'block', margin: '0 auto .8rem', filter: 'brightness(10)' }} />
-        © 2026 Connecting S.A. de C.V. Todos los derechos reservados. &nbsp;·&nbsp;
+        © 2026 Connecting Todos los derechos reservados. &nbsp;·&nbsp;
         <Link href="/terminos" style={{ color: '#60A5FA', textDecoration: 'none' }}>Términos y Condiciones</Link>
       </footer>
     </>
