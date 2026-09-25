@@ -497,6 +497,9 @@ nav {
   font-size: .78rem; color: var(--text-3); letter-spacing: .3px;
 }
 .about-meta strong { color: var(--text-2); font-weight: 600; }
+.about-steps { padding-left: 1.25rem; display: flex; flex-direction: column; gap: .75rem; font-size: 1rem; line-height: 1.7; color: var(--text-2); }
+.about-steps strong { color: var(--text); font-weight: 600; }
+.carousel-legal { max-width: 860px; margin: 2rem auto 0; padding: 0 5%; font-size: .72rem; line-height: 1.6; color: var(--text-3); text-align: center; }
 
 .faq-section {
   padding: 100px max(4%, calc((100% - 860px) / 2));

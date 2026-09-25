@@ -13,6 +13,7 @@ declare global {
 
 const PHONE = '+18884702820'
 const PHONE_DISPLAY = '+1 (888) 470-2820'
+const HORARIO = 'Lun–Dom 8 AM–9 PM (hora de Texas, CT)'
 
 const heroSlides = [
   { src: '/images/sim-entrando.webp',        alt: 'Tarjeta SIM activándose en un teléfono móvil' },
@@ -25,9 +26,9 @@ const carouselItems = [
     name: 'Samsung Galaxy Z Flip4',
     img: '/images/carrusel/Galaxy_Z_Flip4_detail.webp',
     specs: [
-      { label: 'OS',         value: 'Android 12' },
-      { label: 'Red',        value: '5G+ (mmWave & C-Band), 4G LTE' },
-      { label: 'Batería',    value: '3,700 mAh · Hasta 32h de llamadas' },
+      { label: 'Lanzamiento', value: '2022 · Android 12 de fábrica' },
+      { label: 'Red',        value: '5G, 4G LTE' },
+      { label: 'Batería',    value: '3,700 mAh' },
       { label: 'Memoria',    value: '128GB / 256GB · 8GB RAM' },
       { label: 'Procesador', value: 'Snapdragon 8+ Gen 1' },
       { label: 'Pantalla',   value: '6.7" (abierto) · 1.9" (cerrado)' },
@@ -38,11 +39,11 @@ const carouselItems = [
     name: 'iPhone 17 Pro',
     img: '/images/carrusel/iPhone17pro.webp',
     specs: [
-      { label: 'OS',         value: 'iOS 18' },
-      { label: 'Red',        value: '5G (mmWave & Sub-6GHz), 4G LTE' },
+      { label: 'OS',         value: 'iOS 26' },
+      { label: 'Red',        value: '5G, 4G LTE' },
       { label: 'Procesador', value: 'Apple A19 Pro' },
       { label: 'Pantalla',   value: '6.3" Super Retina XDR, ProMotion 120Hz' },
-      { label: 'Cámara',     value: 'Sistema Pro 48MP + 12MP + 12MP' },
+      { label: 'Cámara',     value: 'Tres cámaras traseras de 48MP · 18MP frontal' },
       { label: 'Batería',    value: 'Todo el día · Carga MagSafe' },
     ],
   },
@@ -50,11 +51,11 @@ const carouselItems = [
     name: 'iPhone Air',
     img: '/images/carrusel/iPhoneAir.webp',
     specs: [
-      { label: 'OS',      value: 'iOS 18' },
+      { label: 'OS',      value: 'iOS 26' },
       { label: 'Red',     value: '5G, 4G LTE' },
-      { label: 'Diseño',  value: 'El iPhone más delgado de Apple' },
-      { label: 'Pantalla',value: '6.6" Super Retina XDR' },
-      { label: 'Cámara',  value: '48MP principal · 12MP frontal' },
+      { label: 'Diseño',  value: 'Cuerpo de titanio de 5.6 mm' },
+      { label: 'Pantalla',value: '6.5" Super Retina XDR' },
+      { label: 'Cámara',  value: '48MP principal · 18MP frontal' },
       { label: 'Carga',   value: 'MagSafe + USB-C' },
     ],
   },
@@ -62,8 +63,8 @@ const carouselItems = [
     name: 'Samsung Galaxy Z Fold7',
     img: '/images/carrusel/samsung-galaxy-fold7-detail.webp',
     specs: [
-      { label: 'OS',         value: 'Android 15 · One UI 7' },
-      { label: 'Red',        value: '5G+ (mmWave & C-Band), 4G LTE' },
+      { label: 'OS',         value: 'Android 16 · One UI 8' },
+      { label: 'Red',        value: '5G, 4G LTE' },
       { label: 'Pantalla',   value: '8" interior · 6.5" exterior' },
       { label: 'Procesador', value: 'Snapdragon 8 Elite' },
       { label: 'Cámara',     value: '200MP principal + 12MP ultra + 10MP zoom' },
@@ -74,32 +75,58 @@ const carouselItems = [
 
 const faqs = [
   {
-    q: '¿Realmente no hay contratos forzosos?',
-    a: '¡Exacto! Creemos en la libertad del cliente. No estás atado a plazos mínimos de permanencia; puedes cancelar el servicio cuando lo desees sin pagar penalizaciones por "terminación anticipada".',
+    q: '¿Tengo que firmar un contrato?',
+    a: 'El plan de servicio es mes a mes y puedes cancelarlo cuando quieras. La excepción es el equipo: si lo compras financiado o con descuento, el proveedor puede cobrarte el saldo pendiente al cancelar o pedirte mantener la línea un tiempo para conservar el descuento. Te lo explicamos antes de que contrates.',
   },
   {
-    q: '¿Qué requisitos necesito para contratar si soy extranjero?',
-    a: 'Solo necesitas una identificación oficial vigente. Aceptamos pasaporte de cualquier país para abrir tu cuenta, facilitando el proceso sin necesidad de trámites complicados.',
+    q: '¿Qué necesito para contratar si soy extranjero?',
+    a: 'Una identificación oficial vigente. Muchos proveedores aceptan pasaporte extranjero, pero los documentos exactos dependen del proveedor y del plan; te confirmamos cuáles necesitas antes de iniciar el trámite.',
   },
   {
-    q: '¿El precio de mi factura cambiará después de unos meses?',
-    a: 'No. Ofrecemos un bill fijo. El precio que contratas es el que pagas mes a mes, sin cargos ocultos ni "tarifas de promoción" que expiran después de un tiempo.',
+    q: '¿Mi factura va a subir después de unos meses?',
+    a: 'El precio base del plan no sube por promociones que vencen. Aparte del plan se facturan los impuestos y cargos regulatorios, que varían según tu estado y el proveedor. Te desglosamos el total estimado antes de que contrates.',
   },
   {
-    q: '¿Qué significa que el internet sea "ilimitado"?',
-    a: 'Significa que no tenemos límites de datos (data caps). Puedes navegar, ver películas en 4K, jugar en línea y trabajar todo el mes sin preocuparte por reducciones de velocidad o cargos extra por consumo.',
+    q: '¿Qué quiere decir que los datos móviles sean "ilimitados"?',
+    a: 'Que no pagas cargos extra por consumo. Ten en cuenta que los proveedores aplican priorización de red a partir de cierto consumo mensual, lo que puede reducir la velocidad en horas de congestión. El umbral en GB depende del proveedor y del plan; te lo confirmamos antes de que contrates.',
   },
   {
-    q: '¿Necesito una verificación de crédito para aplicar?',
-    a: '¡Al permitir la contratación con pasaporte y no tener contratos a largo plazo, nuestros requisitos son mucho más flexibles que los de las compañías tradicionales. ¡Consulta con nosotros para una aprobación rápida!',
+    q: '¿En qué condiciones viene el equipo?',
+    a: 'Depende del proveedor y del plan. Según el caso el equipo puede entrar financiado a plazos, con un pago inicial o sujeto a permanencia mínima para conservar el descuento. No entregamos equipos por nuestra cuenta: las condiciones, la garantía y el financiamiento los fija el proveedor, y te las explicamos en detalle antes de que firmes.',
   },
   {
-    q: '¿Cuánto tiempo tarda el envío del equipo?',
-    a: 'Una vez aprobada tu solicitud, solemos agendar el envío en un plazo de 24 a 72 horas hábiles.',
+    q: '¿Con qué proveedores trabajan?',
+    a: 'Somos un agente independiente y trabajamos con varios proveedores de servicios móviles en Estados Unidos. No pertenecemos a ninguno de ellos. Revisamos contigo cuál conviene más según tu zona, tu presupuesto y el uso que le des a la línea.',
   },
   {
-    q: '¿Puedo cambiar mi plan de velocidad más adelante?',
-    a: '¡Por supuesto! Al no haber contrato, tienes la flexibilidad de subir o bajar la velocidad de tu plan según tus necesidades actuales, sin complicaciones.',
+    q: '¿Me piden verificación de crédito para aplicar?',
+    a: 'Depende del plan. Los planes de servicio sin equipo normalmente no requieren verificación de crédito. Si financias un equipo, el proveedor sí puede revisar tu crédito, y la aprobación y las condiciones del financiamiento las decide él, no nosotros.',
+  },
+  {
+    q: '¿Cuándo queda activa mi línea?',
+    a: 'Con eSIM y un teléfono compatible, la activación suele completarse el mismo día. Si necesitas SIM física o un equipo nuevo, el envío tarda normalmente de 24 a 72 horas hábiles tras la aprobación y la línea se activa al recibirlo. El plazo final lo define el proveedor.',
+  },
+  {
+    q: '¿Puedo cambiar mi plan más adelante?',
+    a: 'Sí. Como el plan es mes a mes, puedes subir o bajar de plan según lo que necesites. Como trabajamos con varios proveedores, también podemos revisar contigo si otro se ajusta mejor.',
+  },
+]
+
+const plans = [
+  {
+    badge: 'Plan 01', name: 'Básico', price: '55', featured: false,
+    features: ['Datos 5G ilimitados', 'Llamadas y mensajes sin límite', `Soporte en español, ${HORARIO}`],
+    cond: 'Precio por línea, sin impuestos. Sujeto a disponibilidad del proveedor en tu zona.',
+  },
+  {
+    badge: 'Recomendado', name: 'Familiar', price: '150', featured: true,
+    features: ['4 líneas incluidas ($37.50 c/u)', 'Datos ilimitados en cada línea', 'Menos de 4 líneas: precio por cotización'],
+    cond: 'Precio total por 4 líneas, sin impuestos. Requiere activarlas con el mismo proveedor.',
+  },
+  {
+    badge: 'Plan 03', name: 'Premium', price: '90', featured: false,
+    features: ['Datos 5G ilimitados', 'Opción de equipo de alta gama', `Atención en español, ${HORARIO}`],
+    cond: 'Precio por línea, sin impuestos. El equipo y sus condiciones los define el proveedor.',
   },
 ]
 
@@ -111,7 +138,7 @@ export default function Home() {
   const [openFaq, setOpenFaq]           = useState<number | null>(null)
   const [scrollPct, setScrollPct]       = useState(0)
   const [statsVisible, setStatsVisible] = useState(false)
-  const [cnt, setCnt]                   = useState([0, 0, 0])
+  const [price, setPrice]               = useState(0)
   const planRefs                         = useRef<(HTMLDivElement | null)[]>([null, null, null])
   const canvasRef                        = useRef<HTMLCanvasElement>(null)
 
@@ -190,13 +217,12 @@ export default function Home() {
 
   useEffect(() => {
     if (!statsVisible) return
-    const targets = [10, 99, 55]
     const dur = 1600
     const t0 = performance.now()
     const tick = (now: number) => {
       const p = Math.min((now - t0) / dur, 1)
       const ease = 1 - (1 - p) ** 3
-      setCnt(targets.map(v => Math.round(v * ease)))
+      setPrice(Math.round(55 * ease))
       if (p < 1) requestAnimationFrame(tick)
     }
     requestAnimationFrame(tick)
@@ -273,7 +299,9 @@ export default function Home() {
 
   /* cookie — el banner se oculta por atributo en <html>, sin estado de React */
   const setConsent = (value: 'granted' | 'denied') => {
-    localStorage.setItem('cookie_consent', value)
+    /* Global Privacy Control = opt-out CCPA/CPRA: prevalece sobre la elección del banner */
+    if ((navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl) value = 'denied'
+    try { localStorage.setItem('cookie_consent', value) } catch {}
     window.gtag?.('consent', 'update', {
       ad_storage: value, analytics_storage: value, ad_user_data: value, ad_personalization: value,
     })
@@ -281,11 +309,7 @@ export default function Home() {
   }
   const acceptCookie = () => setConsent('granted')
   const rejectCookie = () => setConsent('denied')
-  /* CCPA: aplica la exclusión y vuelve a mostrar el banner como confirmación */
-  const optOutCcpa = () => {
-    setConsent('denied')
-    document.documentElement.setAttribute('data-consent', 'pending')
-  }
+  const openCookiePrefs = () => document.documentElement.setAttribute('data-consent', 'pending')
 
   return (
     <>
@@ -325,7 +349,7 @@ export default function Home() {
             <span className="hero-badge">Conectamos familias en todo Estados Unidos</span>
             <p className="hero-eyebrow">Redes 5G nacionales · Varios proveedores</p>
             <h1>Conecta a tu<br /><em>Familia</em> hoy.</h1>
-            <p className="hero-sub">Planes sin contratos desde $55/mes. Soporte 100% en español. Activa hoy mismo.</p>
+            <p className="hero-sub">Planes desde $55/mes + impuestos, mes a mes, sin contrato anual. Te atendemos en español y te ayudamos con la activación desde tu primera llamada.</p>
             <div className="hero-actions">
               <a href={`tel:${PHONE}`} className="btn-hero-main" onClick={onPhoneClick}>📞 Hablar con un Asesor</a>
               <Link href="#planes" className="btn-hero-ghost">Ver planes →</Link>
@@ -350,19 +374,19 @@ export default function Home() {
       <div className="stats-strip">
         {[
           {
-            num: `+${cnt[0]}K`, label: 'Clientes Satisfechos',
+            num: 'Mes a mes', label: 'Sin Contrato Anual',
             icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
           },
           {
-            num: `${cnt[1]}%`, label: 'Cobertura Nacional',
+            num: 'USA', label: 'Cobertura Nacional',
             icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M10.54 16.1a6 6 0 0 1 2.92 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>,
           },
           {
-            num: `$${cnt[2]}`, label: 'Desde / mes',
+            num: `$${price}`, label: 'Desde / mes + imp.',
             icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>,
           },
           {
-            num: '24/7', label: 'Soporte en Español',
+            num: '8–21 h', label: 'Lun–Dom · En Español',
             icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
           },
         ].map((s, i) => (
@@ -383,13 +407,13 @@ export default function Home() {
         <div className="why-grid">
           {[
             {
-              title: 'Sin contratos',
-              desc: 'Cancela cuando quieras. Sin penalizaciones por terminación anticipada ni permanencia forzosa.',
+              title: 'Mes a mes',
+              desc: 'El plan se cancela cuando quieras. Si financias un equipo, sus condiciones las fija el proveedor y te las explicamos antes.',
               icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>,
             },
             {
               title: 'Soporte en español',
-              desc: 'Atención 24/7 por agentes nativos que te entienden. Sin barreras de idioma.',
+              desc: `Asesores que hablan tu idioma, ${HORARIO}.`,
               icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>,
             },
             {
@@ -398,8 +422,8 @@ export default function Home() {
               icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M10.54 16.1a6 6 0 0 1 2.92 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>,
             },
             {
-              title: 'Activación express',
-              desc: 'Tu línea activa en menos de 24 horas. Solo necesitas tu pasaporte. Así de simple.',
+              title: 'Activación ágil',
+              desc: 'Con eSIM, normalmente el mismo día. Con SIM física o equipo, envío en 24 a 72 horas hábiles.',
               icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
             },
           ].map((item, i) => (
@@ -419,8 +443,8 @@ export default function Home() {
         </div>
         <div className="split-content reveal reveal-delay-1">
           <span className="split-tag">Planes Familiares</span>
-          <h2>Ahorra más<br /><em>por línea.</em></h2>
-          <p>Agrega hasta 4 líneas y disfruta de tarifas reducidas. Cuantas más líneas, más ahorras. Toda tu familia en la red 5G más rápida de Estados Unidos.</p>
+          <h2>Paga menos<br /><em>por línea.</em></h2>
+          <p>Con el plan Familiar, 4 líneas cuestan $150/mes + impuestos: $37.50 por línea, frente a $55 del plan Básico. Si necesitas menos líneas, te cotizamos el precio por teléfono.</p>
           <div><a href={`tel:${PHONE}`} className="btn-dark" onClick={onPhoneClick}>Hablar con un Asesor</a></div>
         </div>
       </section>
@@ -428,9 +452,9 @@ export default function Home() {
       {/* SPLIT 2: Datos ilimitados */}
       <section className="split split-dark">
         <div className="split-content reveal">
-          <span className="split-tag">Sin Límites</span>
+          <span className="split-tag">Datos Ilimitados</span>
           <h2>Datos<br /><em>ilimitados.</em></h2>
-          <p>Sin data caps, sin sorpresas. Streaming en 4K, videollamadas y gaming todo el mes sin interrupciones ni cargos extra.</p>
+          <p>Sin cargos por exceso de consumo. A partir de cierto uso mensual el proveedor puede aplicar priorización de red y reducir la velocidad en momentos de congestión; te decimos el umbral de cada plan antes de contratar.</p>
           <div><a href={`tel:${PHONE}`} className="btn-outline-white" onClick={onPhoneClick}>Conocer Más</a></div>
         </div>
         <div className="split-image reveal reveal-delay-1">
@@ -441,9 +465,9 @@ export default function Home() {
       {/* CAROUSEL DISPOSITIVOS */}
       <section className="carousel-section" id="dispositivos">
         <div className="carousel-header reveal">
-          <span className="section-eyebrow">Tecnología de Punta</span>
-          <h2 className="section-title">Teléfonos de<br /><em>Alta Gama.</em></h2>
-          <p className="section-sub">Los mejores dispositivos disponibles para tu plan móvil.</p>
+          <span className="section-eyebrow">Equipos con tu Plan</span>
+          <h2 className="section-title">Equipos de<br /><em>Alta Gama.</em></h2>
+          <p className="section-sub">Modelos que algunos proveedores participantes ofrecen junto con el plan. Disponibilidad, precio y financiamiento dependen del proveedor.</p>
         </div>
         <div className="carousel-wrapper">
           <div className="carousel-track" style={{ transform: `translateX(-${carouselIdx * 100}%)` }}>
@@ -481,21 +505,22 @@ export default function Home() {
             <button className="carousel-btn" onClick={() => goCarousel(carouselIdx + 1)}>→</button>
           </div>
         </div>
+        <p className="carousel-legal">
+          Connecting no fabrica ni vende equipos por cuenta propia: los equipos los ofrece y financia cada proveedor.
+          Apple, iPhone, Samsung y Galaxy son marcas registradas de sus respectivos titulares, que no patrocinan ni
+          están afiliados a este sitio. Imágenes ilustrativas.
+        </p>
       </section>
 
       {/* PLANES */}
       <section className="plans-section" id="planes">
         <div className="section-header reveal">
-          <span className="section-eyebrow">Precios Transparentes</span>
-          <h2 className="section-title">Elige tu Plan.</h2>
+          <span className="section-eyebrow">Precios Claros</span>
+          <h2 className="section-title">Escoge tu Plan.</h2>
           <p className="section-sub">Precio base del plan. Los impuestos y cargos regulatorios se facturan aparte y varían según tu estado y el proveedor.</p>
         </div>
         <div className="plans-grid">
-          {[
-            { badge: 'Plan 01',    name: 'Básico',   price: '55',  features: ['Datos ilimitados 5G', 'Llamadas y mensajes ilimitados', 'Soporte 24/7 en español'],           featured: false },
-            { badge: 'Recomendado', name: 'Familiar', price: '150', features: ['Hasta 4 líneas incluidas', 'Datos ilimitados para todos', 'Descuentos por líneas adicionales'], featured: true  },
-            { badge: 'Plan 03',    name: 'Premium',  price: '90',  features: ['Datos ilimitados 5G', 'Incluye dispositivo de alta gama', 'Soporte en español 24/7'],          featured: false },
-          ].map((plan, i) => (
+          {plans.map((plan, i) => (
             <div
               key={i}
               ref={el => { planRefs.current[i] = el }}
@@ -506,12 +531,14 @@ export default function Home() {
               <span className="plan-badge">{plan.badge}</span>
               <div className="plan-name">{plan.name}</div>
               <div className="plan-price"><sup>$</sup>{plan.price}<sub>/mes</sub></div>
+              <div className="plan-tax">+ impuestos y cargos regulatorios</div>
               <hr className="plan-divider" />
               <ul className="plan-features">
                 {plan.features.map((f, j) => <li key={j}>{f}</li>)}
               </ul>
               <a href={`tel:${PHONE}`} className="plan-cta" onClick={onPhoneClick}>Hablar con un Asesor</a>
-              <Link href="/terminos" className="plan-cond">*Condiciones Aplican</Link>
+              <p className="plan-cond">{plan.cond}</p>
+              <Link href="/terminos" className="plan-cond plan-cond-link">Ver condiciones completas</Link>
             </div>
           ))}
         </div>
@@ -533,9 +560,9 @@ export default function Home() {
       {/* SPLIT 4: Velocidad */}
       <section className="split split-dark">
         <div className="split-content reveal">
-          <span className="split-tag">5G Ultra Rápido</span>
-          <h2>Hasta<br /><em>1 Gbps.</em></h2>
-          <p>Streaming en HD, videollamadas y gaming sin interrupciones. La conexión más rápida para tu familia, disponible hoy.</p>
+          <span className="split-tag">Redes 5G</span>
+          <h2>Velocidad<br /><em>5G.</em></h2>
+          <p>Acceso a redes 5G donde el proveedor tenga cobertura. La velocidad real varía según la zona, el equipo, el plan y la congestión de la red; te orientamos sobre qué esperar en tu dirección.</p>
           <div><a href={`tel:${PHONE}`} className="btn-outline-white" onClick={onPhoneClick}>Hablar con un Asesor</a></div>
         </div>
         <div className="split-image reveal reveal-delay-1">
@@ -561,6 +588,15 @@ export default function Home() {
             No trabajamos con un solo operador: comparamos planes de <strong>varios proveedores</strong> y
             te mostramos cuál se ajusta mejor a tu zona, tu presupuesto y tu consumo. El contrato final
             de servicio se establece entre tú y la compañía proveedora que elijas.
+          </p>
+          <ol className="about-steps">
+            <li><strong>Llamas.</strong> Nos dices tu código postal, cuántas líneas necesitas y cuánto usas datos.</li>
+            <li><strong>Comparamos.</strong> Revisamos la cobertura de cada proveedor en tu zona y te damos el precio total con impuestos estimados.</li>
+            <li><strong>Eliges.</strong> Tramitamos la línea con el proveedor que escojas. Con eSIM la activación suele ser el mismo día; con SIM física o equipo, el envío tarda de 24 a 72 horas hábiles.</li>
+          </ol>
+          <p>
+            Recibimos una comisión del proveedor cuando contratas a través de nosotros. No te
+            cobramos por la asesoría ni altera el precio del plan.
           </p>
           <p>
             Las marcas, nombres comerciales y logotipos de terceros que aparezcan en este sitio
@@ -601,11 +637,11 @@ export default function Home() {
       <section className="lead-section">
         <span className="lead-eyebrow">Contacto Directo</span>
         <h2>Hablemos<br /><em>ahora mismo.</em></h2>
-        <p>Un asesor en español te atiende al instante. Sin esperas ni formularios.</p>
+        <p>Asesores en español de lunes a domingo, de 8 AM a 9 PM (hora de Texas, CT).</p>
         <a href={`tel:${PHONE}`} className="lead-btn" onClick={onPhoneClick}>
           Llamar {PHONE_DISPLAY} →
         </a>
-        <p className="lead-note">Atención en español. La llamada no tiene costo.</p>
+        <p className="lead-note">Llamada sin costo (número 888). Fuera de horario te devolvemos la llamada el siguiente día hábil.</p>
       </section>
 
       {/* FOOTER */}
@@ -613,7 +649,7 @@ export default function Home() {
         <div className="footer-grid">
           <div className="footer-brand">
             <h4>Quiénes Somos</h4>
-            <p>Agente independiente de servicios móviles. Comparamos planes de varios proveedores participantes en las mejores redes 5G de Estados Unidos.</p>
+            <p>Agente independiente de servicios móviles. Comparamos planes de varios proveedores participantes en redes 5G de Estados Unidos.</p>
             <Link href="/#quienes-somos" className="footer-brand-link">Conocer más →</Link>
             <p className="footer-brand-loc">Texas, EE.UU.</p>
           </div>
@@ -626,6 +662,7 @@ export default function Home() {
           </div>
           <div className="footer-col">
             <h4>Empresa</h4>
+            <Link href="#quienes-somos">Quiénes Somos</Link>
             <Link href="#cobertura">Cobertura</Link>
             <Link href="#faq">Preguntas Frecuentes</Link>
             <Link href="/privacidad">Privacidad</Link>
@@ -634,7 +671,7 @@ export default function Home() {
           <div className="footer-col">
             <h4>Contacto</h4>
             <a href={`tel:${PHONE}`} onClick={onPhoneClick}>{PHONE_DISPLAY}</a>
-            <a>Lun–Dom 8:00AM–9:00PM</a>
+            <a>{HORARIO}</a>
             <a>Texas, Estados Unidos</a>
           </div>
         </div>
@@ -646,11 +683,13 @@ export default function Home() {
           <span>
             <Link href="/privacidad">Privacidad</Link> &nbsp;·&nbsp;
             <Link href="/terminos">Términos</Link> &nbsp;·&nbsp;
+            <Link href="/privacidad#no-vender">No vender ni compartir mis datos</Link> &nbsp;·&nbsp;
             <button
+              type="button"
               style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,.3)', fontSize: '.74rem', cursor: 'pointer', padding: 0 }}
-              onClick={optOutCcpa}
+              onClick={openCookiePrefs}
             >
-              No vender mis datos (CCPA)
+              Preferencias de cookies
             </button>
           </span>
         </div>
@@ -659,12 +698,13 @@ export default function Home() {
       {/* COOKIE BANNER */}
       <div id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
         <p className="cookie-text">
-          Usamos cookies propias y de terceros (incluido Google Ads) para mejorar tu experiencia y mostrarte publicidad relevante.{' '}
+          Usamos cookies propias y de terceros (incluido Google Ads) para medir el sitio y mostrarte publicidad relevante.
+          Solo se activan si las aceptas.{' '}
           <Link href="/privacidad">Política de Privacidad</Link>.
         </p>
         <div className="cookie-actions">
-          <button className="cookie-reject" onClick={rejectCookie}>Rechazar</button>
-          <button className="cookie-accept" onClick={acceptCookie}>Aceptar</button>
+          <button type="button" className="cookie-reject" onClick={rejectCookie}>Rechazar</button>
+          <button type="button" className="cookie-accept" onClick={acceptCookie}>Aceptar</button>
         </div>
       </div>
     </>

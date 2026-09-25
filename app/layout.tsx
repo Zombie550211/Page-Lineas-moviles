@@ -59,10 +59,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `
               window.dataLayer=window.dataLayer||[];
               function gtag(){dataLayer.push(arguments);}
-              var _sc=typeof localStorage!=='undefined'?localStorage.getItem('cookie_consent'):null;
-              var _cs=_sc==='granted'?'granted':'denied';
-              /* pinta el banner en el primer frame, sin render extra de React */
-              document.documentElement.setAttribute('data-consent',_sc?'set':'pending');
+              var _sc=null;try{_sc=localStorage.getItem('cookie_consent');}catch(e){}
+              /* Global Privacy Control = opt-out CCPA/CPRA: prevalece sobre el consentimiento guardado */
+              var _gpc=navigator.globalPrivacyControl===true;
+              var _cs=(_sc==='granted'&&!_gpc)?'granted':'denied';
+              /* pinta el banner en el primer frame, sin render extra de React. Con GPC no se pregunta. */
+              document.documentElement.setAttribute('data-consent',(_sc||_gpc)?'set':'pending');
               gtag('consent','default',{ad_storage:_cs,analytics_storage:_cs,ad_user_data:_cs,ad_personalization:_cs,wait_for_update:_sc?0:600});
               gtag('js',new Date());
               gtag('config','AW-18023363833');

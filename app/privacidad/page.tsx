@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import OptOutButton from './OptOutButton'
 
 export const metadata: Metadata = {
   title: 'Política de Privacidad | Connecting',
@@ -26,10 +27,16 @@ export default function PrivacidadPage() {
         <p style={{ fontSize: '.83rem', color: '#94A3B8', marginBottom: '2.5rem' }}>Última actualización: 2026</p>
 
         {[
-          { title: null, body: 'En lineas-moviles.com, nos preocupamos por su privacidad y nos dedicamos a cuidar sus datos personales. Este documento explica de qué manera obtenemos, manejamos y resguardamos su información cuando navega en nuestro sitio web o usa nuestros servicios de telefonía móvil en Estados Unidos.' },
+          { title: null, body: 'En lineas-moviles.com, nos preocupamos por su privacidad y nos dedicamos a cuidar sus datos personales. Este documento explica de qué manera obtenemos, manejamos y resguardamos su información cuando navega en nuestro sitio web o nos llama para contratar una línea móvil en Estados Unidos. Connecting es un agente independiente; el servicio móvil lo presta el proveedor que usted elija.' },
           { title: '1. Información que Recopilamos', body: 'Para brindarle nuestros servicios de telecomunicaciones, es posible que recopilemos: nombre, número de teléfono, correo electrónico e identificación necesaria para activar su línea móvil.' },
           { title: '2. Uso de la Información', body: 'Usamos los datos que recopilamos para tramitar sus pedidos de servicio y habilitar sus líneas móviles.' },
-          { title: '3. Compartición de Datos con Terceros', body: 'No comercializamos ni arrendamos sus datos personales a otras empresas.' },
+          { title: '3. Compartición de Datos con Terceros', body: 'No comercializamos ni arrendamos sus datos personales a otras empresas. Solo los compartimos con el proveedor de servicio que usted elija, en la medida necesaria para tramitar su línea.' },
+          {
+            id: 'no-vender',
+            title: 'No vender ni compartir mis datos (CCPA/CPRA)',
+            body: 'No vendemos su información personal. Las cookies publicitarias de Google Ads pueden considerarse "compartir" datos para publicidad personalizada según la ley de California; solo se activan si usted las acepta.\n\nPara ejercer su derecho a no vender ni compartir sus datos, o para solicitar acceso o eliminación de su información, llame al +1 (888) 470-2820 (Lun–Dom 8 AM–9 PM, hora de Texas, CT). Atendemos las solicitudes en un plazo máximo de 45 días. También respetamos la señal Global Privacy Control (GPC) de su navegador.',
+            optOut: true,
+          },
           { title: '4. Seguridad de la Información', body: 'Hemos puesto en marcha medidas de seguridad tanto técnicas como administrativas para resguardar su información de accesos indebidos, extravíos o modificaciones.' },
           {
             title: '5. Derechos del Usuario',
@@ -37,14 +44,14 @@ export default function PrivacidadPage() {
           },
           {
             title: '6. Uso de Cookies y Publicidad',
-            body: 'Nuestro sitio utiliza cookies funcionales (para recordar preferencias), analíticas (para entender interacciones) y publicitarias (Google Ads, para mostrar anuncios relevantes basados en sus visitas). Puede optar por no recibir publicidad personalizada visitando google.com/settings/ads o aboutads.info.',
+            body: 'Nuestro sitio utiliza cookies funcionales (para recordar preferencias), analíticas (para entender interacciones) y publicitarias (Google Ads, para mostrar anuncios relevantes basados en sus visitas). Las cookies analíticas y publicitarias están desactivadas por defecto y solo se activan si usted las acepta en el aviso de cookies; puede cambiar su elección desde "Preferencias de cookies" al pie de la página principal. Puede optar por no recibir publicidad personalizada visitando google.com/settings/ads o aboutads.info.',
           },
           {
             title: '7. Consentimiento TCPA',
-            body: 'Al proporcionar su número de teléfono en nuestros formularios, usted autoriza expresamente a Connecting a contactarle mediante llamadas telefónicas y/o mensajes de texto (SMS) automatizados o preregistrados, relativos a nuestros servicios de telecomunicaciones. Este consentimiento no es condición para la compra de ningún servicio. Puede revocar su consentimiento en cualquier momento llamando al +1 (888) 470-2820. Aplican tarifas de mensajes y datos.',
+            body: 'Al proporcionar su número de teléfono durante una llamada, usted autoriza expresamente a Connecting a contactarle mediante llamadas telefónicas y/o mensajes de texto (SMS) automatizados o preregistrados, relativos a nuestros servicios de telecomunicaciones. Este consentimiento no es condición para la compra de ningún servicio. Puede revocar su consentimiento en cualquier momento llamando al +1 (888) 470-2820. Aplican tarifas de mensajes y datos.',
           },
-        ].map((card, i) => (
-          <div key={i} style={{ background: '#fff', border: '1px solid #E2E8F0', borderRadius: 20, padding: '2rem 2.2rem', marginBottom: '1.5rem', boxShadow: '0 1px 3px rgba(0,0,0,.06)' }}>
+        ].map((card: { id?: string; title: string | null; body: string; optOut?: boolean }, i) => (
+          <div key={i} id={card.id} style={{ background: '#fff', border: '1px solid #E2E8F0', borderRadius: 20, padding: '2rem 2.2rem', marginBottom: '1.5rem', boxShadow: '0 1px 3px rgba(0,0,0,.06)' }}>
             {card.title && (
               <h2 style={{ fontFamily: 'var(--font-cormorant, "Cormorant Garamond", Georgia, serif)', fontSize: '1.35rem', fontWeight: 700, color: '#1D4ED8', marginBottom: '.8rem' }}>
                 {card.title}
@@ -53,6 +60,7 @@ export default function PrivacidadPage() {
             {card.body.split('\n\n').map((para, j) => (
               <p key={j} style={{ fontSize: '.95rem', color: '#475569', lineHeight: 1.8, marginBottom: '.8rem' }}>{para}</p>
             ))}
+            {card.optOut && <OptOutButton />}
           </div>
         ))}
       </div>

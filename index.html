@@ -10,7 +10,7 @@
      Al retirar Botpress ya no hay terceros mas alla de Google. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google.com https://www.google.com.mx https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://td.doubleclick.net https://stats.g.doubleclick.net; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://td.doubleclick.net https://stats.g.doubleclick.net https://www.google.com; frame-src https://td.doubleclick.net https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Líneas Móviles | Planes 5G para tu Familia</title>
-<meta name="description" content="Planes de líneas móviles 5G desde $55/mes + impuestos. Sin contratos, soporte en español, activación rápida. Agente independiente con varios proveedores en Estados Unidos.">
+<meta name="description" content="Planes de líneas móviles 5G desde $55/mes + impuestos. Planes mes a mes sin contrato anual y atención en español. Agente independiente con varios proveedores en Estados Unidos.">
 <link rel="canonical" href="https://lineas-moviles.com">
 <meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,8 +24,13 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  var _storedConsent = localStorage.getItem('cookie_consent');
-  var _consentState  = _storedConsent === 'granted' ? 'granted' : 'denied';
+  var _storedConsent = null;
+  try { _storedConsent = localStorage.getItem('cookie_consent'); } catch (e) {}
+  /* Global Privacy Control = opt-out CCPA/CPRA: prevalece sobre cualquier consentimiento guardado */
+  var _gpc = navigator.globalPrivacyControl === true;
+  var _consentState  = (_storedConsent === 'granted' && !_gpc) ? 'granted' : 'denied';
+  /* pinta el banner en el primer frame: sin parpadeo ni CLS. Con GPC no se pregunta. */
+  document.documentElement.setAttribute('data-consent', (_storedConsent || _gpc) ? 'set' : 'pending');
   gtag('consent', 'default', {
     ad_storage:        _consentState,
     analytics_storage: _consentState,
@@ -120,6 +125,9 @@
     font-size: .78rem; color: var(--muted); letter-spacing: .3px;
   }
   .about-meta strong { color: var(--black); font-weight: 600; }
+  .about-steps { padding-left: 1.25rem; display: flex; flex-direction: column; gap: .75rem; font-size: 1rem; line-height: 1.7; color: var(--muted); }
+  .about-steps strong { color: var(--black); font-weight: 600; }
+  .carousel-legal { max-width: 860px; margin: 2rem auto 0; padding: 0 5%; font-size: .72rem; line-height: 1.6; color: var(--muted); text-align: center; }
   @media (max-width: 768px) {
     .footer-call {
       height: 50px; padding: 0 22px;
@@ -625,6 +633,7 @@
   .footer-bottom a:hover { color: #fff; }
 
   /* ── COOKIE ── */
+  :root[data-consent="pending"] #cookie-banner { display: flex; }
   #cookie-banner {
     display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
     background: #0A0A0A; border-top: 1px solid rgba(255,255,255,.08);
@@ -732,7 +741,7 @@
     <div class="hero-text">
       <p class="hero-eyebrow">Redes 5G nacionales · Varios proveedores</p>
       <h1>Tu familia,<br><em>conectada</em> hoy.</h1>
-      <p class="hero-sub">Planes desde $55/mes + impuestos, sin contratos ni ataduras. Te atendemos 100% en español y activas hoy mismo.</p>
+      <p class="hero-sub">Planes desde $55/mes + impuestos, mes a mes, sin contrato anual. Te atendemos en español y te ayudamos con la activación desde tu primera llamada.</p>
       <div class="hero-actions">
         <a href="tel:+18884702820" class="btn-hero-main">📞 Habla con un Asesor</a>
         <a href="#planes" class="btn-hero-ghost">Ver los planes →</a>
@@ -752,8 +761,8 @@
 <!-- STATS -->
 <div class="stats-strip">
   <div class="stat-item reveal">
-    <div class="stat-num">0</div>
-    <div class="stat-label">Contratos Forzosos</div>
+    <div class="stat-num">Mes a mes</div>
+    <div class="stat-label">Sin Contrato Anual</div>
   </div>
   <div class="stat-item reveal reveal-delay-1">
     <div class="stat-num">USA</div>
@@ -764,8 +773,8 @@
     <div class="stat-label">Desde / mes + imp.</div>
   </div>
   <div class="stat-item reveal reveal-delay-3">
-    <div class="stat-num">24/7</div>
-    <div class="stat-label">Atención en Español</div>
+    <div class="stat-num">8–21 h</div>
+    <div class="stat-label">Lun–Dom · En Español</div>
   </div>
 </div>
 
@@ -777,7 +786,7 @@
   <div class="split-content reveal reveal-delay-1">
     <span class="split-tag">Para Toda la Familia</span>
     <h2>Paga menos<br><em>por línea.</em></h2>
-    <p>Suma hasta 4 líneas y el precio de cada una baja. Mientras más líneas, mayor es el ahorro. Toda tu familia junta en la red 5G más rápida de Estados Unidos.</p>
+    <p>Con el plan Familiar, 4 líneas cuestan $150/mes + impuestos: $37.50 por línea, frente a $55 del plan Básico. Si necesitas menos líneas, te cotizamos el precio por teléfono.</p>
     <div>
       <a href="tel:+18884702820" class="btn-dark">Consultar Precio por Línea</a>
     </div>
@@ -788,8 +797,8 @@
 <section class="split split-dark">
   <div class="split-content reveal" style="background:var(--black);">
     <span class="split-tag">Navega Sin Freno</span>
-    <h2>Internet<br><em>sin límites.</em></h2>
-    <p>Sin data caps y sin sorpresas en la factura. Streaming en 4K, videollamadas y gaming todo el mes, sin cortes ni cargos extra.</p>
+    <h2>Datos<br><em>ilimitados.</em></h2>
+    <p>Sin cargos por exceso de consumo. A partir de cierto uso mensual el proveedor puede aplicar priorización de red y reducir la velocidad en momentos de congestión; te decimos el umbral de cada plan antes de contratar.</p>
     <div>
       <a href="tel:+18884702820" class="btn-outline-white">Quiero Saber Más</a>
     </div>
@@ -802,9 +811,9 @@
 <!-- CARRUSEL DISPOSITIVOS -->
 <section class="carousel-section" id="dispositivos">
   <div class="carousel-header reveal">
-    <span class="section-eyebrow">Lo Último en Equipos</span>
+    <span class="section-eyebrow">Equipos con tu Plan</span>
     <h2 class="section-title">Equipos de<br><em>Alta Gama.</em></h2>
-    <p class="section-sub">Los mejores dispositivos, listos para estrenar con tu plan.</p>
+    <p class="section-sub">Modelos que algunos proveedores participantes ofrecen junto con el plan. Disponibilidad, precio y financiamiento dependen del proveedor.</p>
   </div>
   <div class="carousel-wrapper">
     <div class="carousel-track" id="carouselTrack">
@@ -817,9 +826,9 @@
           <div class="carousel-info">
             <div class="carousel-name">Samsung Galaxy Z Flip4</div>
             <ul class="carousel-specs">
-              <li><span class="spec-label">OS</span> Android 12</li>
-              <li><span class="spec-label">Red</span> 5G+ (mmWave & C-Band), 4G LTE</li>
-              <li><span class="spec-label">Batería</span> 3,700 mAh · Hasta 32h de llamadas</li>
+              <li><span class="spec-label">Lanzamiento</span> 2022 · Android 12 de fábrica</li>
+              <li><span class="spec-label">Red</span> 5G, 4G LTE</li>
+              <li><span class="spec-label">Batería</span> 3,700 mAh</li>
               <li><span class="spec-label">Memoria</span> 128GB / 256GB · 8GB RAM</li>
               <li><span class="spec-label">Procesador</span> Snapdragon 8+ Gen 1</li>
               <li><span class="spec-label">Pantalla</span> 6.7" (abierto) · 1.9" (cerrado)</li>
@@ -838,11 +847,11 @@
           <div class="carousel-info">
             <div class="carousel-name">iPhone 17 Pro</div>
             <ul class="carousel-specs">
-              <li><span class="spec-label">OS</span> iOS 18</li>
-              <li><span class="spec-label">Red</span> 5G (mmWave & Sub-6GHz), 4G LTE</li>
+              <li><span class="spec-label">OS</span> iOS 26</li>
+              <li><span class="spec-label">Red</span> 5G, 4G LTE</li>
               <li><span class="spec-label">Procesador</span> Apple A19 Pro</li>
               <li><span class="spec-label">Pantalla</span> 6.3" Super Retina XDR, ProMotion 120Hz</li>
-              <li><span class="spec-label">Cámara</span> Sistema Pro 48MP + 12MP + 12MP</li>
+              <li><span class="spec-label">Cámara</span> Tres cámaras traseras de 48MP · 18MP frontal</li>
               <li><span class="spec-label">Batería</span> Todo el día · Carga MagSafe</li>
             </ul>
             <a href="tel:+18884702820" class="btn-dark" style="width:fit-content;">Preguntar por este Equipo</a>
@@ -858,11 +867,11 @@
           <div class="carousel-info">
             <div class="carousel-name">iPhone Air</div>
             <ul class="carousel-specs">
-              <li><span class="spec-label">OS</span> iOS 18</li>
+              <li><span class="spec-label">OS</span> iOS 26</li>
               <li><span class="spec-label">Red</span> 5G, 4G LTE</li>
-              <li><span class="spec-label">Diseño</span> El iPhone más delgado de Apple</li>
-              <li><span class="spec-label">Pantalla</span> 6.6" Super Retina XDR</li>
-              <li><span class="spec-label">Cámara</span> 48MP principal · 12MP frontal</li>
+              <li><span class="spec-label">Diseño</span> Cuerpo de titanio de 5.6 mm</li>
+              <li><span class="spec-label">Pantalla</span> 6.5" Super Retina XDR</li>
+              <li><span class="spec-label">Cámara</span> 48MP principal · 18MP frontal</li>
               <li><span class="spec-label">Carga</span> MagSafe + USB-C</li>
             </ul>
             <a href="tel:+18884702820" class="btn-dark" style="width:fit-content;">Preguntar por este Equipo</a>
@@ -878,8 +887,8 @@
           <div class="carousel-info">
             <div class="carousel-name">Samsung Galaxy Z Fold7</div>
             <ul class="carousel-specs">
-              <li><span class="spec-label">OS</span> Android 15 · One UI 7</li>
-              <li><span class="spec-label">Red</span> 5G+ (mmWave & C-Band), 4G LTE</li>
+              <li><span class="spec-label">OS</span> Android 16 · One UI 8</li>
+              <li><span class="spec-label">Red</span> 5G, 4G LTE</li>
               <li><span class="spec-label">Pantalla</span> 8" interior · 6.5" exterior</li>
               <li><span class="spec-label">Procesador</span> Snapdragon 8 Elite</li>
               <li><span class="spec-label">Cámara</span> 200MP principal + 12MP ultra + 10MP zoom</li>
@@ -907,6 +916,7 @@
       <button class="carousel-btn" id="carouselNext">&#8594;</button>
     </div>
   </div>
+  <p class="carousel-legal">Connecting no fabrica ni vende equipos por cuenta propia: los equipos los ofrece y financia cada proveedor. Apple, iPhone, Samsung y Galaxy son marcas registradas de sus respectivos titulares, que no patrocinan ni están afiliados a este sitio. Imágenes ilustrativas.</p>
 </section>
 
 <!-- PLANES -->
@@ -927,7 +937,7 @@
       <ul class="plan-features">
         <li>Datos 5G ilimitados</li>
         <li>Llamadas y mensajes sin límite</li>
-        <li>Soporte en español, 24/7</li>
+        <li>Soporte en español, Lun–Dom 8 AM–9 PM (hora de Texas, CT)</li>
       </ul>
       <a href="tel:+18884702820" class="plan-cta">Llamar y Contratar</a>
       <p class="plan-cond">Precio por línea, sin impuestos. Sujeto a disponibilidad del proveedor en tu zona.</p>
@@ -941,12 +951,12 @@
       <div class="plan-tax">+ impuestos y cargos regulatorios</div>
       <hr class="plan-divider">
       <ul class="plan-features">
-        <li>Hasta 4 líneas incluidas</li>
+        <li>4 líneas incluidas ($37.50 c/u)</li>
         <li>Datos ilimitados en cada línea</li>
-        <li>Más descuento por cada línea extra</li>
+        <li>Menos de 4 líneas: precio por cotización</li>
       </ul>
       <a href="tel:+18884702820" class="plan-cta">Llamar y Contratar</a>
-      <p class="plan-cond">Precio total por hasta 4 líneas, sin impuestos. Requiere activarlas con el mismo proveedor.</p>
+      <p class="plan-cond">Precio total por 4 líneas, sin impuestos. Requiere activarlas con el mismo proveedor.</p>
       <a href="terminos.html" class="plan-cond plan-cond-link">Ver condiciones completas</a>
     </div>
 
@@ -959,7 +969,7 @@
       <ul class="plan-features">
         <li>Datos 5G ilimitados</li>
         <li>Opción de equipo de alta gama</li>
-        <li>Atención en español, 24/7</li>
+        <li>Atención en español, Lun–Dom 8 AM–9 PM (hora de Texas, CT)</li>
       </ul>
       <a href="tel:+18884702820" class="plan-cta">Llamar y Contratar</a>
       <p class="plan-cond">Precio por línea, sin impuestos. El equipo y sus condiciones los define el proveedor.</p>
@@ -987,9 +997,9 @@
 <!-- SPLIT 4: Velocidad -->
 <section class="split split-dark">
   <div class="split-content reveal" style="background:var(--black);">
-    <span class="split-tag">5G de Alta Velocidad</span>
-    <h2>Velocidad de<br><em>hasta 1 Gbps.</em></h2>
-    <p>Streaming en HD, videollamadas y gaming sin cortes. La conexión más veloz para tu familia, disponible desde hoy.</p>
+    <span class="split-tag">Redes 5G</span>
+    <h2>Velocidad<br><em>5G.</em></h2>
+    <p>Acceso a redes 5G donde el proveedor tenga cobertura. La velocidad real varía según la zona, el equipo, el plan y la congestión de la red; te orientamos sobre qué esperar en tu dirección.</p>
     <div>
       <a href="tel:+18884702820" class="btn-outline-white">Habla con un Asesor</a>
     </div>
@@ -1020,6 +1030,15 @@
       alternativas antes de que contrates. El contrato final de servicio se establece entre tú y
       la compañía proveedora que elijas.
     </p>
+    <ol class="about-steps">
+      <li><strong>Llamas.</strong> Nos dices tu código postal, cuántas líneas necesitas y cuánto usas datos.</li>
+      <li><strong>Comparamos.</strong> Revisamos la cobertura de cada proveedor en tu zona y te damos el precio total con impuestos estimados.</li>
+      <li><strong>Eliges.</strong> Tramitamos la línea con el proveedor que escojas. Con eSIM la activación suele ser el mismo día; con SIM física o equipo, el envío tarda de 24 a 72 horas hábiles.</li>
+    </ol>
+    <p>
+      Recibimos una comisión del proveedor cuando contratas a través de nosotros. No te
+      cobramos por la asesoría ni altera el precio del plan.
+    </p>
     <p>
       Las marcas, nombres comerciales y logotipos de terceros que aparezcan en este sitio
       pertenecen a sus respectivos titulares. Los planes, precios y disponibilidad los determina
@@ -1041,17 +1060,17 @@
   <div class="faq-list">
     <div class="faq-item reveal">
       <button class="faq-question" aria-expanded="false">
-        ¿De verdad no hay contratos forzosos?
+        ¿Tengo que firmar un contrato?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer">¡Así es! Creemos en la libertad del cliente. No hay plazos mínimos de permanencia: cancelas el servicio cuando quieras, sin pagar penalizaciones por "terminación anticipada".</div>
+      <div class="faq-answer">El plan de servicio es mes a mes y puedes cancelarlo cuando quieras. La excepción es el equipo: si lo compras financiado o con descuento, el proveedor puede cobrarte el saldo pendiente al cancelar o pedirte mantener la línea un tiempo para conservar el descuento. Te lo explicamos antes de que contrates.</div>
     </div>
     <div class="faq-item reveal">
       <button class="faq-question" aria-expanded="false">
         ¿Qué necesito para contratar si soy extranjero?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer">Solo una identificación oficial vigente. Aceptamos pasaporte de cualquier país para abrir tu cuenta, sin trámites complicados de por medio.</div>
+      <div class="faq-answer">Una identificación oficial vigente. Muchos proveedores aceptan pasaporte extranjero, pero los documentos exactos dependen del proveedor y del plan; te confirmamos cuáles necesitas antes de iniciar el trámite.</div>
     </div>
     <div class="faq-item reveal">
       <button class="faq-question" aria-expanded="false">
@@ -1086,21 +1105,21 @@
         ¿Me piden verificación de crédito para aplicar?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer">Como aceptamos pasaporte y no manejamos contratos a largo plazo, nuestros requisitos son mucho más flexibles que los de las compañías tradicionales. ¡Consúltanos y te damos una respuesta rápida!</div>
+      <div class="faq-answer">Depende del plan. Los planes de servicio sin equipo normalmente no requieren verificación de crédito. Si financias un equipo, el proveedor sí puede revisar tu crédito, y la aprobación y las condiciones del financiamiento las decide él, no nosotros.</div>
     </div>
     <div class="faq-item reveal">
       <button class="faq-question" aria-expanded="false">
-        ¿En cuánto tiempo me llega el equipo?
+        ¿Cuándo queda activa mi línea?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer">Sabemos que estar conectado no puede esperar. Una vez aprobada tu solicitud, solemos agendar el envío en un plazo de 24 a 72 horas hábiles. El plazo final lo define el proveedor que elijas.</div>
+      <div class="faq-answer">Con eSIM y un teléfono compatible, la activación suele completarse el mismo día. Si necesitas SIM física o un equipo nuevo, el envío tarda normalmente de 24 a 72 horas hábiles tras la aprobación y la línea se activa al recibirlo. El plazo final lo define el proveedor.</div>
     </div>
     <div class="faq-item reveal">
       <button class="faq-question" aria-expanded="false">
         ¿Puedo cambiar mi plan más adelante?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer">¡Claro que sí! Como no hay contrato, puedes subir o bajar de plan según lo que necesites. Como trabajamos con varios proveedores, también podemos revisar contigo si otro se ajusta mejor.</div>
+      <div class="faq-answer">Sí. Como el plan es mes a mes, puedes subir o bajar de plan según lo que necesites. Como trabajamos con varios proveedores, también podemos revisar contigo si otro se ajusta mejor.</div>
     </div>
   </div>
 </section>
@@ -1109,9 +1128,9 @@
 <section class="lead-section">
   <span class="lead-eyebrow">Contacto Directo</span>
   <h2>Llámanos<br><em>ahora mismo.</em></h2>
-  <p>Un asesor en español te contesta al instante. Sin esperas ni formularios.</p>
+  <p>Asesores en español de lunes a domingo, de 8 AM a 9 PM (hora de Texas, CT).</p>
   <a class="lead-btn" href="tel:+18884702820">Llamar +1 (888) 470-2820 &rarr;</a>
-  <p class="lead-note">Atención en español. La llamada no tiene costo.</p>
+  <p class="lead-note">Llamada sin costo (número 888). Fuera de horario te devolvemos la llamada el siguiente día hábil.</p>
 </section>
 
 <!-- FOOTER -->
@@ -1119,7 +1138,7 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <h4>Quiénes Somos</h4>
-      <p>Agente independiente de servicios móviles. Comparamos planes de varios proveedores participantes en las mejores redes 5G de Estados Unidos.</p>
+      <p>Agente independiente de servicios móviles. Comparamos planes de varios proveedores participantes en redes 5G de Estados Unidos.</p>
       <a href="#quienes-somos" class="footer-brand-link">Conocer más →</a>
       <p class="footer-brand-loc">Texas, EE.UU.</p>
     </div>
@@ -1141,7 +1160,7 @@
     <div class="footer-col">
       <h4>Contacto</h4>
       <a href="tel:+18884702820">+1 (888) 470-2820</a>
-      <a>Lun–Dom 8:00AM–9:00PM</a>
+      <a>Lun–Dom 8 AM–9 PM (hora de Texas, CT)</a>
       <a>Texas, Estados Unidos</a>
     </div>
   </div>
@@ -1152,10 +1171,23 @@
     <span>
       <a href="privacidad.html">Privacidad</a> &nbsp;·&nbsp;
       <a href="terminos.html">Términos</a> &nbsp;·&nbsp;
-      <a href="#" id="ccpa-link">No vender mis datos (CCPA)</a>
+      <a href="privacidad.html#no-vender">No vender ni compartir mis datos</a> &nbsp;·&nbsp;
+      <a href="#" id="cookie-prefs">Preferencias de cookies</a>
     </span>
   </div>
 </footer>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+  <p class="cookie-text">
+    Usamos cookies propias y de terceros (incluido Google Ads) para medir el sitio y mostrarte publicidad relevante.
+    Solo se activan si las aceptas. <a href="privacidad.html">Política de Privacidad</a>.
+  </p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-reject" id="cookie-reject">Rechazar</button>
+    <button type="button" class="cookie-accept" id="cookie-accept">Aceptar</button>
+  </div>
+</div>
 
 <!-- ── SCRIPTS ── -->
 <script>
@@ -1247,6 +1279,26 @@
 </script>
 
 <script>
+/* Consentimiento de cookies (Consent Mode v2) */
+(function(){
+  var root = document.documentElement;
+  function setConsent(value){
+    if(navigator.globalPrivacyControl === true) value = 'denied';
+    try { localStorage.setItem('cookie_consent', value); } catch (e) {}
+    gtag('consent', 'update', {
+      ad_storage: value, analytics_storage: value, ad_user_data: value, ad_personalization: value
+    });
+    root.setAttribute('data-consent', 'set');
+  }
+  document.getElementById('cookie-accept').addEventListener('click', function(){ setConsent('granted'); });
+  document.getElementById('cookie-reject').addEventListener('click', function(){ setConsent('denied'); });
+  document.getElementById('cookie-prefs').addEventListener('click', function(e){
+    e.preventDefault(); root.setAttribute('data-consent', 'pending');
+  });
+}());
+</script>
+
+<script>
 /* Conversiones de llamadas */
 (function(){
   /* Etiqueta de la accion de conversion "Contacto" en Google Ads.
@@ -1262,8 +1314,6 @@
     });
   });
 
-  var ccpa = document.getElementById('ccpa-link');
-  if(ccpa) ccpa.addEventListener('click',function(e){ e.preventDefault(); });
 }());
 </script>
 

@@ -93,7 +93,7 @@
   <p class="updated">Última actualización: 2026</p>
 
   <div class="card">
-    <p>En <strong>lineas-moviles.com</strong>, nos preocupamos por su privacidad y nos dedicamos a cuidar sus datos personales. Este documento explica de qué manera obtenemos, manejamos y resguardamos su información cuando navega en nuestro sitio web o usa nuestros servicios de telefonía móvil en Estados Unidos.</p>
+    <p>En <strong>lineas-moviles.com</strong>, nos preocupamos por su privacidad y nos dedicamos a cuidar sus datos personales. Este documento explica de qué manera obtenemos, manejamos y resguardamos su información cuando navega en nuestro sitio web o nos llama para contratar una línea móvil en Estados Unidos. Connecting es un agente independiente; el servicio móvil lo presta el proveedor que usted elija.</p>
   </div>
 
   <div class="card">
@@ -111,7 +111,21 @@
 
   <div class="card">
     <h2>3. Compartición de Datos con Terceros</h2>
-    <p>No comercializamos ni arrendamos sus datos personales a otras empresas.</p>
+    <p>No comercializamos ni arrendamos sus datos personales a otras empresas. Solo los compartimos con el proveedor de servicio que usted elija, en la medida necesaria para tramitar su línea.</p>
+  </div>
+
+  <div class="card" id="no-vender">
+    <h2>No vender ni compartir mis datos (CCPA/CPRA)</h2>
+    <p>No vendemos su información personal. Las cookies publicitarias de Google Ads pueden considerarse "compartir" datos para publicidad personalizada según la ley de California; solo se activan si usted las acepta.</p>
+    <p>Para ejercer su derecho a no vender ni compartir sus datos, o para solicitar acceso o eliminación de su información, llame al <a href="tel:+18884702820" style="color:#1D4ED8;">+1 (888) 470-2820</a> (Lun–Dom 8 AM–9 PM, hora de Texas, CT). Atendemos las solicitudes en un plazo máximo de 45 días. También respetamos la señal Global Privacy Control (GPC) de su navegador.</p>
+    <p><button type="button" id="optout-btn" style="background:#0F172A;color:#fff;border:none;padding:.6rem 1.2rem;border-radius:4px;font:inherit;font-weight:700;cursor:pointer;">No vender ni compartir mis datos</button> <span id="optout-msg" role="status" style="margin-left:.5rem;"></span></p>
+    <script>
+    document.getElementById('optout-btn').addEventListener('click', function(){
+      try { localStorage.setItem('cookie_consent', 'denied'); } catch (e) {}
+      if (typeof gtag === 'function') gtag('consent', 'update', { ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      document.getElementById('optout-msg').textContent = 'Listo: las cookies publicitarias quedan desactivadas en este navegador.';
+    });
+    </script>
   </div>
 
   <div class="card">
@@ -134,12 +148,12 @@
       <li><strong>Cookies publicitarias (Google Ads):</strong> utilizamos Google Ads para mostrar anuncios relevantes. Google puede usar cookies para mostrar anuncios basados en sus visitas anteriores a este sitio y a otros sitios en Internet.</li>
     </ul>
     <p>Puede optar por no recibir publicidad personalizada de Google visitando <a href="https://www.google.com/settings/ads" style="color:#1D4ED8;">Configuración de anuncios de Google</a> o el sitio <a href="https://www.aboutads.info" style="color:#1D4ED8;">www.aboutads.info</a>.</p>
-    <p>Puede ajustar su navegador para rechazar cookies o utilizar el banner de consentimiento en nuestra página principal.</p>
+    <p>Las cookies analíticas y publicitarias están desactivadas por defecto y solo se activan si usted las acepta en el aviso de cookies de la página principal. Puede cambiar su elección en cualquier momento desde el enlace "Preferencias de cookies" al pie de la página principal, o ajustar su navegador para rechazar cookies.</p>
   </div>
 
   <div class="card">
     <h2>7. Consentimiento TCPA</h2>
-    <p>Al proporcionar su número de teléfono en nuestros formularios, usted autoriza expresamente a <strong>Connecting</strong> a contactarle mediante llamadas telefónicas y/o mensajes de texto (SMS) automatizados o preregistrados, relativos a nuestros servicios de telecomunicaciones. Este consentimiento no es condición para la compra de ningún servicio. Puede revocar su consentimiento en cualquier momento solicitando ser incluido en nuestra lista interna de "No Llamar" al <a href="tel:+18884702820" style="color:#1D4ED8;">+1 (888) 470-2820</a>. Aplican tarifas de mensajes y datos.</p>
+    <p>Al proporcionar su número de teléfono durante una llamada, usted autoriza expresamente a <strong>Connecting</strong> a contactarle mediante llamadas telefónicas y/o mensajes de texto (SMS) automatizados o preregistrados, relativos a nuestros servicios de telecomunicaciones. Este consentimiento no es condición para la compra de ningún servicio. Puede revocar su consentimiento en cualquier momento solicitando ser incluido en nuestra lista interna de "No Llamar" al <a href="tel:+18884702820" style="color:#1D4ED8;">+1 (888) 470-2820</a>. Aplican tarifas de mensajes y datos.</p>
   </div>
 </div>
 
