@@ -67,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               document.documentElement.setAttribute('data-consent',(_sc||_gpc)?'set':'pending');
               gtag('consent','default',{ad_storage:_cs,analytics_storage:_cs,ad_user_data:_cs,ad_personalization:_cs,wait_for_update:_sc?0:600});
               gtag('js',new Date());
-              gtag('config','AW-18023363833');
+              gtag('config','AW-18041554210');
             `,
           }}
         />
@@ -78,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {children}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18023363833"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18041554210"
           strategy="afterInteractive"
         />
       </body>
