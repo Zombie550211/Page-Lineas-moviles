@@ -299,19 +299,6 @@
   .faq-lista details[open] summary::after { transform: rotate(-135deg) translateY(-3px); }
   .faq-lista details > div { padding: 0 24px 22px; color: var(--gris); max-width: 68ch; }
 
-  /* ── LLAMADA FINAL ── */
-  .cierre { background: var(--maiz); padding: clamp(64px, 9vw, 112px) 0; }
-  .cierre-inner { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px 64px; align-items: end; }
-  .cierre h2 { max-width: 14ch; }
-  .cierre p { font-size: 1.1rem; margin-top: 16px; max-width: 44ch; }
-  .cierre-numero {
-    display: block; font-family: var(--display); font-weight: 800; color: var(--tinta);
-    font-size: clamp(2.4rem, 5vw, 3.8rem); letter-spacing: -0.03em; line-height: 1;
-    text-decoration: none; white-space: nowrap; font-variant-numeric: tabular-nums;
-  }
-  .cierre-numero:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
-  .cierre-nota { font-size: .95rem; margin-top: 12px; }
-
   /* ── FOOTER ── */
   .footer { background: var(--tinta); color: #B9D3E0; padding: 72px 0 120px; font-size: .95rem; }
   .footer-marca { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--blanco); }
@@ -334,19 +321,17 @@
 
   /* ── BARRA DE LLAMADA FIJA: aparece cuando el bloque del hero sale de pantalla ── */
   .barra-llamada {
-    position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 998;
+    position: fixed; left: 50%; bottom: 12px; z-index: 998;
+    width: max-content; max-width: calc(100% - 24px); padding: 0 28px;
     display: flex; align-items: center; justify-content: center; gap: 12px;
     height: 58px; border-radius: 999px;
     background: var(--maiz); color: var(--tinta);
     font-weight: 700; font-size: 1.02rem; text-decoration: none;
     box-shadow: 0 8px 24px rgba(11,42,60,.28);
-    transform: translateY(calc(100% + 24px)); transition: transform .3s ease;
+    transform: translate(-50%, calc(100% + 24px)); transition: transform .3s ease;
   }
-  .barra-llamada.visible { transform: none; }
+  .barra-llamada.visible { transform: translate(-50%, 0); }
   .barra-llamada svg { width: 20px; height: 20px; }
-  @media (min-width: 900px) {
-    .barra-llamada { left: auto; right: 24px; bottom: 24px; padding: 0 28px; }
-  }
 
   /* ── COOKIES ── */
   #cookie-banner {
@@ -372,7 +357,7 @@
     .nav-call { margin-left: auto; }
   }
   @media (max-width: 900px) {
-    .hero-grid, .pasos-grid, .nosotros-grid, .faq-grid, .cierre-inner { grid-template-columns: 1fr; }
+    .hero-grid, .pasos-grid, .nosotros-grid, .faq-grid { grid-template-columns: 1fr; }
     .hero-foto { order: 2; }
     .hero-foto img { aspect-ratio: 4 / 3; border-radius: 28px 28px 28px 96px; }
     .hero-nota { right: 12px; bottom: 16px; }
@@ -747,20 +732,6 @@
         <summary>¿Puedo cancelar una solicitud que hice con ustedes?</summary>
         <div>Sí, mientras siga en proceso con nuestro equipo. Llámanos al <a href="tel:+18884702820">+1 (888) 470-2820</a> lo antes posible y la detenemos sin costo. Si el proveedor ya la procesó, la envió o la activó, tendrás que cancelarla directamente con él.</div>
       </details>
-    </div>
-  </div>
-</section>
-
-<!-- LLAMADA FINAL -->
-<section class="cierre">
-  <div class="contenedor cierre-inner">
-    <div>
-      <h2>Un asesor te contesta en español.</h2>
-      <p>Atendemos de lunes a domingo, de 8 a.m. a 9 p.m., hora del centro (Texas).</p>
-    </div>
-    <div>
-      <a href="tel:+18884702820" class="cierre-numero">+1 (888) 470-2820</a>
-      <p class="cierre-nota">El número 888 es gratuito. Si llamas fuera de horario, te devolvemos la llamada el siguiente día hábil.</p>
     </div>
   </div>
 </section>
