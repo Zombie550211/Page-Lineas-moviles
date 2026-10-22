@@ -806,16 +806,15 @@
 <script>
 /* Conversiones de llamadas */
 (function(){
-  /* Etiqueta de la accion de conversion "Contacto" en Google Ads.
-     Al retirarse el formulario, el clic a telefono es la unica conversion del sitio.
-     Si se crea una accion propia de llamadas en Ads, cambiar solo esta linea. */
-  var CONVERSION_CONTACTO = 'AW-18023363833/vhjLCP_PgMwcEPnpmpJD';
+  /* Etiqueta de la accion de conversion de llamadas en Google Ads (cuenta AW-18041554210).
+     Formato: 'AW-18041554210/ETIQUETA'. Vacio = no se envia conversion. */
+  var CONVERSION_CONTACTO = '';
 
   document.querySelectorAll('a[href^="tel:"]').forEach(function(link){
     link.addEventListener('click',function(){
       var tel = link.href.replace('tel:','');
       gtag('event','phone_call_click',{phone_number:tel});
-      gtag('event','conversion',{'send_to':CONVERSION_CONTACTO});
+      if (CONVERSION_CONTACTO) gtag('event','conversion',{'send_to':CONVERSION_CONTACTO});
     });
   });
 
