@@ -606,7 +606,8 @@
     font-family: 'Inter', system-ui, sans-serif; font-weight: 700; color: #fff;
     font-size: 2.6rem; line-height: .82; letter-spacing: -.055em; text-transform: lowercase;
   }
-  .footer-logo span { display: block; }
+  .footer-logo span { display: flex; align-items: center; gap: .6rem; }
+  .footer-logo img { width: 44px; height: 44px; flex-shrink: 0; }
   .footer-logo small {
     display: block; margin-top: .6rem;
     font-size: .75rem; font-weight: 500; letter-spacing: .3px;
@@ -1172,7 +1173,7 @@
 
 <!-- FOOTER -->
 <footer class="footer" id="contacto">
-  <a href="#servicios" class="footer-logo" aria-label="Connecting, volver al inicio"><span>connecting</span><small>Agente independiente · lineas-moviles.com</small></a>
+  <a href="#servicios" class="footer-logo" aria-label="Connecting, volver al inicio"><span><img src="/images/connecting-logo.webp" alt="" width="44" height="44" loading="lazy">connecting</span><small>Agente independiente · lineas-moviles.com</small></a>
   <p class="footer-disclaimer">
     Connecting es un agente independiente de servicios móviles. No somos, ni actuamos como,
     proveedores oficiales de las compañías. La disponibilidad, precios, promociones y condiciones finales están
