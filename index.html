@@ -256,21 +256,6 @@
   .equipo .btn { margin-top: auto; min-height: 46px; font-size: .95rem; white-space: nowrap; }
   .equipos-legal { font-size: .85rem; color: var(--gris); margin-top: 24px; max-width: 80ch; }
 
-  /* ── QUIENES SOMOS ── */
-  .nosotros { background: var(--tinta); color: var(--blanco); }
-  .nosotros-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(32px, 6vw, 88px); }
-  .nosotros h2 { color: var(--blanco); }
-  .nosotros-texto { display: flex; flex-direction: column; gap: 18px; color: #C9DCE6; }
-  .nosotros-texto .destacado { color: var(--blanco); font-size: 1.15rem; border-left: 4px solid var(--maiz); padding-left: 20px; }
-  .nosotros-datos {
-    display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 8px 40px;
-    margin-top: 12px; padding-top: 24px; border-top: 1px solid #24465A;
-  }
-  .nosotros-datos dt { font-size: .85rem; color: #8FB3C6; }
-  .nosotros-datos dd { font-weight: 700; color: var(--blanco); }
-  .nosotros-datos a { color: var(--blanco); }
-  .nosotros-datos div { display: flex; flex-direction: column; gap: 2px; }
-
   /* ── PREGUNTAS ── */
   .faq-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
   .faq-lateral { position: sticky; top: 100px; }
@@ -350,7 +335,7 @@
     .nav-call { margin-left: auto; }
   }
   @media (max-width: 900px) {
-    .hero-grid, .pasos-grid, .nosotros-grid, .faq-grid { grid-template-columns: 1fr; }
+    .hero-grid, .pasos-grid, .faq-grid { grid-template-columns: 1fr; }
     .hero-foto { order: -1; }
     .hero-foto img { aspect-ratio: 16 / 10; border-radius: 24px 24px 24px 72px; }
     .plan-familiar { grid-template-columns: 1fr; padding: 32px 24px; }
@@ -378,7 +363,6 @@
     .plan { padding: 26px 22px; }
     .saber-item { padding: 24px; }
     .saber-item.con-foto div { padding: 22px 24px 24px; }
-    .nosotros-datos { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
     .equipos-flechas { display: none; }
     .equipos-fila { grid-auto-columns: 82%; }
@@ -410,7 +394,7 @@
       <a href="#planes">Planes</a>
       <a href="#como-funciona">Cómo funciona</a>
       <a href="#equipos">Equipos</a>
-      <a href="#quienes-somos">Quiénes somos</a>
+      <a href="#contacto">Quiénes somos</a>
       <a href="#preguntas">Preguntas</a>
     </nav>
     <a href="tel:+18884702820" class="btn btn-tinta nav-call"><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar<span class="solo-escritorio">&nbsp;(888) 470-2820</span></a>
@@ -467,12 +451,12 @@
         </div>
         <div class="plan-cuerpo">
           <ul class="plan-lista">
-            <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Datos ilimitados en las cuatro líneas, con priorización de red pasado cierto consumo</li>
+            <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Datos ilimitados en las cuatro líneas*</li>
             <li><svg aria-hidden="true"><use href="#i-ok"/></svg>¿Necesitas menos de 4? Te damos el precio por teléfono</li>
           </ul>
           <div class="plan-pie">
             <a href="tel:+18884702820" class="btn btn-maiz"><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar para contratar</a>
-            <p class="plan-cond">Precio total de las 4 líneas, sin impuestos. Las cuatro se activan con el mismo proveedor. <a href="terminos.html">Condiciones completas</a></p>
+            <p class="plan-cond">Precio total de las 4 líneas, sin impuestos. Las cuatro se activan con el mismo proveedor. *Pasado cierto consumo, el proveedor puede priorizar la red. <a href="terminos.html">Condiciones completas</a></p>
           </div>
         </div>
       </article>
@@ -484,13 +468,13 @@
           <p class="plan-impuestos">Más impuestos y cargos regulatorios</p>
         </div>
         <ul class="plan-lista">
-          <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Datos 5G ilimitados, con priorización de red pasado cierto consumo</li>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Datos 5G ilimitados*</li>
           <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Llamadas y mensajes sin límite</li>
           <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Atención en español todos los días, de 8 a.m. a 9 p.m. (hora de Texas, CT)</li>
         </ul>
         <div class="plan-pie">
           <a href="tel:+18884702820" class="btn btn-tinta"><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar para contratar</a>
-          <p class="plan-cond">Precio por línea, sin impuestos. Depende de la disponibilidad del proveedor en tu zona. <a href="terminos.html">Condiciones completas</a></p>
+          <p class="plan-cond">Precio por línea, sin impuestos. Depende de la disponibilidad del proveedor en tu zona. *Pasado cierto consumo, el proveedor puede priorizar la red. <a href="terminos.html">Condiciones completas</a></p>
         </div>
       </article>
 
@@ -501,13 +485,13 @@
           <p class="plan-impuestos">Más impuestos y cargos regulatorios</p>
         </div>
         <ul class="plan-lista">
-          <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Datos 5G ilimitados, con priorización de red pasado cierto consumo</li>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Datos 5G ilimitados*</li>
           <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Puedes sumar un equipo de alta gama</li>
           <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Atención en español todos los días, de 8 a.m. a 9 p.m. (hora de Texas, CT)</li>
         </ul>
         <div class="plan-pie">
           <a href="tel:+18884702820" class="btn btn-tinta"><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar para contratar</a>
-          <p class="plan-cond">Precio por línea, sin impuestos. El proveedor define el equipo y sus condiciones; si lo financias, puede pedirte permanencia o cobrarte el saldo al cancelar. <a href="terminos.html">Condiciones completas</a></p>
+          <p class="plan-cond">Precio por línea, sin impuestos. El proveedor define el equipo y sus condiciones; si lo financias, puede pedirte permanencia o cobrarte el saldo al cancelar. *Pasado cierto consumo, el proveedor puede priorizar la red. <a href="terminos.html">Condiciones completas</a></p>
         </div>
       </article>
 
@@ -657,23 +641,6 @@
   </div>
 </section>
 
-<!-- QUIENES SOMOS: identidad del anunciante exigida por Google Ads -->
-<section class="nosotros seccion" id="quienes-somos">
-  <div class="contenedor nosotros-grid">
-    <h2>Quién está detrás de esta página.</h2>
-    <div class="nosotros-texto">
-      <p class="destacado">Connecting es un agente independiente de servicios móviles. Ayudamos a personas en Estados Unidos a conocer sus opciones de telefonía móvil y a contratar con proveedores participantes. No somos una compañía de red móvil y no representamos a ningún operador, salvo que se indique expresamente.</p>
-      <p>No dependemos de un solo operador: comparamos planes de varios proveedores y te mostramos el que mejor encaja con tu zona, tu presupuesto y tu consumo. Nuestros asesores hablan español, revisan la señal en tu dirección y te explican cada opción antes de contratar. El contrato de servicio lo haces directamente con el proveedor que elijas.</p>
-      <p>Las marcas, nombres comerciales y logotipos de terceros que aparecen en este sitio son de sus respectivos dueños. Cada proveedor fija sus planes, precios y disponibilidad, y puede cambiarlos sin aviso previo.</p>
-      <dl class="nosotros-datos">
-        <div><dt>Empresa</dt><dd>Connecting</dd></div>
-        <div><dt>Operamos desde</dt><dd>Texas, Estados Unidos</dd></div>
-        <div><dt>Teléfono</dt><dd><a href="tel:+18884702820">+1 (888) 470-2820</a></dd></div>
-      </dl>
-    </div>
-  </div>
-</section>
-
 <!-- PREGUNTAS -->
 <section class="seccion" id="preguntas">
   <div class="contenedor faq-grid">
@@ -745,7 +712,7 @@
       <span>Agente independiente de servicios móviles<small>lineas-moviles.com</small></span>
     </a>
     <p class="footer-aviso">
-      Connecting es un agente independiente de servicios móviles. No somos proveedores oficiales de las compañías ni actuamos en su nombre. La disponibilidad, los precios, las promociones y las condiciones finales dependen de los términos de cada proveedor. Las marcas mencionadas pertenecen a sus respectivos dueños.
+      Connecting es un agente independiente de servicios móviles: ayudamos a personas en Estados Unidos a conocer sus opciones de telefonía móvil y a contratar con proveedores participantes. No somos una compañía de red móvil, no somos proveedores oficiales de las compañías y no representamos a ningún operador, salvo que se indique expresamente. El contrato de servicio lo haces directamente con el proveedor que elijas. La disponibilidad, los precios, las promociones y las condiciones finales dependen de los términos de cada proveedor, que puede cambiarlos sin aviso previo. Las marcas, nombres comerciales y logotipos de terceros pertenecen a sus respectivos dueños.
     </p>
     <div class="footer-grid">
       <nav class="footer-col" aria-label="Planes">
@@ -760,7 +727,7 @@
         <a href="ayuda.html">Centro de ayuda</a>
         <a href="#preguntas">Preguntas frecuentes</a>
         <a href="#como-funciona">Cómo funciona</a>
-        <a href="#quienes-somos">Quiénes somos</a>
+        <a href="#contacto">Quiénes somos</a>
       </nav>
       <nav class="footer-col" aria-label="Enlaces legales">
         <h3>Legal</h3>
