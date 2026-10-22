@@ -9,8 +9,8 @@
      el clickjacking lo cubre X-Frame-Options, que CloudFront si envia.
      Al retirar Botpress ya no hay terceros mas alla de Google. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google.com https://www.google.com.mx https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://td.doubleclick.net https://stats.g.doubleclick.net; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://td.doubleclick.net https://stats.g.doubleclick.net https://www.google.com; frame-src https://td.doubleclick.net https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
-<title>Líneas Móviles | Planes 5G para tu Familia</title>
-<meta name="description" content="Planes de líneas móviles 5G desde $55/mes + impuestos. Planes mes a mes sin contrato anual y atención en español. Agente independiente con varios proveedores en Estados Unidos.">
+<title>Connecting | Agente independiente de planes móviles 5G</title>
+<meta name="description" content="Connecting, agente independiente de servicios móviles: comparamos planes 5G de varios proveedores en Estados Unidos. Desde $55/mes + impuestos, mes a mes, sin contrato anual y en español.">
 <link rel="canonical" href="https://lineas-moviles.com">
 <meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -142,19 +142,26 @@
     border-bottom: 1px solid var(--border);
     height: 64px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
     align-items: center;
     padding: 0 max(4%, calc((100% - 1360px) / 2));
   }
-  .nav-left { display: flex; align-items: center; gap: .2rem; }
+  .nav-left { display: flex; align-items: center; justify-content: center; gap: .2rem; }
   .nav-center { display: flex; align-items: center; }
   .nav-right { display: flex; align-items: center; justify-content: flex-end; gap: .2rem; }
   .nav-logo { text-decoration: none; display: flex; align-items: center; gap: 9px; }
-  .nav-logo img { height: 32px; }
+  .nav-logo img { height: 32px; width: auto; }
   .nav-logo-text {
     font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    font-size: 1.2rem; font-weight: 700;
+    font-size: 1.2rem; font-weight: 700; line-height: 1;
     color: var(--black); letter-spacing: .3px;
+  }
+  .nav-logo-text small {
+    display: block; margin-top: 3px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: .62rem; font-weight: 500; letter-spacing: .4px;
+    color: var(--muted);
   }
   .nav-link {
     color: var(--black); text-decoration: none;
@@ -600,6 +607,11 @@
     font-size: 2.6rem; line-height: .82; letter-spacing: -.055em; text-transform: lowercase;
   }
   .footer-logo span { display: block; }
+  .footer-logo small {
+    display: block; margin-top: .6rem;
+    font-size: .75rem; font-weight: 500; letter-spacing: .3px;
+    text-transform: none; line-height: 1.4; color: rgba(255,255,255,.55);
+  }
   .footer-disclaimer {
     font-size: .8rem; line-height: 1.7; color: rgba(255,255,255,.55);
     max-width: 760px; margin-bottom: 3rem;
@@ -664,7 +676,9 @@
     nav .nav-left { display: none; }
     .nav-right { gap: .5rem; min-width: 0; flex-shrink: 1; }
     .nav-right .nav-link { display: none; }
-    .nav-logo-text { display: none; }
+    .nav-logo img { display: none; }
+    .nav-logo-text { font-size: 1.05rem; }
+    .hero-eyebrow { letter-spacing: 1.5px; line-height: 1.6; }
     .hero h1 { font-size: 3rem; }
     .split { grid-template-columns: 1fr; }
     .split-image { min-height: 300px; }
@@ -687,6 +701,10 @@
 
 <!-- NAV -->
 <nav>
+  <a href="#servicios" class="nav-logo" aria-label="Connecting, agente independiente de servicios móviles. Ir al inicio">
+    <img src="/images/Connecting_logo.webp" alt="" width="57" height="32">
+    <span class="nav-logo-text">Connecting<small>Agente independiente</small></span>
+  </a>
   <div class="nav-left">
     <a href="#servicios" class="nav-link">Servicios</a>
     <a href="#familiar" class="nav-link">Familias</a>
@@ -736,9 +754,9 @@
   </div>
   <div class="hero-content">
     <div class="hero-text">
-      <p class="hero-eyebrow">Redes 5G nacionales · Varios proveedores</p>
+      <p class="hero-eyebrow">Connecting · Agente independiente de servicios móviles</p>
       <h1>Tu familia,<br><em>conectada</em> hoy.</h1>
-      <p class="hero-sub">Planes desde $55/mes + impuestos, mes a mes, sin contrato anual. Te atendemos en español y te ayudamos con la activación desde tu primera llamada.</p>
+      <p class="hero-sub">En Connecting comparamos planes de varios proveedores sobre redes 5G nacionales y te ayudamos a contratar el que elijas. Desde $55/mes + impuestos, mes a mes, sin contrato anual y con atención en español.</p>
       <div class="hero-actions">
         <a href="tel:+18884702820" class="btn-hero-main">📞 Habla con un Asesor</a>
         <a href="#planes" class="btn-hero-ghost">Ver los planes →</a>
@@ -1153,7 +1171,7 @@
 
 <!-- FOOTER -->
 <footer class="footer" id="contacto">
-  <a href="#servicios" class="footer-logo" aria-label="lineas-moviles.com, volver al inicio"><span>lineas</span><span>moviles</span></a>
+  <a href="#servicios" class="footer-logo" aria-label="Connecting, volver al inicio"><span>connecting</span><small>Agente independiente · lineas-moviles.com</small></a>
   <p class="footer-disclaimer">
     Connecting es un agente independiente de servicios móviles. No somos, ni actuamos como,
     proveedores oficiales de las compañías. La disponibilidad, precios, promociones y condiciones finales están
