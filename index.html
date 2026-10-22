@@ -9,16 +9,15 @@
      el clickjacking lo cubre X-Frame-Options, que CloudFront si envia.
      Al retirar Botpress ya no hay terceros mas alla de Google. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google.com https://www.google.com.mx https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://td.doubleclick.net https://stats.g.doubleclick.net; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://td.doubleclick.net https://stats.g.doubleclick.net https://www.google.com; frame-src https://td.doubleclick.net https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
-<title>Connecting | Agente independiente de planes móviles 5G</title>
-<meta name="description" content="Connecting, agente independiente de servicios móviles: comparamos planes 5G de varios proveedores en Estados Unidos. Desde $55/mes + impuestos, mes a mes, sin contrato anual y en español.">
+<title>Connecting | Planes móviles 5G en español, agente independiente</title>
+<meta name="description" content="Connecting es un agente independiente: te ayudamos a comparar planes móviles 5G de varios proveedores en Estados Unidos. Desde $55/mes + impuestos, mes a mes, sin contrato anual y con atención en español.">
 <link rel="canonical" href="https://lineas-moviles.com">
 <meta name="robots" content="index, follow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="/images/connecting-logo.webp" type="image/webp">
 <link rel="preconnect" href="https://www.googletagmanager.com">
-<link rel="preload" as="image" href="/images/sim-entrando.webp" fetchpriority="high">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
+<link rel="preload" as="image" href="/images/familia-1600.webp" imagesrcset="/images/familia-800.webp 800w, /images/familia-1600.webp 1600w" imagesizes="(max-width: 900px) 100vw, 50vw" fetchpriority="high">
+<link rel="preload" href="/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Google Ads tag + Consent Mode v2 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18041554210"></script>
 <script>
@@ -42,1184 +41,778 @@
   gtag('config', 'AW-18041554210');
 </script>
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; font-size: 16px; }
-  body {
-    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-    background: #FAFAF8;
-    color: #0A0A0A;
-    overflow-x: hidden;
+  /* Fuentes alojadas en el sitio (subconjunto latino, variables): sin hoja externa que bloquee el render */
+  @font-face {
+    font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 500 800; font-stretch: 100%; font-display: swap;
+    src: url('/fonts/bricolage-grotesque-latin.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Figtree'; font-style: normal; font-weight: 400 700; font-display: swap;
+    src: url('/fonts/figtree-latin.woff2') format('woff2');
   }
 
   :root {
-    --cream:      #FAFAF8;
-    --cream-dark: #F2F0EC;
-    --black:      #0A0A0A;
-    --blue:       #2563EB;
-    --blue-light: #EFF6FF;
-    --muted:      #6B6B6B;
-    --border:     #E2E0DC;
-    --white:      #FFFFFF;
+    --tinta:       #0B2A3C;
+    --mar:         #0A6E95;
+    --cielo:       #3AA6D0;
+    --cielo-claro: #E3F2F8;
+    --maiz:        #FFC23D;
+    --maiz-hover:  #FFD066;
+    --papel:       #F4F8FA;
+    --blanco:      #FFFFFF;
+    --linea:       #D3E2EA;
+    --gris:        #4F6573;
+
+    --display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
+    --texto:   'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+    --ancho: 1180px;
+    --gutter: clamp(16px, 4vw, 40px);
   }
 
-  /* ── FADE-IN ON SCROLL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity .65s ease, transform .65s ease;
-    will-change: opacity, transform;
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    font-family: var(--texto);
+    font-size: 1.0625rem; line-height: 1.6;
+    background: var(--papel); color: var(--tinta);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: var(--mar); }
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--mar); outline-offset: 3px; border-radius: 6px;
   }
-  .reveal-delay-1 { transition-delay: .1s; }
-  .reveal-delay-2 { transition-delay: .2s; }
-  .reveal-delay-3 { transition-delay: .3s; }
+  .contenedor { width: 100%; max-width: var(--ancho); margin: 0 auto; padding: 0 var(--gutter); }
 
-  /* ── FOOTER CALL BUTTON ── */
-  /* CTA de llamada: barra fija a todo el ancho sobre el borde inferior. */
-  .footer-call {
-    display: flex; align-items: center; justify-content: center; gap: 12px;
-    position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 998;
-    height: 58px; padding: 0 20px;
-    background: #F5A524; color: #111;
-    font-size: 1rem; font-weight: 700; letter-spacing: 0; text-transform: none;
-    text-decoration: none; white-space: nowrap;
-    border: none; border-radius: 10px;
-    box-shadow: 0 6px 20px rgba(0,0,0,.35);
-    transition: background .18s;
+  h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -0.02em; font-weight: 750; }
+  h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); max-width: 18ch; }
+  h3 { font-size: 1.35rem; letter-spacing: -0.01em; font-weight: 700; }
+  .intro { color: var(--gris); max-width: 60ch; margin-top: 1rem; }
+  .seccion { padding: clamp(64px, 9vw, 120px) 0; }
+
+  /* ── BOTONES ── */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 52px; padding: 0 26px;
+    font-family: var(--texto); font-size: 1rem; font-weight: 700;
+    text-decoration: none; border-radius: 999px;
+    transition: background-color .15s ease;
   }
-  .footer-call:hover { background: #FFB733; }
-  .footer-call svg { width: 20px; height: 20px; flex-shrink: 0; }
-  .plan-tax { font-size: .7rem; color: var(--muted); letter-spacing: .3px; margin-top: -.4rem; }
-  .plan-card.featured .plan-tax { color: rgba(255,255,255,.5); }
-  .plan-cond-link { margin-top: .5rem; text-decoration: underline; }
-  .about-section {
-    padding: 100px max(4%, calc((100% - 860px) / 2));
-    background: var(--cream-dark);
-    border-top: 1px solid var(--border);
-  }
-  .about-header { text-align: center; margin-bottom: 2.5rem; }
-  .about-body { display: flex; flex-direction: column; gap: 1.4rem; }
-  .about-body p { font-size: 1rem; line-height: 1.8; color: var(--muted); }
-  .about-disclaimer {
-    border-left: 3px solid var(--blue);
-    padding: 1.25rem 0 1.25rem 1.5rem;
-    font-size: .95rem; line-height: 1.8; color: var(--black);
-    background: var(--white);
-  }
-  .about-meta {
-    display: flex; flex-wrap: wrap; gap: .5rem 2rem;
-    margin-top: 1rem; padding-top: 1.75rem; border-top: 1px solid var(--border);
-    font-size: .78rem; color: var(--muted); letter-spacing: .3px;
-  }
-  .about-meta strong { color: var(--black); font-weight: 600; }
-  .about-steps { padding-left: 1.25rem; display: flex; flex-direction: column; gap: .75rem; font-size: 1rem; line-height: 1.7; color: var(--muted); }
-  .about-steps strong { color: var(--black); font-weight: 600; }
-  .carousel-legal { max-width: 860px; margin: 2rem auto 0; padding: 0 5%; font-size: .72rem; line-height: 1.6; color: var(--muted); text-align: center; }
-  @media (max-width: 768px) {
-    .footer-call { height: 54px; font-size: .92rem; gap: 10px; }
-    .about-section { padding: 60px 5%; }
-    .about-meta { flex-direction: column; gap: .5rem; }
-    .nav-cta-llamativo {
-      font-size: .78rem !important;
-      padding: 8px 12px !important;
-      letter-spacing: .5px !important;
-    }
-  }
-  @keyframes pulse-call {
-    0% { box-shadow: 0 0 0 0 rgba(37,99,235,0.18); }
-    70% { box-shadow: 0 0 0 12px rgba(37,99,235,0.08); }
-    100% { box-shadow: 0 0 0 0 rgba(37,99,235,0.18); }
-  }
+  .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .btn-maiz { background: var(--maiz); color: var(--tinta); }
+  .btn-maiz:hover { background: var(--maiz-hover); }
+  .btn-tinta { background: var(--tinta); color: var(--blanco); }
+  .btn-tinta:hover { background: var(--mar); }
+  .btn-borde { border: 2px solid var(--tinta); color: var(--tinta); }
+  .btn-borde:hover { background: var(--tinta); color: var(--blanco); }
 
   /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 1000;
-    background: rgba(250,250,248,.94);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    height: 64px;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 1rem;
-    align-items: center;
-    padding: 0 max(4%, calc((100% - 1360px) / 2));
+  .nav {
+    position: sticky; top: 0; z-index: 1000;
+    background: var(--papel);
+    border-bottom: 1px solid var(--linea);
   }
-  .nav-left { display: flex; align-items: center; justify-content: center; gap: .2rem; }
-  .nav-center { display: flex; align-items: center; }
-  .nav-right { display: flex; align-items: center; justify-content: flex-end; gap: .2rem; }
-  .nav-logo { text-decoration: none; display: flex; align-items: center; gap: 9px; }
-  .nav-logo img { height: 32px; width: auto; }
-  .nav-logo-text {
-    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    font-size: 1.2rem; font-weight: 700; line-height: 1;
-    color: var(--black); letter-spacing: .3px;
+  .nav-inner { display: flex; align-items: center; gap: 24px; height: 68px; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--tinta); }
+  .nav-logo img { width: 34px; height: 34px; }
+  .nav-logo span { font-size: .82rem; line-height: 1.2; color: var(--gris); max-width: 11ch; }
+  .nav-links { display: flex; gap: 4px; margin-left: auto; }
+  .nav-links a {
+    color: var(--tinta); text-decoration: none; font-size: .95rem;
+    padding: 8px 12px; border-radius: 999px;
   }
-  .nav-logo-text small {
-    display: block;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: .62rem; font-weight: 500; letter-spacing: .4px;
-    color: var(--muted);
-  }
-  .nav-link {
-    color: var(--black); text-decoration: none;
-    font-size: .8rem; font-weight: 500; letter-spacing: .3px;
-    padding: 7px 12px; border-radius: 6px;
-    transition: background .2s; white-space: nowrap;
-  }
-  .nav-link:hover { background: var(--cream-dark); }
-  .nav-cta {
-    background: var(--black); color: var(--white);
-    font-size: .8rem; font-weight: 600;
-    padding: 8px 18px; border-radius: 2px;
-    text-decoration: none; letter-spacing: .5px;
-    transition: background .2s; white-space: nowrap;
-    text-transform: uppercase;
-  }
-  .nav-cta:hover { background: #333; }
+  .nav-links a:hover { background: var(--cielo-claro); }
+  .nav-call { min-height: 44px; padding: 0 18px; font-size: .95rem; }
+  .nav-call .solo-escritorio { display: inline; }
 
   /* ── HERO ── */
-  .hero {
-    position: relative;
-    height: 100vh; min-height: 600px;
-    overflow: hidden;
-    display: flex; align-items: flex-end;
-    padding-top: 64px;
-  }
-  .hero-slides { position: absolute; inset: 0; }
-  .hero-slide {
-    position: absolute; inset: 0;
-    opacity: 0; transition: opacity 1s ease;
-  }
-  .hero-slide.active { opacity: 1; }
-  .hero-slide img {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: center top;
-  }
-  .hero-slide::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.2) 55%, transparent 100%);
-  }
-  .hero-content {
-    position: relative; z-index: 2;
-    width: 100%;
-    padding: 0 max(4%, calc((100% - 1360px) / 2)) 60px;
-    display: flex; align-items: flex-end; justify-content: space-between;
-    gap: 2rem;
-  }
-  .hero-text { max-width: 680px; }
-  .hero-eyebrow {
-    font-size: .72rem; font-weight: 600; letter-spacing: 4px;
-    text-transform: uppercase; color: rgba(255,255,255,.6);
-    margin-bottom: 1rem;
-  }
-  .hero h1 {
-    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    font-size: clamp(3.2rem, 7vw, 7rem);
-    font-weight: 600; color: #fff;
-    line-height: 1.0; letter-spacing: -1px;
-    margin-bottom: 1.2rem;
-  }
-  .hero h1 em { font-style: italic; color: rgba(255,255,255,.75); }
-  .hero-sub {
-    font-size: 1rem; color: rgba(255,255,255,.65);
-    line-height: 1.7; max-width: 480px; margin-bottom: 2rem;
-  }
-  .hero-actions { display: flex; align-items: center; gap: 1rem; }
-  .btn-hero-main {
-    background: #fff; color: var(--black);
-    padding: 14px 32px; font-size: .85rem;
-    font-weight: 600; letter-spacing: .5px; text-transform: uppercase;
-    text-decoration: none; border-radius: 2px;
-    transition: background .2s, transform .2s;
-  }
-  .btn-hero-main:hover { background: var(--cream); transform: translateY(-1px); }
-  .btn-hero-ghost {
-    color: rgba(255,255,255,.8); font-size: .85rem; font-weight: 500;
-    text-decoration: none; display: flex; align-items: center; gap: 6px;
-    border-bottom: 1px solid rgba(255,255,255,.3);
-    padding-bottom: 2px;
-    transition: color .2s, border-color .2s;
-  }
-  .btn-hero-ghost:hover { color: #fff; border-color: #fff; }
-  /* Paginación numerada */
-  .hero-pagination {
-    display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
-    flex-shrink: 0;
-  }
-  .hero-page-counter {
-    font-size: .75rem; font-weight: 500;
-    color: rgba(255,255,255,.5); letter-spacing: 1px;
-    margin-bottom: 8px;
-  }
-  .hero-page-counter span { color: #fff; font-weight: 700; }
-  .hero-dots { display: flex; flex-direction: row; gap: 8px; }
-  .hero-dot {
-    width: 28px; height: 2px; background: rgba(255,255,255,.3);
-    cursor: pointer; transition: background .3s, width .3s;
-    border: none;
-  }
-  .hero-dot.active { background: #fff; width: 48px; }
+  .hero { padding: clamp(32px, 5vw, 64px) 0 clamp(56px, 7vw, 96px); }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+  .hero h1 { font-size: clamp(2.6rem, 5.6vw, 4.6rem); max-width: 14ch; }
+  .hero-sub { font-size: 1.15rem; color: var(--gris); max-width: 46ch; margin: 22px 0 32px; }
 
-  /* ── STRIP (stats) ── */
-  .stats-strip {
-    background: var(--black); color: #fff;
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    border-bottom: 1px solid rgba(255,255,255,.08);
+  /* El elemento protagonista: el numero de telefono */
+  .llamada {
+    display: block; text-decoration: none; color: var(--tinta);
+    background: var(--maiz); border-radius: 28px;
+    padding: 22px 28px 24px; max-width: 520px;
+    transition: background-color .15s ease, transform .15s ease;
   }
-  .stat-item {
-    padding: 28px 24px; text-align: center;
-    border-right: 1px solid rgba(255,255,255,.08);
+  .llamada:hover { background: var(--maiz-hover); }
+  .llamada:active { transform: scale(.99); }
+  .llamada-label { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 1rem; }
+  .llamada-label svg { width: 20px; height: 20px; }
+  .llamada-numero {
+    display: block; font-family: var(--display); font-weight: 800;
+    font-size: clamp(2.3rem, 5.2vw, 3.6rem); line-height: 1.05; letter-spacing: -0.03em;
+    margin: 6px 0 4px; white-space: nowrap;
+    font-variant-numeric: tabular-nums;
   }
-  .stat-item:last-child { border-right: none; }
-  .stat-num {
-    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    font-size: 2.4rem; font-weight: 700;
-    line-height: 1; letter-spacing: -1px;
-  }
-  .stat-label { font-size: .72rem; color: rgba(255,255,255,.45); margin-top: 4px; letter-spacing: .5px; }
+  .llamada-horario { font-size: .92rem; }
 
-  /* ── SECTION HEADER ── */
-  .section-header { text-align: center; margin-bottom: 4rem; }
-  .section-eyebrow {
-    font-size: .68rem; font-weight: 600; letter-spacing: 4px;
-    text-transform: uppercase; color: var(--muted);
-    display: block; margin-bottom: 1rem;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    font-size: clamp(2.4rem, 4vw, 3.8rem);
-    font-weight: 600; color: var(--black);
-    line-height: 1.08; letter-spacing: -.5px;
-  }
-  .section-sub {
-    font-size: .95rem; color: var(--muted);
-    margin-top: .8rem; max-width: 520px; margin-left: auto; margin-right: auto;
-    line-height: 1.75;
-  }
+  .hero-datos { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 28px; }
+  .hero-datos li { display: flex; align-items: center; gap: 8px; font-size: .98rem; }
+  .hero-datos svg { width: 20px; height: 20px; color: var(--mar); flex-shrink: 0; }
 
-  /* ── SPLIT SECTIONS ── */
-  .split { display: grid; grid-template-columns: 1fr 1fr; }
-  .split-image {
-    position: relative; overflow: hidden;
-    min-height: 560px;
+  .hero-foto { position: relative; }
+  .hero-foto img {
+    width: 100%; aspect-ratio: 4 / 4.4; object-fit: cover; object-position: 38% center;
+    border-radius: 36px 36px 36px 140px;
   }
-  .split-image img {
-    width: 100%; height: 100%;
-    object-fit: cover; display: block;
-    transition: transform .9s ease;
+  .hero-nota {
+    position: absolute; right: -12px; bottom: 28px;
+    background: var(--blanco); border-radius: 20px; padding: 14px 18px;
+    box-shadow: 0 10px 30px rgba(11,42,60,.14);
+    font-size: .92rem; max-width: 230px; line-height: 1.4;
   }
-  .split:hover .split-image img { transform: scale(1.04); }
-  .split-content {
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 80px 72px; gap: 24px;
-    background: var(--white);
-  }
-  .split-tag {
-    font-size: .68rem; font-weight: 600; letter-spacing: 4px;
-    text-transform: uppercase; color: var(--muted);
-  }
-  .split-content h2 {
-    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    font-size: clamp(2rem, 3.5vw, 3.2rem);
-    font-weight: 600; color: var(--black);
-    line-height: 1.08; letter-spacing: -.3px;
-  }
-  .split-content h2 em { font-style: italic; color: var(--muted); }
-  .split-content p { font-size: .95rem; color: var(--muted); line-height: 1.8; max-width: 380px; }
-  .split-dark .split-content { background: var(--black); }
-  .split-dark .split-content h2 { color: #fff; }
-  .split-dark .split-content h2 em { color: rgba(255,255,255,.5); }
-  .split-dark .split-content p { color: rgba(255,255,255,.5); }
-  .split-dark .split-tag { color: rgba(255,255,255,.4); }
-  .split-cream .split-content { background: var(--cream-dark); }
-
-  /* ── BUTTONS ── */
-  .btn-dark {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 13px 30px; background: var(--black); color: #fff;
-    font-size: .82rem; font-weight: 600; letter-spacing: .5px;
-    text-transform: uppercase; text-decoration: none; border-radius: 2px;
-    transition: background .2s, transform .2s; border: none; cursor: pointer;
-  }
-  .btn-dark:hover { background: #333; transform: translateY(-1px); }
-  .btn-outline-dark {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 28px;
-    color: var(--black); background: transparent;
-    font-size: .82rem; font-weight: 600; letter-spacing: .5px;
-    text-transform: uppercase; text-decoration: none; border-radius: 2px;
-    border: 1.5px solid var(--black);
-    transition: all .2s; cursor: pointer;
-  }
-  .btn-outline-dark:hover { background: var(--black); color: #fff; }
-  .btn-outline-white {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 28px;
-    color: #fff; background: transparent;
-    font-size: .82rem; font-weight: 600; letter-spacing: .5px;
-    text-transform: uppercase; text-decoration: none; border-radius: 2px;
-    border: 1.5px solid rgba(255,255,255,.4);
-    transition: all .2s; cursor: pointer;
-  }
-  .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,.07); }
-
-  /* ── CAROUSEL ── */
-  .carousel-section {
-    background: var(--cream); padding: 100px 0 80px;
-    overflow: hidden; border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .carousel-header {
-    padding: 0 max(4%, calc((100% - 1360px) / 2));
-    margin-bottom: 3.5rem;
-    text-align: center;
-  }
-  .carousel-wrapper { overflow: hidden; width: 100%; }
-  .carousel-track { display: flex; width: 100%; transition: transform .6s cubic-bezier(.4,0,.2,1); }
-  .carousel-slide { flex: 0 0 100%; width: 100%; min-width: 0; }
-  .carousel-slide-inner {
-    display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr);
-    width: 100%; max-width: 1280px; margin: 0 auto;
-    padding: 0 5%;
-    align-items: center; gap: 4rem;
-  }
-  .carousel-img-wrap {
-    background: var(--white);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    padding: 2.5rem;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    width: 100%;
-  }
-  .carousel-img-wrap img {
-    max-width: 100%; max-height: 100%;
-    object-fit: contain;
-    transition: transform .6s ease;
-  }
-  .carousel-img-wrap:hover img { transform: scale(1.04); }
-  .carousel-info { display: flex; flex-direction: column; gap: 1.4rem; }
-  .carousel-name {
-    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    font-size: 2.4rem; font-weight: 600;
-    color: var(--black); letter-spacing: -.3px; line-height: 1.1;
-  }
-  .carousel-specs { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
-  .carousel-specs li {
-    font-size: .88rem; color: var(--muted);
-    display: flex; gap: 10px; align-items: baseline;
-    border-bottom: 1px solid var(--border); padding-bottom: .5rem;
-  }
-  .carousel-specs li:last-child { border-bottom: none; }
-  .spec-label {
-    font-weight: 600; color: var(--black); font-size: .75rem;
-    letter-spacing: .5px; text-transform: uppercase;
-    flex-shrink: 0; min-width: 80px;
-  }
-  .carousel-controls {
-    display: flex; align-items: center; justify-content: space-between;
-    max-width: 1360px; margin: 3rem auto 0;
-    padding: 0 max(4%, calc((100% - 1360px) / 2));
-  }
-  .carousel-counter {
-    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    font-size: 1rem; color: var(--muted);
-    letter-spacing: 1px;
-  }
-  .carousel-counter strong { color: var(--black); font-weight: 600; font-size: 1.2rem; }
-  .carousel-nav { display: flex; gap: 10px; }
-  .carousel-btn {
-    width: 44px; height: 44px;
-    border: 1.5px solid var(--black); background: transparent;
-    color: var(--black); font-size: .95rem; cursor: pointer;
-    border-radius: 2px;
-    display: flex; align-items: center; justify-content: center;
-    transition: all .2s;
-  }
-  .carousel-btn:hover { background: var(--black); color: #fff; }
-  .carousel-progress {
-    display: flex; gap: 6px; align-items: center;
-  }
-  .carousel-dot {
-    width: 24px; height: 2px; background: var(--border);
-    cursor: pointer; transition: background .3s, width .3s;
-    border: none;
-  }
-  .carousel-dot.active { background: var(--black); width: 40px; }
+  .hero-nota strong { display: block; font-family: var(--display); font-size: 1.5rem; line-height: 1.1; }
 
   /* ── PLANES ── */
-  .plans-section {
-    padding: 100px max(4%, calc((100% - 1360px) / 2));
-    background: var(--white);
+  .planes { background: var(--blanco); border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); }
+  .planes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px; }
+  .plan {
+    border: 2px solid var(--linea); border-radius: 28px; padding: 32px;
+    display: flex; flex-direction: column; gap: 18px; background: var(--papel);
   }
-  .plans-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 0; border: 1px solid var(--border);
+  .plan-familiar {
+    grid-column: 1 / -1;
+    background: var(--tinta); color: var(--blanco); border-color: var(--tinta);
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px 48px; padding: 40px;
   }
-  .plan-card {
-    padding: 2.8rem 2.4rem;
-    border-right: 1px solid var(--border);
-    display: flex; flex-direction: column; gap: 1.2rem;
-    background: var(--white);
-    transition: background .3s;
-    position: relative;
+  .plan-cabecera { display: flex; flex-direction: column; gap: 6px; }
+  .plan-nombre { font-family: var(--display); font-size: 1.6rem; font-weight: 750; letter-spacing: -0.01em; }
+  .plan-sello {
+    align-self: flex-start; background: var(--maiz); color: var(--tinta);
+    font-size: .85rem; font-weight: 700; padding: 4px 12px; border-radius: 999px;
   }
-  .plan-card:last-child { border-right: none; }
-  .plan-card:hover { background: var(--cream); }
-  .plan-card.featured {
-    background: var(--black);
-    border-color: var(--black);
-  }
-  .plan-card.featured:hover { background: #111; }
-  .plan-badge {
-    display: inline-flex;
-    font-size: .62rem; font-weight: 700; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--muted);
-    width: fit-content; margin-bottom: -.4rem;
-  }
-  .plan-card.featured .plan-badge { color: rgba(255,255,255,.4); }
-  .plan-name {
-    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    font-size: 2rem; font-weight: 600; color: var(--black);
-    line-height: 1;
-  }
-  .plan-card.featured .plan-name { color: #fff; }
-  .plan-price {
-    font-size: 3.5rem; font-weight: 300; color: var(--black);
-    line-height: 1; letter-spacing: -2px;
-  }
-  .plan-price sup { font-size: 1.2rem; vertical-align: super; font-weight: 500; letter-spacing: 0; }
-  .plan-price sub { font-size: .9rem; font-weight: 400; letter-spacing: 0; color: var(--muted); vertical-align: baseline; }
-  .plan-card.featured .plan-price { color: #fff; }
-  .plan-card.featured .plan-price sub { color: rgba(255,255,255,.4); }
-  .plan-divider { border: none; border-top: 1px solid var(--border); }
-  .plan-card.featured .plan-divider { border-color: rgba(255,255,255,.1); }
-  .plan-features { list-style: none; display: flex; flex-direction: column; gap: .8rem; flex: 1; }
-  .plan-features li {
-    display: flex; align-items: center; gap: 10px;
-    font-size: .88rem; color: var(--muted);
-  }
-  .plan-card.featured .plan-features li { color: rgba(255,255,255,.6); }
-  .plan-features li::before {
-    content: '—'; color: var(--black); font-weight: 700;
-    flex-shrink: 0;
-  }
-  .plan-card.featured .plan-features li::before { color: rgba(255,255,255,.4); }
-  .plan-cta {
-    display: flex; align-items: center; justify-content: center;
-    padding: 13px; font-size: .8rem; font-weight: 600;
-    letter-spacing: .5px; text-transform: uppercase;
-    text-decoration: none; border-radius: 2px;
-    border: 1.5px solid var(--black); color: var(--black);
-    background: transparent; cursor: pointer;
-    transition: all .2s; margin-top: .5rem;
-  }
-  .plan-cta:hover { background: var(--black); color: #fff; }
-  .plan-card.featured .plan-cta { border-color: rgba(255,255,255,.4); color: #fff; }
-  .plan-card.featured .plan-cta:hover { background: rgba(255,255,255,.1); }
-  .plan-cond {
-    font-size: .68rem; color: var(--muted); text-align: center;
-    text-decoration: none; display: block; letter-spacing: .3px;
-  }
-  .plan-card.featured .plan-cond { color: rgba(255,255,255,.25); }
-  .plan-cond:hover { color: var(--blue); }
+  .plan-precio { display: flex; align-items: baseline; gap: 6px; font-family: var(--display); }
+  .plan-precio strong { font-size: clamp(3.4rem, 6vw, 4.8rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+  .plan-precio span { font-size: 1.05rem; font-weight: 600; }
+  .plan-impuestos { font-size: .92rem; color: var(--gris); }
+  .plan-familiar .plan-impuestos { color: #B9D3E0; }
+  .plan-por-linea { font-size: 1.05rem; color: var(--maiz); font-weight: 700; }
+  .plan-lista { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .plan-lista li { display: flex; gap: 10px; align-items: flex-start; }
+  .plan-lista svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 3px; color: var(--mar); }
+  .plan-familiar .plan-lista svg { color: var(--maiz); }
+  .plan-pie { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
+  .plan-cond { font-size: .88rem; color: var(--gris); line-height: 1.5; }
+  .plan-familiar .plan-cond { color: #B9D3E0; }
+  .plan-familiar .plan-cond a { color: var(--blanco); }
+  .plan-familiar .plan-cuerpo { display: flex; flex-direction: column; gap: 22px; justify-content: center; }
 
-  /* ── FAQ ── */
-  .faq-section {
-    padding: 100px max(4%, calc((100% - 860px) / 2));
-    background: var(--cream);
-    border-top: 1px solid var(--border);
+  /* ── COMO FUNCIONA ── */
+  .pasos-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+  .pasos-foto img { border-radius: 140px 36px 36px 36px; aspect-ratio: 1 / 1.05; object-fit: cover; width: 100%; }
+  .pasos { list-style: none; counter-reset: paso; margin-top: 36px; display: flex; flex-direction: column; gap: 28px; }
+  .pasos li { counter-increment: paso; display: grid; grid-template-columns: 56px 1fr; gap: 18px; align-items: start; }
+  .pasos li::before {
+    content: counter(paso);
+    width: 56px; height: 56px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--cielo-claro); color: var(--mar);
+    font-family: var(--display); font-size: 1.5rem; font-weight: 800;
   }
-  .faq-list { display: flex; flex-direction: column; }
-  .faq-item {
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
+  .pasos h3 { margin-bottom: 4px; }
+  .pasos p { color: var(--gris); }
+  .comision {
+    margin-top: 32px; padding: 18px 22px; border-radius: 20px;
+    background: var(--blanco); border: 1px solid var(--linea);
+    font-size: .98rem;
   }
-  .faq-question {
-    width: 100%; background: none; border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.4rem 0;
-    font-family: 'Inter', sans-serif;
-    font-size: .97rem; font-weight: 500; color: var(--black);
-    text-align: left; transition: color .2s;
-    gap: 1rem;
-  }
-  .faq-question:hover { color: var(--muted); }
-  .faq-icon {
-    flex-shrink: 0; width: 20px; height: 20px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem; font-weight: 300; color: var(--muted);
-    transition: transform .3s;
-  }
-  .faq-item.open .faq-icon { transform: rotate(45deg); }
-  .faq-answer {
-    max-height: 0; overflow: hidden;
-    transition: max-height .4s ease, padding .3s ease;
-    padding: 0;
-    font-size: .92rem; color: var(--muted); line-height: 1.85;
-  }
-  .faq-item.open .faq-answer { max-height: 520px; padding: 0 0 1.4rem; }
 
-  /* ── LEAD MAGNET ── */
-  .lead-section {
-    background: var(--black);
-    padding: 100px max(4%, calc((100% - 700px) / 2));
-    text-align: center;
-    border-top: 1px solid rgba(255,255,255,.05);
+  /* ── ANTES DE CONTRATAR ── */
+  .saber { background: var(--cielo-claro); }
+  .saber-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 48px; }
+  .saber-item { background: var(--blanco); border-radius: 28px; padding: 30px; }
+  .saber-item h3 { margin-bottom: 10px; }
+  .saber-item p { color: var(--gris); }
+  .saber-item.con-foto { grid-row: span 3; padding: 0; overflow: hidden; display: grid; grid-template-rows: 1fr auto; }
+  .saber-item.con-foto img { width: 100%; height: 100%; min-height: 260px; object-fit: cover; object-position: center 30%; }
+  .saber-item.con-foto div { padding: 26px 30px 30px; }
+  .saber-cta { margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
+  .saber-cta p { color: var(--gris); max-width: 44ch; }
+
+  /* ── EQUIPOS ── */
+  .equipos-cabecera { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+  .equipos-flechas { display: flex; gap: 10px; }
+  .equipos-flechas button {
+    width: 52px; height: 52px; border-radius: 50%;
+    border: 2px solid var(--tinta); background: transparent; color: var(--tinta);
+    cursor: pointer; display: grid; place-items: center;
   }
-  .lead-eyebrow {
-    font-size: .68rem; font-weight: 600; letter-spacing: 4px;
-    text-transform: uppercase; color: rgba(255,255,255,.3);
-    display: block; margin-bottom: 1rem;
+  .equipos-flechas button:hover { background: var(--tinta); color: var(--blanco); }
+  .equipos-flechas svg { width: 22px; height: 22px; }
+  .equipos-fila {
+    display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 40px) / 3);
+    gap: 20px; margin-top: 40px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding-bottom: 12px; scrollbar-width: thin;
   }
-  .lead-section h2 {
-    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    font-size: clamp(2.4rem, 5vw, 4rem);
-    font-weight: 600; color: #fff;
-    letter-spacing: -.5px; margin-bottom: .8rem; line-height: 1.05;
+  .equipo {
+    scroll-snap-align: start;
+    background: var(--blanco); border: 1px solid var(--linea); border-radius: 28px;
+    padding: 24px; display: flex; flex-direction: column; gap: 16px;
   }
-  .lead-section h2 em { font-style: italic; color: rgba(255,255,255,.5); }
-  .lead-section > p { font-size: .92rem; color: rgba(255,255,255,.4); margin-bottom: 3rem; line-height: 1.7; }
-  .lead-btn {
-    display: inline-block; text-decoration: none;
-    padding: 17px 38px; background: #fff; color: var(--black);
-    font-weight: 700; border: none; border-radius: 2px;
-    cursor: pointer; font-size: .85rem; font-family: 'Inter', sans-serif;
-    letter-spacing: .5px; text-transform: uppercase;
-    transition: background .2s;
+  .equipo-foto { background: var(--papel); border-radius: 20px; aspect-ratio: 1 / 1; display: grid; place-items: center; padding: 16px; }
+  .equipo-foto img { max-height: 100%; width: auto; object-fit: contain; }
+  .equipo h3 { font-size: 1.25rem; }
+  .equipo dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: .9rem; }
+  .equipo dt { color: var(--gris); }
+  .equipo .btn { margin-top: auto; min-height: 46px; font-size: .95rem; white-space: nowrap; }
+  .equipos-legal { font-size: .85rem; color: var(--gris); margin-top: 24px; max-width: 80ch; }
+
+  /* ── QUIENES SOMOS ── */
+  .nosotros { background: var(--tinta); color: var(--blanco); }
+  .nosotros-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(32px, 6vw, 88px); }
+  .nosotros h2 { color: var(--blanco); }
+  .nosotros-texto { display: flex; flex-direction: column; gap: 18px; color: #C9DCE6; }
+  .nosotros-texto .destacado { color: var(--blanco); font-size: 1.15rem; border-left: 4px solid var(--maiz); padding-left: 20px; }
+  .nosotros-datos {
+    display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 8px 40px;
+    margin-top: 12px; padding-top: 24px; border-top: 1px solid #24465A;
   }
-  .lead-btn:hover { background: var(--cream); }
-  .lead-note { font-size: .72rem; color: rgba(255,255,255,.2); margin-top: 14px; letter-spacing: .3px; }
+  .nosotros-datos dt { font-size: .85rem; color: #8FB3C6; }
+  .nosotros-datos dd { font-weight: 700; color: var(--blanco); }
+  .nosotros-datos a { color: var(--blanco); }
+  .nosotros-datos div { display: flex; flex-direction: column; gap: 2px; }
+
+  /* ── PREGUNTAS ── */
+  .faq-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
+  .faq-lateral { position: sticky; top: 100px; }
+  .faq-lateral p { color: var(--gris); margin: 16px 0 24px; max-width: 34ch; }
+  .faq-lista { display: flex; flex-direction: column; gap: 10px; }
+  .faq-lista details { background: var(--blanco); border: 1px solid var(--linea); border-radius: 20px; }
+  .faq-lista details[open] { border-color: var(--cielo); }
+  .faq-lista summary {
+    list-style: none; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    padding: 20px 24px; font-weight: 700; font-size: 1.05rem;
+  }
+  .faq-lista summary::-webkit-details-marker { display: none; }
+  .faq-lista summary::after {
+    content: ""; width: 12px; height: 12px; flex-shrink: 0;
+    border-right: 2.5px solid var(--mar); border-bottom: 2.5px solid var(--mar);
+    transform: rotate(45deg) translateY(-3px); transition: transform .2s ease;
+  }
+  .faq-lista details[open] summary::after { transform: rotate(-135deg) translateY(-3px); }
+  .faq-lista details > div { padding: 0 24px 22px; color: var(--gris); max-width: 68ch; }
+
+  /* ── LLAMADA FINAL ── */
+  .cierre { background: var(--maiz); padding: clamp(64px, 9vw, 112px) 0; }
+  .cierre-inner { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px 64px; align-items: end; }
+  .cierre h2 { max-width: 14ch; }
+  .cierre p { font-size: 1.1rem; margin-top: 16px; max-width: 44ch; }
+  .cierre-numero {
+    display: block; font-family: var(--display); font-weight: 800; color: var(--tinta);
+    font-size: clamp(2.4rem, 5vw, 3.8rem); letter-spacing: -0.03em; line-height: 1;
+    text-decoration: none; white-space: nowrap; font-variant-numeric: tabular-nums;
+  }
+  .cierre-numero:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
+  .cierre-nota { font-size: .95rem; margin-top: 12px; }
 
   /* ── FOOTER ── */
-  .footer {
-    background: var(--black);
-    border-top: 1px solid rgba(255,255,255,.06);
-    padding: 64px max(4%, calc((100% - 1360px) / 2)) 104px;
-  }
-  .footer-logo {
-    display: inline-block; margin-bottom: 1.75rem; text-decoration: none;
-    font-family: 'Inter', system-ui, sans-serif; font-weight: 700; color: #fff;
-    font-size: 2.6rem; line-height: .82; letter-spacing: -.055em; text-transform: lowercase;
-  }
-  .footer-logo span { display: flex; align-items: center; gap: .6rem; }
-  .footer-logo img { width: 44px; height: 44px; flex-shrink: 0; }
-  .footer-logo small {
-    display: block; margin-top: .6rem;
-    font-size: .75rem; font-weight: 500; letter-spacing: .3px;
-    text-transform: none; line-height: 1.4; color: rgba(255,255,255,.55);
-  }
-  .footer-disclaimer {
-    font-size: .8rem; line-height: 1.7; color: rgba(255,255,255,.55);
-    max-width: 760px; margin-bottom: 3rem;
-  }
+  .footer { background: var(--tinta); color: #B9D3E0; padding: 72px 0 120px; font-size: .95rem; }
+  .footer-marca { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--blanco); }
+  .footer-marca img { width: 48px; height: 48px; }
+  .footer-marca span { display: flex; flex-direction: column; line-height: 1.3; }
+  .footer-marca small { color: #8FB3C6; font-size: .88rem; }
+  .footer-aviso { max-width: 80ch; margin: 24px 0 48px; line-height: 1.7; font-size: .9rem; }
   .footer-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 3rem; margin-bottom: 3rem;
-    padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.06);
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+    padding: 40px 0; border-top: 1px solid #24465A; border-bottom: 1px solid #24465A;
   }
-  .footer-col h4 {
-    font-size: .85rem; font-weight: 700; color: #fff;
-    letter-spacing: .5px; text-transform: uppercase; margin-bottom: 1.4rem;
-  }
-  .footer-col a {
-    display: block; font-size: .88rem; color: rgba(255,255,255,.6);
-    text-decoration: none; margin-bottom: 1rem; transition: color .2s;
-  }
-  .footer-col a:hover { color: #fff; }
-  .footer-contact dt { font-size: .85rem; font-weight: 700; color: #fff; margin-bottom: .4rem; }
-  .footer-contact dd { font-size: .85rem; line-height: 1.6; color: rgba(255,255,255,.6); margin-bottom: 1.2rem; }
-  .footer-contact dd a { display: inline; margin: 0; color: #fff; font-weight: 700; font-size: .88rem; }
-  .footer-bottom {
-    display: flex; align-items: center; justify-content: center; text-align: center;
-    font-size: .74rem; color: rgba(255,255,255,.4);
-    flex-wrap: wrap; gap: 1rem;
-  }
-  .footer-bottom a { color: rgba(255,255,255,.3); text-decoration: none; transition: color .2s; }
-  .footer-bottom a:hover { color: #fff; }
+  .footer-col h3 { font-family: var(--texto); font-size: .95rem; color: var(--blanco); margin-bottom: 14px; letter-spacing: 0; }
+  .footer-col a { display: block; color: #B9D3E0; text-decoration: none; padding: 4px 0; }
+  .footer-col a:hover { color: var(--blanco); text-decoration: underline; }
+  .footer-col dl { display: flex; flex-direction: column; gap: 10px; }
+  .footer-col dt { font-size: .82rem; color: #8FB3C6; }
+  .footer-col dd { color: var(--blanco); }
+  .footer-col dd a { display: inline; color: var(--blanco); padding: 0; }
+  .footer-copy { padding-top: 24px; font-size: .85rem; color: #8FB3C6; }
 
-  /* ── COOKIE ── */
-  :root[data-consent="pending"] #cookie-banner { display: flex; }
+  /* ── BARRA DE LLAMADA FIJA: aparece cuando el bloque del hero sale de pantalla ── */
+  .barra-llamada {
+    position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 998;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    height: 58px; border-radius: 999px;
+    background: var(--maiz); color: var(--tinta);
+    font-weight: 700; font-size: 1.02rem; text-decoration: none;
+    box-shadow: 0 8px 24px rgba(11,42,60,.28);
+    transform: translateY(calc(100% + 24px)); transition: transform .3s ease;
+  }
+  .barra-llamada.visible { transform: none; }
+  .barra-llamada svg { width: 20px; height: 20px; }
+  @media (min-width: 900px) {
+    .barra-llamada { left: auto; right: 24px; bottom: 24px; padding: 0 28px; }
+  }
+
+  /* ── COOKIES ── */
   #cookie-banner {
-    display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
-    background: #0A0A0A; border-top: 1px solid rgba(255,255,255,.08);
-    padding: 14px max(4%, calc((100% - 1360px) / 2));
-    align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 1001;
+    background: var(--tinta); color: #C9DCE6;
+    padding: 18px var(--gutter); gap: 16px 24px; align-items: center; flex-wrap: wrap;
+    border-top: 3px solid var(--cielo);
   }
-  .cookie-text { font-size: .82rem; color: rgba(255,255,255,.5); line-height: 1.5; flex: 1; min-width: 240px; }
-  .cookie-text a { color: rgba(255,255,255,.7); }
-  .cookie-actions { display: flex; gap: 10px; flex-shrink: 0; }
-  .cookie-accept {
-    background: #fff; color: var(--black); border: none;
-    font-weight: 600; font-size: .78rem; letter-spacing: .5px; text-transform: uppercase;
-    padding: 9px 20px; border-radius: 2px; cursor: pointer;
+  :root[data-consent="pending"] #cookie-banner { display: flex; }
+  .cookie-text { flex: 1; min-width: 240px; font-size: .92rem; line-height: 1.5; }
+  .cookie-text a { color: var(--blanco); }
+  .cookie-actions { display: flex; gap: 10px; }
+  .cookie-actions button {
+    min-height: 44px; padding: 0 20px; border-radius: 999px; cursor: pointer;
+    font-family: var(--texto); font-size: .95rem; font-weight: 700;
   }
-  .cookie-reject {
-    background: transparent; color: rgba(255,255,255,.4);
-    border: 1px solid rgba(255,255,255,.15);
-    font-size: .78rem; padding: 9px 16px; border-radius: 2px; cursor: pointer;
-  }
+  .cookie-accept { background: var(--maiz); color: var(--tinta); border: 2px solid var(--maiz); }
+  .cookie-reject { background: transparent; color: var(--blanco); border: 2px solid #4D6E80; }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 1024px) {
-    .plans-grid { grid-template-columns: 1fr; border: none; gap: 1px; }
-    .plan-card { border-right: none; border: 1px solid var(--border); }
-    .plan-card.featured { border-color: var(--black); }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-    .stats-strip { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 1020px) {
+    .nav-links { display: none; }
+    .nav-call { margin-left: auto; }
   }
-  @media (max-width: 768px) {
-    nav { grid-template-columns: 1fr auto; overflow: hidden; }
-    nav .nav-left { display: none; }
-    .nav-right { gap: .5rem; min-width: 0; flex-shrink: 1; }
-    .nav-right .nav-link { display: none; }
-    .nav-logo { gap: 7px; }
-    .nav-logo img { height: 28px; }
-    .nav-logo-text { font-size: 1.05rem; }
-    .hero-eyebrow { letter-spacing: 1.5px; line-height: 1.6; }
-    .hero h1 { font-size: 3rem; }
-    .split { grid-template-columns: 1fr; }
-    .split-image { min-height: 300px; }
-    .split-content { padding: 52px 5%; }
-    .carousel-slide-inner { grid-template-columns: minmax(0,1fr); gap: 2rem; }
-    .carousel-img-wrap { min-height: 240px; }
-    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
-    .stat-item:last-child { border-bottom: none; }
-    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .footer-bottom { flex-direction: column; text-align: center; }
-    .hero-pagination { display: none; }
+  @media (max-width: 900px) {
+    .hero-grid, .pasos-grid, .nosotros-grid, .faq-grid, .cierre-inner { grid-template-columns: 1fr; }
+    .hero-foto { order: 2; }
+    .hero-foto img { aspect-ratio: 4 / 3; border-radius: 28px 28px 28px 96px; }
+    .hero-nota { right: 12px; bottom: 16px; }
+    .plan-familiar { grid-template-columns: 1fr; padding: 32px 24px; }
+    .equipos-fila { grid-auto-columns: calc((100% - 20px) / 2); }
+    .pasos-foto { display: none; }
+    .faq-lateral { position: static; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
   }
-  @media (max-width: 480px) {
-    .hero h1 { font-size: 2.4rem; }
-    .plans-section { padding: 60px 5%; }
+  @media (max-width: 640px) {
+    body { font-size: 1rem; }
+    .nav-logo span { display: none; }
+    .nav-call .solo-escritorio { display: none; }
+    .llamada { padding: 18px 20px 20px; border-radius: 24px; }
+    .planes-grid, .saber-grid { grid-template-columns: 1fr; }
+    .saber-item.con-foto { grid-row: auto; }
+    .saber-item.con-foto img { aspect-ratio: 16 / 10; height: auto; min-height: 0; }
+    .plan { padding: 26px 22px; }
+    .saber-item { padding: 24px; }
+    .saber-item.con-foto div { padding: 22px 24px 24px; }
+    .nosotros-datos { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .equipos-flechas { display: none; }
+    .equipos-fila { grid-auto-columns: 82%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition-duration: .01ms !important; }
   }
 </style>
 </head>
 <body>
 
+<!-- Iconos reutilizables -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-tel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-izq" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></symbol>
+  <symbol id="i-der" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></symbol>
+</svg>
+
 <!-- NAV -->
-<nav>
-  <a href="#servicios" class="nav-logo" aria-label="Connecting, agente independiente de servicios móviles. Ir al inicio">
-    <img src="/images/connecting-logo.webp" alt="" width="32" height="32">
-    <span class="nav-logo-text"><small>Agente independiente</small></span>
-  </a>
-  <div class="nav-left">
-    <a href="#servicios" class="nav-link">Servicios</a>
-    <a href="#familiar" class="nav-link">Familias</a>
-    <a href="#planes" class="nav-link">Planes</a>
-    <a href="#quienes-somos" class="nav-link">Nosotros</a>
+<header class="nav">
+  <div class="contenedor nav-inner">
+    <a href="#inicio" class="nav-logo" aria-label="Connecting, agente independiente de servicios móviles. Ir al inicio">
+      <img src="/images/connecting-logo.webp" alt="" width="34" height="34">
+      <span>Agente independiente</span>
+    </a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="#planes">Planes</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#equipos">Equipos</a>
+      <a href="#quienes-somos">Quiénes somos</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+    <a href="tel:+18884702820" class="btn btn-tinta nav-call"><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar<span class="solo-escritorio">&nbsp;(888) 470-2820</span></a>
   </div>
-  <div class="nav-right">
-    <a href="#faq" class="nav-link">Preguntas</a>
-    <a href="tel:+18884702820" class="nav-cta nav-cta-llamativo">📞 ¡LLÁMANOS!</a>
-      <style>
-      /* Botón de llamada llamativo en navbar */
-      .nav-cta-llamativo {
-        background: linear-gradient(90deg, #000000 0%, #0A0A0A 100%);
-        color: #fa8601;
-        font-size: 1.02rem;
-        font-weight: 900;
-        letter-spacing: 1.2px;
-        border-radius: 8px;
-        border: 2px solid #fa8601;
-        box-shadow: 0 2px 12px 0 rgba(37,99,235,0.13);
-        padding: 10px 26px;
-        text-transform: uppercase;
-        animation: pulse-call 1.5s infinite;
-        transition: transform .18s, box-shadow .18s;
-      }
-      .nav-cta-llamativo:hover {
-        transform: scale(1.06);
-        box-shadow: 0 6px 32px 0 rgba(37,99,235,0.28);
-        background: linear-gradient(90deg, #0A0A0A 0%, #2563EB 100%);
-      }
-      </style>
-  </div>
-</nav>
+</header>
+
+<main id="inicio">
 
 <!-- HERO -->
-<section class="hero" id="servicios">
-  <div class="hero-slides">
-    <div class="hero-slide active">
-      <img src="/images/sim-entrando.webp" alt="Tarjeta SIM activandose en un telefono movil" fetchpriority="high">
-    </div>
-    <div class="hero-slide">
-      <img src="/images/persona-en-la-calle.webp" loading="lazy" alt="Hombre hablando por su linea movil en la calle">
-    </div>
-    <div class="hero-slide">
-      <img src="/images/telefonos-juntos.webp" loading="lazy" alt="Telefonos de alta gama disponibles con tu linea">
-    </div>
-  </div>
-  <div class="hero-content">
-    <div class="hero-text">
-      <p class="hero-eyebrow">Connecting · Agente independiente de servicios móviles</p>
-      <h1>Tu familia,<br><em>conectada</em> hoy.</h1>
-      <p class="hero-sub">En Connecting comparamos planes de varios proveedores sobre redes 5G nacionales y te ayudamos a contratar el que elijas. Desde $55/mes + impuestos, mes a mes, sin contrato anual y con atención en español.</p>
-      <div class="hero-actions">
-        <a href="tel:+18884702820" class="btn-hero-main">📞 Habla con un Asesor</a>
-        <a href="#planes" class="btn-hero-ghost">Ver los planes →</a>
-      </div>
-    </div>
-    <div class="hero-pagination">
-      <p class="hero-page-counter"><span id="heroCurrentSlide">1</span> / 3</p>
-      <div class="hero-dots">
-        <button class="hero-dot active" data-slide="0"></button>
-        <button class="hero-dot" data-slide="1"></button>
-        <button class="hero-dot" data-slide="2"></button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<div class="stats-strip">
-  <div class="stat-item reveal">
-    <div class="stat-num">Mes a mes</div>
-    <div class="stat-label">Sin Contrato Anual</div>
-  </div>
-  <div class="stat-item reveal reveal-delay-1">
-    <div class="stat-num">USA</div>
-    <div class="stat-label">Cobertura Nacional</div>
-  </div>
-  <div class="stat-item reveal reveal-delay-2">
-    <div class="stat-num">$55</div>
-    <div class="stat-label">Desde / mes + imp.</div>
-  </div>
-  <div class="stat-item reveal reveal-delay-3">
-    <div class="stat-num">8–21 h</div>
-    <div class="stat-label">Lun–Dom · En Español</div>
-  </div>
-</div>
-
-<!-- SPLIT 1: Familias -->
-<section class="split" id="familiar">
-  <div class="split-image reveal">
-    <img src="/images/familiaconectada.webp" loading="lazy" alt="Familia Conectada">
-  </div>
-  <div class="split-content reveal reveal-delay-1">
-    <span class="split-tag">Para Toda la Familia</span>
-    <h2>Paga menos<br><em>por línea.</em></h2>
-    <p>Con el plan Familiar, 4 líneas cuestan $150/mes + impuestos: $37.50 por línea, frente a $55 del plan Básico. Si necesitas menos líneas, te cotizamos el precio por teléfono.</p>
+<section class="hero">
+  <div class="contenedor hero-grid">
     <div>
-      <a href="tel:+18884702820" class="btn-dark">Consultar Precio por Línea</a>
+      <h1>Una línea para cada quien en casa, sin contrato anual.</h1>
+      <p class="hero-sub">En Connecting, agente independiente de servicios móviles, comparamos planes de varios proveedores que operan en redes 5G nacionales y te acompañamos hasta activar el que elijas. Todo en español, desde la primera llamada.</p>
+
+      <a href="tel:+18884702820" class="llamada" id="llamada-hero">
+        <span class="llamada-label"><svg aria-hidden="true"><use href="#i-tel"/></svg>Llama sin costo y habla con un asesor</span>
+        <span class="llamada-numero">(888) 470-2820</span>
+        <span class="llamada-horario">Lunes a domingo, de 8 a.m. a 9 p.m., hora del centro (Texas)</span>
+      </a>
+
+      <ul class="hero-datos">
+        <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Desde $55 al mes por línea, más impuestos</li>
+        <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Plan mes a mes</li>
+        <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Con eSIM, activa normalmente el mismo día</li>
+      </ul>
+    </div>
+
+    <div class="hero-foto">
+      <img src="/images/familia-1600.webp"
+           srcset="/images/familia-800.webp 800w, /images/familia-1600.webp 1600w"
+           sizes="(max-width: 900px) 100vw, 50vw"
+           width="1600" height="1067" fetchpriority="high"
+           alt="Padre y dos hijos en casa, cada uno usando su propio teléfono">
+      <p class="hero-nota"><strong>$37.50</strong>por línea con el plan Familiar de 4 líneas, más impuestos</p>
     </div>
   </div>
-</section>
-
-<!-- SPLIT 2: Datos ilimitados -->
-<section class="split split-dark">
-  <div class="split-content reveal" style="background:var(--black);">
-    <span class="split-tag">Navega Sin Freno</span>
-    <h2>Datos<br><em>ilimitados.</em></h2>
-    <p>Sin cargos por exceso de consumo. A partir de cierto uso mensual el proveedor puede aplicar priorización de red y reducir la velocidad en momentos de congestión; te decimos el umbral de cada plan antes de contratar.</p>
-    <div>
-      <a href="tel:+18884702820" class="btn-outline-white">Quiero Saber Más</a>
-    </div>
-  </div>
-  <div class="split-image reveal reveal-delay-1">
-    <img src="/images/datos-ilimitados.webp" loading="lazy" alt="Datos Ilimitados">
-  </div>
-</section>
-
-<!-- CARRUSEL DISPOSITIVOS -->
-<section class="carousel-section" id="dispositivos">
-  <div class="carousel-header reveal">
-    <span class="section-eyebrow">Equipos con tu Plan</span>
-    <h2 class="section-title">Equipos de<br><em>Alta Gama.</em></h2>
-    <p class="section-sub">Modelos que algunos proveedores participantes ofrecen junto con el plan. Disponibilidad, precio y financiamiento dependen del proveedor.</p>
-  </div>
-  <div class="carousel-wrapper">
-    <div class="carousel-track" id="carouselTrack">
-
-      <div class="carousel-slide">
-        <div class="carousel-slide-inner">
-          <div class="carousel-img-wrap">
-            <img src="/images/carrusel/Galaxy_Z_Flip4_detail.webp" loading="lazy" alt="Samsung Galaxy Z Flip4">
-          </div>
-          <div class="carousel-info">
-            <div class="carousel-name">Samsung Galaxy Z Flip4</div>
-            <ul class="carousel-specs">
-              <li><span class="spec-label">Lanzamiento</span> 2022 · Android 12 de fábrica</li>
-              <li><span class="spec-label">Red</span> 5G, 4G LTE</li>
-              <li><span class="spec-label">Batería</span> 3,700 mAh</li>
-              <li><span class="spec-label">Memoria</span> 128GB / 256GB · 8GB RAM</li>
-              <li><span class="spec-label">Procesador</span> Snapdragon 8+ Gen 1</li>
-              <li><span class="spec-label">Pantalla</span> 6.7" (abierto) · 1.9" (cerrado)</li>
-              <li><span class="spec-label">Cámara</span> 12MP + 12MP trasera · 10MP frontal</li>
-            </ul>
-            <a href="tel:+18884702820" class="btn-dark" style="width:fit-content;">Preguntar por este Equipo</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-slide">
-        <div class="carousel-slide-inner">
-          <div class="carousel-img-wrap">
-            <img src="/images/carrusel/iPhone17pro.webp" loading="lazy" alt="iPhone 17 Pro">
-          </div>
-          <div class="carousel-info">
-            <div class="carousel-name">iPhone 17 Pro</div>
-            <ul class="carousel-specs">
-              <li><span class="spec-label">OS</span> iOS 26</li>
-              <li><span class="spec-label">Red</span> 5G, 4G LTE</li>
-              <li><span class="spec-label">Procesador</span> Apple A19 Pro</li>
-              <li><span class="spec-label">Pantalla</span> 6.3" Super Retina XDR, ProMotion 120Hz</li>
-              <li><span class="spec-label">Cámara</span> Tres cámaras traseras de 48MP · 18MP frontal</li>
-              <li><span class="spec-label">Batería</span> Todo el día · Carga MagSafe</li>
-            </ul>
-            <a href="tel:+18884702820" class="btn-dark" style="width:fit-content;">Preguntar por este Equipo</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-slide">
-        <div class="carousel-slide-inner">
-          <div class="carousel-img-wrap">
-            <img src="/images/carrusel/iPhoneAir.webp" loading="lazy" alt="iPhone Air">
-          </div>
-          <div class="carousel-info">
-            <div class="carousel-name">iPhone Air</div>
-            <ul class="carousel-specs">
-              <li><span class="spec-label">OS</span> iOS 26</li>
-              <li><span class="spec-label">Red</span> 5G, 4G LTE</li>
-              <li><span class="spec-label">Diseño</span> Cuerpo de titanio de 5.6 mm</li>
-              <li><span class="spec-label">Pantalla</span> 6.5" Super Retina XDR</li>
-              <li><span class="spec-label">Cámara</span> 48MP principal · 18MP frontal</li>
-              <li><span class="spec-label">Carga</span> MagSafe + USB-C</li>
-            </ul>
-            <a href="tel:+18884702820" class="btn-dark" style="width:fit-content;">Preguntar por este Equipo</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-slide">
-        <div class="carousel-slide-inner">
-          <div class="carousel-img-wrap">
-            <img src="/images/carrusel/samsung-galaxy-fold7-detail.webp" loading="lazy" alt="Samsung Galaxy Fold7">
-          </div>
-          <div class="carousel-info">
-            <div class="carousel-name">Samsung Galaxy Z Fold7</div>
-            <ul class="carousel-specs">
-              <li><span class="spec-label">OS</span> Android 16 · One UI 8</li>
-              <li><span class="spec-label">Red</span> 5G, 4G LTE</li>
-              <li><span class="spec-label">Pantalla</span> 8" interior · 6.5" exterior</li>
-              <li><span class="spec-label">Procesador</span> Snapdragon 8 Elite</li>
-              <li><span class="spec-label">Cámara</span> 200MP principal + 12MP ultra + 10MP zoom</li>
-              <li><span class="spec-label">Batería</span> 4,400 mAh · Carga rápida 25W</li>
-            </ul>
-            <a href="tel:+18884702820" class="btn-dark" style="width:fit-content;">Preguntar por este Equipo</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <div class="carousel-controls">
-    <div class="carousel-progress">
-      <button class="carousel-dot active"></button>
-      <button class="carousel-dot"></button>
-      <button class="carousel-dot"></button>
-      <button class="carousel-dot"></button>
-    </div>
-    <div class="carousel-counter">
-      <strong id="carouselCurrent">1</strong> / 4
-    </div>
-    <div class="carousel-nav">
-      <button class="carousel-btn" id="carouselPrev">&#8592;</button>
-      <button class="carousel-btn" id="carouselNext">&#8594;</button>
-    </div>
-  </div>
-  <p class="carousel-legal">Connecting no fabrica ni vende equipos por cuenta propia: los equipos los ofrece y financia cada proveedor. Apple, iPhone, Samsung y Galaxy son marcas registradas de sus respectivos titulares, que no patrocinan ni están afiliados a este sitio. Imágenes ilustrativas.</p>
 </section>
 
 <!-- PLANES -->
-<section class="plans-section" id="planes">
-  <div class="section-header reveal">
-    <span class="section-eyebrow">Precios Claros</span>
-    <h2 class="section-title">Escoge tu Plan.</h2>
-    <p class="section-sub">Precio base del plan. Los impuestos y cargos regulatorios se facturan aparte y varían según tu estado y el proveedor.</p>
-  </div>
-  <div class="plans-grid">
+<section class="planes seccion" id="planes">
+  <div class="contenedor">
+    <h2>Tres planes, precios a la vista.</h2>
+    <p class="intro">Lo que ves es el precio base. Los impuestos y cargos regulatorios se cobran aparte y cambian según tu estado y el proveedor.</p>
 
-    <div class="plan-card reveal">
-      <span class="plan-badge">Plan 01</span>
-      <div class="plan-name">Básico</div>
-      <div class="plan-price"><sup>$</sup>55<sub>/mes</sub></div>
-      <div class="plan-tax">+ impuestos y cargos regulatorios</div>
-      <hr class="plan-divider">
-      <ul class="plan-features">
-        <li>Datos 5G ilimitados</li>
-        <li>Llamadas y mensajes sin límite</li>
-        <li>Soporte en español, Lun–Dom 8 AM–9 PM (hora de Texas, CT)</li>
-      </ul>
-      <a href="tel:+18884702820" class="plan-cta">Llamar y Contratar</a>
-      <p class="plan-cond">Precio por línea, sin impuestos. Sujeto a disponibilidad del proveedor en tu zona.</p>
-      <a href="terminos.html" class="plan-cond plan-cond-link">Ver condiciones completas</a>
+    <div class="planes-grid">
+
+      <article class="plan plan-familiar">
+        <div class="plan-cabecera">
+          <span class="plan-sello">El que más ahorra por línea</span>
+          <h3 class="plan-nombre">Familiar, 4 líneas</h3>
+          <div class="plan-precio"><strong>$150</strong><span>/mes</span></div>
+          <p class="plan-impuestos">Más impuestos y cargos regulatorios</p>
+          <p class="plan-por-linea">Cada línea sale en $37.50</p>
+        </div>
+        <div class="plan-cuerpo">
+          <ul class="plan-lista">
+            <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Datos ilimitados en las cuatro líneas</li>
+            <li><svg aria-hidden="true"><use href="#i-ok"/></svg>¿Necesitas menos de 4? Te damos el precio por teléfono</li>
+          </ul>
+          <div class="plan-pie">
+            <a href="tel:+18884702820" class="btn btn-maiz"><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar para contratar</a>
+            <p class="plan-cond">Precio total de las 4 líneas, sin impuestos. Las cuatro se activan con el mismo proveedor. <a href="terminos.html">Condiciones completas</a></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="plan">
+        <div class="plan-cabecera">
+          <h3 class="plan-nombre">Básico</h3>
+          <div class="plan-precio"><strong>$55</strong><span>/mes por línea</span></div>
+          <p class="plan-impuestos">Más impuestos y cargos regulatorios</p>
+        </div>
+        <ul class="plan-lista">
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Datos 5G ilimitados</li>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Llamadas y mensajes sin límite</li>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Atención en español todos los días, de 8 a.m. a 9 p.m. (hora de Texas, CT)</li>
+        </ul>
+        <div class="plan-pie">
+          <a href="tel:+18884702820" class="btn btn-tinta"><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar para contratar</a>
+          <p class="plan-cond">Precio por línea, sin impuestos. Depende de la disponibilidad del proveedor en tu zona. <a href="terminos.html">Condiciones completas</a></p>
+        </div>
+      </article>
+
+      <article class="plan">
+        <div class="plan-cabecera">
+          <h3 class="plan-nombre">Premium</h3>
+          <div class="plan-precio"><strong>$90</strong><span>/mes por línea</span></div>
+          <p class="plan-impuestos">Más impuestos y cargos regulatorios</p>
+        </div>
+        <ul class="plan-lista">
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Datos 5G ilimitados</li>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Puedes sumar un equipo de alta gama</li>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Atención en español todos los días, de 8 a.m. a 9 p.m. (hora de Texas, CT)</li>
+        </ul>
+        <div class="plan-pie">
+          <a href="tel:+18884702820" class="btn btn-tinta"><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar para contratar</a>
+          <p class="plan-cond">Precio por línea, sin impuestos. El proveedor define el equipo y sus condiciones. <a href="terminos.html">Condiciones completas</a></p>
+        </div>
+      </article>
+
     </div>
-
-    <div class="plan-card featured reveal reveal-delay-1">
-      <span class="plan-badge">Recomendado</span>
-      <div class="plan-name">Familiar</div>
-      <div class="plan-price"><sup>$</sup>150<sub>/mes</sub></div>
-      <div class="plan-tax">+ impuestos y cargos regulatorios</div>
-      <hr class="plan-divider">
-      <ul class="plan-features">
-        <li>4 líneas incluidas ($37.50 c/u)</li>
-        <li>Datos ilimitados en cada línea</li>
-        <li>Menos de 4 líneas: precio por cotización</li>
-      </ul>
-      <a href="tel:+18884702820" class="plan-cta">Llamar y Contratar</a>
-      <p class="plan-cond">Precio total por 4 líneas, sin impuestos. Requiere activarlas con el mismo proveedor.</p>
-      <a href="terminos.html" class="plan-cond plan-cond-link">Ver condiciones completas</a>
-    </div>
-
-    <div class="plan-card reveal reveal-delay-2">
-      <span class="plan-badge">Plan 03</span>
-      <div class="plan-name">Premium</div>
-      <div class="plan-price"><sup>$</sup>90<sub>/mes</sub></div>
-      <div class="plan-tax">+ impuestos y cargos regulatorios</div>
-      <hr class="plan-divider">
-      <ul class="plan-features">
-        <li>Datos 5G ilimitados</li>
-        <li>Opción de equipo de alta gama</li>
-        <li>Atención en español, Lun–Dom 8 AM–9 PM (hora de Texas, CT)</li>
-      </ul>
-      <a href="tel:+18884702820" class="plan-cta">Llamar y Contratar</a>
-      <p class="plan-cond">Precio por línea, sin impuestos. El equipo y sus condiciones los define el proveedor.</p>
-      <a href="terminos.html" class="plan-cond plan-cond-link">Ver condiciones completas</a>
-    </div>
-
   </div>
 </section>
 
-<!-- SPLIT 3: Cobertura -->
-<section class="split split-cream" id="cobertura">
-  <div class="split-image reveal">
-    <img src="/images/mapa_de_cobertura.webp" loading="lazy" alt="Cobertura Nacional">
-  </div>
-  <div class="split-content reveal reveal-delay-1" style="background:var(--cream-dark);">
-    <span class="split-tag">Cobertura y Señal</span>
-    <h2>Cobertura<br><em>donde vives.</em></h2>
-    <p>Trabajamos con varios proveedores que operan sobre las principales redes 5G de Estados Unidos. La cobertura y la velocidad varían según la zona, por eso verificamos contigo la señal disponible en tu dirección antes de que contrates.</p>
+<!-- COMO FUNCIONA -->
+<section class="seccion" id="como-funciona">
+  <div class="contenedor pasos-grid">
+    <div class="pasos-foto">
+      <img src="/images/asesor-calle-900.webp" width="900" height="600" loading="lazy" alt="Hombre caminando por la calle mientras habla por teléfono">
+    </div>
     <div>
-      <a href="tel:+18884702820" class="btn-dark">Verificar mi Zona</a>
+      <h2>Contratar con nosotros toma una llamada.</h2>
+      <ol class="pasos">
+        <li>
+          <div>
+            <h3>Nos llamas</h3>
+            <p>Cuéntanos tu código postal, cuántas líneas quieres y cuántos datos usas al mes.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Comparamos por ti</h3>
+            <p>Revisamos la cobertura de cada proveedor en tu zona y te damos el precio total con los impuestos estimados.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Tú eliges</h3>
+            <p>Hacemos el trámite con el proveedor que escojas. Con eSIM la línea suele quedar activa el mismo día; con SIM física o equipo, el envío toma de 24 a 72 horas hábiles.</p>
+          </div>
+        </li>
+      </ol>
+      <p class="comision">La asesoría no tiene costo. El proveedor nos paga una comisión cuando contratas con nosotros, y eso no cambia el precio de tu plan.</p>
     </div>
   </div>
 </section>
 
-<!-- SPLIT 4: Velocidad -->
-<section class="split split-dark">
-  <div class="split-content reveal" style="background:var(--black);">
-    <span class="split-tag">Redes 5G</span>
-    <h2>Velocidad<br><em>5G.</em></h2>
-    <p>Acceso a redes 5G donde el proveedor tenga cobertura. La velocidad real varía según la zona, el equipo, el plan y la congestión de la red; te orientamos sobre qué esperar en tu dirección.</p>
-    <div>
-      <a href="tel:+18884702820" class="btn-outline-white">Habla con un Asesor</a>
+<!-- ANTES DE CONTRATAR -->
+<section class="saber seccion" id="detalles">
+  <div class="contenedor">
+    <h2>Lo que conviene saber antes de contratar.</h2>
+    <div class="saber-grid">
+      <article class="saber-item con-foto">
+        <img src="/images/ahorro-900.webp" width="900" height="657" loading="lazy" alt="Mujer sosteniendo billetes en una mano y su teléfono en la otra">
+        <div>
+          <h3>Más líneas, menos por línea</h3>
+          <p>En el plan Familiar cada línea sale en $37.50 al mes más impuestos, contra $55 en el Básico. Si son menos de 4 líneas, te cotizamos por teléfono.</p>
+        </div>
+      </article>
+      <article class="saber-item">
+        <h3>Datos sin cargos por exceso</h3>
+        <p>No pagas extra por usar más datos. Pasado cierto consumo al mes, el proveedor puede priorizar la red y bajar tu velocidad cuando hay congestión. Te decimos ese límite antes de que contrates.</p>
+      </article>
+      <article class="saber-item">
+        <h3>Cobertura revisada en tu dirección</h3>
+        <p>Trabajamos con proveedores que usan las principales redes 5G de Estados Unidos. Como la señal cambia de un lugar a otro, revisamos contigo la cobertura de tu dirección antes de contratar.</p>
+      </article>
+      <article class="saber-item">
+        <h3>5G donde el proveedor tenga red</h3>
+        <p>La velocidad que vas a tener depende de tu zona, tu teléfono, el plan y qué tan cargada esté la red. Te explicamos qué esperar en el lugar donde vives.</p>
+      </article>
     </div>
-  </div>
-  <div class="split-image reveal reveal-delay-1">
-    <img src="/images/altavelocidad.webp" loading="lazy" alt="Alta Velocidad 5G">
+    <div class="saber-cta">
+      <a href="tel:+18884702820" class="btn btn-tinta"><svg aria-hidden="true"><use href="#i-tel"/></svg>Revisar la cobertura de mi zona</a>
+      <p>Solo necesitamos tu código postal para decirte qué proveedores tienen buena señal donde vives.</p>
+    </div>
   </div>
 </section>
 
-<!-- FAQ -->
+<!-- EQUIPOS -->
+<section class="seccion" id="equipos">
+  <div class="contenedor">
+    <div class="equipos-cabecera">
+      <div>
+        <h2>Teléfonos que puedes sumar a tu plan.</h2>
+        <p class="intro">Algunos proveedores participantes ofrecen estos modelos junto con el plan. Cada proveedor decide disponibilidad, precio y financiamiento.</p>
+      </div>
+      <div class="equipos-flechas">
+        <button type="button" id="equiposPrev" aria-label="Ver equipos anteriores"><svg aria-hidden="true"><use href="#i-izq"/></svg></button>
+        <button type="button" id="equiposNext" aria-label="Ver más equipos"><svg aria-hidden="true"><use href="#i-der"/></svg></button>
+      </div>
+    </div>
+
+    <div class="equipos-fila" id="equiposFila" tabindex="0" aria-label="Lista de equipos, desplázate horizontalmente">
+      <article class="equipo">
+        <div class="equipo-foto"><img src="/images/carrusel/iPhone17pro.webp" loading="lazy" alt="iPhone 17 Pro"></div>
+        <h3>iPhone 17 Pro</h3>
+        <dl>
+          <dt>Sistema</dt><dd>iOS 26</dd>
+          <dt>Red</dt><dd>5G, 4G LTE</dd>
+          <dt>Procesador</dt><dd>Apple A19 Pro</dd>
+          <dt>Pantalla</dt><dd>6.3" Super Retina XDR, ProMotion 120 Hz</dd>
+          <dt>Cámara</dt><dd>Tres traseras de 48 MP, frontal de 18 MP</dd>
+          <dt>Batería</dt><dd>Todo el día, carga MagSafe</dd>
+        </dl>
+        <a href="tel:+18884702820" class="btn btn-borde">Preguntar por este equipo</a>
+      </article>
+
+      <article class="equipo">
+        <div class="equipo-foto"><img src="/images/carrusel/samsung-galaxy-fold7-detail.webp" loading="lazy" alt="Samsung Galaxy Z Fold7"></div>
+        <h3>Samsung Galaxy Z Fold7</h3>
+        <dl>
+          <dt>Sistema</dt><dd>Android 16, One UI 8</dd>
+          <dt>Red</dt><dd>5G, 4G LTE</dd>
+          <dt>Pantalla</dt><dd>8" interior, 6.5" exterior</dd>
+          <dt>Procesador</dt><dd>Snapdragon 8 Elite</dd>
+          <dt>Cámara</dt><dd>200 MP principal, 12 MP ultra angular, 10 MP zoom</dd>
+          <dt>Batería</dt><dd>4,400 mAh, carga rápida de 25 W</dd>
+        </dl>
+        <a href="tel:+18884702820" class="btn btn-borde">Preguntar por este equipo</a>
+      </article>
+
+      <article class="equipo">
+        <div class="equipo-foto"><img src="/images/carrusel/iPhoneAir.webp" loading="lazy" alt="iPhone Air"></div>
+        <h3>iPhone Air</h3>
+        <dl>
+          <dt>Sistema</dt><dd>iOS 26</dd>
+          <dt>Red</dt><dd>5G, 4G LTE</dd>
+          <dt>Diseño</dt><dd>Cuerpo de titanio de 5.6 mm</dd>
+          <dt>Pantalla</dt><dd>6.5" Super Retina XDR</dd>
+          <dt>Cámara</dt><dd>48 MP principal, frontal de 18 MP</dd>
+          <dt>Carga</dt><dd>MagSafe y USB-C</dd>
+        </dl>
+        <a href="tel:+18884702820" class="btn btn-borde">Preguntar por este equipo</a>
+      </article>
+
+      <article class="equipo">
+        <div class="equipo-foto"><img src="/images/carrusel/Galaxy_Z_Flip4_detail.webp" loading="lazy" alt="Samsung Galaxy Z Flip4"></div>
+        <h3>Samsung Galaxy Z Flip4</h3>
+        <dl>
+          <dt>Lanzamiento</dt><dd>2022, con Android 12 de fábrica</dd>
+          <dt>Red</dt><dd>5G, 4G LTE</dd>
+          <dt>Procesador</dt><dd>Snapdragon 8+ Gen 1</dd>
+          <dt>Pantalla</dt><dd>6.7" abierto, 1.9" cerrado</dd>
+          <dt>Memoria</dt><dd>128 o 256 GB, 8 GB de RAM</dd>
+          <dt>Cámara</dt><dd>12 MP + 12 MP trasera, frontal de 10 MP</dd>
+          <dt>Batería</dt><dd>3,700 mAh</dd>
+        </dl>
+        <a href="tel:+18884702820" class="btn btn-borde">Preguntar por este equipo</a>
+      </article>
+    </div>
+
+    <p class="equipos-legal">Connecting no fabrica ni vende equipos por su cuenta: cada proveedor los ofrece y los financia. Apple, iPhone, Samsung y Galaxy son marcas registradas de sus dueños, que no patrocinan este sitio ni tienen relación con él. Imágenes de referencia.</p>
+  </div>
+</section>
+
 <!-- QUIENES SOMOS: identidad del anunciante exigida por Google Ads -->
-<section class="about-section" id="quienes-somos">
-  <div class="about-header reveal">
-    <span class="section-eyebrow">Quiénes somos</span>
-    <h2 class="section-title">Un agente,<br><em>no una red.</em></h2>
-  </div>
-  <div class="about-body reveal reveal-delay-1">
-    <p class="about-disclaimer">
-      Connecting es un agente independiente de servicios móviles. Ayudamos a
-      consumidores en Estados Unidos a conocer opciones de telefonía móvil y conectarse con
-      proveedores participantes. No somos una compañía de red móvil ni afirmamos ser
-      representantes de ningún operador salvo cuando se indique expresamente.
-    </p>
-    <p>
-      No trabajamos con un solo operador: comparamos planes de <strong>varios proveedores</strong> y
-      te mostramos cuál se ajusta mejor a tu zona, tu presupuesto y tu consumo. Nuestros agentes
-      atienden en español, verifican la cobertura disponible en tu dirección y te explican las
-      alternativas antes de que contrates. El contrato final de servicio se establece entre tú y
-      la compañía proveedora que elijas.
-    </p>
-    <ol class="about-steps">
-      <li><strong>Llamas.</strong> Nos dices tu código postal, cuántas líneas necesitas y cuánto usas datos.</li>
-      <li><strong>Comparamos.</strong> Revisamos la cobertura de cada proveedor en tu zona y te damos el precio total con impuestos estimados.</li>
-      <li><strong>Eliges.</strong> Tramitamos la línea con el proveedor que escojas. Con eSIM la activación suele ser el mismo día; con SIM física o equipo, el envío tarda de 24 a 72 horas hábiles.</li>
-    </ol>
-    <p>
-      Recibimos una comisión del proveedor cuando contratas a través de nosotros. No te
-      cobramos por la asesoría ni altera el precio del plan.
-    </p>
-    <p>
-      Las marcas, nombres comerciales y logotipos de terceros que aparezcan en este sitio
-      pertenecen a sus respectivos titulares. Los planes, precios y disponibilidad los determina
-      cada proveedor y están sujetos a cambios sin previo aviso.
-    </p>
-    <div class="about-meta">
-      <span><strong>Empresa:</strong> Connecting</span>
-      <span><strong>Operaciones:</strong> Texas, Estados Unidos</span>
-      <span><strong>Contacto:</strong> +1 (888) 470-2820</span>
-    </div>
-  </div>
-</section>
-
-<section class="faq-section" id="faq">
-  <div class="section-header reveal">
-    <span class="section-eyebrow">Resolvemos tus Dudas</span>
-    <h2 class="section-title">Preguntas<br><em>Frecuentes.</em></h2>
-  </div>
-  <div class="faq-list">
-    <div class="faq-item reveal">
-      <button class="faq-question" aria-expanded="false">
-        ¿Tengo que firmar un contrato?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">El plan de servicio es mes a mes y puedes cancelarlo cuando quieras directamente con tu proveedor. La excepción es el equipo: si lo compras financiado o con descuento, el proveedor puede cobrarte el saldo pendiente al cancelar o pedirte mantener la línea un tiempo para conservar el descuento. Te lo explicamos antes de que contrates.</div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-question" aria-expanded="false">
-        ¿Qué necesito para contratar si soy extranjero?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">Una identificación oficial vigente. Muchos proveedores aceptan pasaporte extranjero, pero los documentos exactos dependen del proveedor y del plan. Te confirmamos cuáles necesitas antes de iniciar el trámite.</div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-question" aria-expanded="false">
-        ¿Mi factura va a subir después de unos meses?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">Antes de contratar te confirmamos el precio total estimado: el precio del plan más los impuestos y cargos regulatorios, que varían según tu estado y el proveedor. Si el plan incluye un descuento promocional, te decimos cuánto dura y cuál será el precio al terminar. Ten en cuenta que el proveedor puede ajustar sus tarifas; si lo hace, te lo notifica directamente.</div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-question" aria-expanded="false">
-        ¿Qué quiere decir que los datos móviles sean "ilimitados"?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">Que no pagas cargos extra por consumo. Los proveedores aplican priorización de red a partir de cierto consumo mensual, lo que puede reducir la velocidad en horas de congestión. Algunos planes también limitan la calidad del video. El umbral en GB y las condiciones dependen del proveedor y del plan; te los confirmamos antes de que contrates.</div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-question" aria-expanded="false">
-        ¿En qué condiciones viene el equipo?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">Depende del proveedor y del plan. El equipo puede venir financiado a plazos, con un pago inicial o sujeto a permanencia mínima para conservar el descuento. Nosotros no vendemos ni entregamos equipos: las condiciones, la garantía y el financiamiento los fija el proveedor, y te las explicamos en detalle antes de que contrates.</div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-question" aria-expanded="false">
-        ¿Con qué proveedores trabajan?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">Somos un agente independiente y trabajamos con varios proveedores de servicios móviles en Estados Unidos. No pertenecemos a ninguno de ellos ni los representamos. Revisamos contigo cuál conviene más según tu zona, tu presupuesto y el uso que le des a la línea.</div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-question" aria-expanded="false">
-        ¿Cobran algo por la asesoría?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">No. Nuestra asesoría es gratuita. Recibimos una comisión del proveedor cuando contratas a través de nosotros, pero eso no cambia el precio de tu plan. Todos los pagos del servicio y del equipo se hacen directamente al proveedor.</div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-question" aria-expanded="false">
-        ¿Me piden verificación de crédito?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">Depende del plan. Los planes de servicio sin equipo normalmente no requieren verificación de crédito. Si financias un equipo, el proveedor puede revisar tu crédito, y la aprobación y las condiciones las decide él, no nosotros. Si no tienes historial de crédito en Estados Unidos, algunos proveedores pueden pedir un depósito reembolsable o un pago por adelantado.</div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-question" aria-expanded="false">
-        ¿Cuándo queda activa mi línea?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">Con eSIM y un teléfono compatible, la activación suele completarse el mismo día. Si necesitas SIM física o un equipo nuevo, el envío tarda normalmente de 24 a 72 horas hábiles tras la aprobación, y la línea se activa al recibirlo. El plazo final lo define el proveedor.</div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-question" aria-expanded="false">
-        ¿Puedo cambiar mi plan más adelante?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">Sí. Como el plan es mes a mes, puedes subir o bajar de plan directamente con tu proveedor cuando lo necesites. Si prefieres cambiarte a otro proveedor, llámanos y revisamos contigo las opciones para una nueva solicitud.</div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-question" aria-expanded="false">
-        ¿A quién llamo si tengo un problema después de contratar?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">Una vez activa tu línea, la facturación, el soporte técnico, los envíos, las devoluciones y los reembolsos los maneja directamente el proveedor. Encontrarás su contacto en la confirmación de tu orden, el correo de bienvenida o tu factura. Si no sabes a quién llamar, comunícate con nosotros y te ayudamos a identificarlo.</div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-question" aria-expanded="false">
-        ¿Puedo cancelar una solicitud que ya hice con ustedes?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">Sí, si todavía está en proceso con nuestro equipo. Llámanos al <a href="tel:+18884702820">+1 (888) 470-2820</a> lo antes posible y la detenemos sin costo. Si el proveedor ya la procesó, envió o activó, la cancelación debe hacerse directamente con él.</div>
-    </div>
-  </div>
-</section>
-
-<!-- LEAD MAGNET -->
-<section class="lead-section">
-  <span class="lead-eyebrow">Contacto Directo</span>
-  <h2>Llámanos<br><em>ahora mismo.</em></h2>
-  <p>Asesores en español de lunes a domingo, de 8 AM a 9 PM (hora de Texas, CT).</p>
-  <a class="lead-btn" href="tel:+18884702820">Llamar +1 (888) 470-2820 &rarr;</a>
-  <p class="lead-note">Llamada sin costo (número 888). Fuera de horario te devolvemos la llamada el siguiente día hábil.</p>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer" id="contacto">
-  <a href="#servicios" class="footer-logo" aria-label="Connecting, volver al inicio"><span><img src="/images/connecting-logo.webp" alt="" width="44" height="44" loading="lazy"></span><small>Agente independiente · lineas-moviles.com</small></a>
-  <p class="footer-disclaimer">
-    Connecting es un agente independiente de servicios móviles. No somos, ni actuamos como,
-    proveedores oficiales de las compañías. La disponibilidad, precios, promociones y condiciones finales están
-    sujetos a los términos establecidos por cada proveedor. Las marcas mencionadas pertenecen a sus respectivos propietarios.
-  </p>
-  <div class="footer-grid">
-    <div class="footer-col" role="navigation" aria-label="Planes">
-      <h4>Planes</h4>
-      <a href="#servicios">Planes móviles</a>
-      <a href="#familiar">Planes familiares</a>
-      <a href="#dispositivos">Dispositivos</a>
-      <a href="#planes">Precios</a>
-      <a href="#cobertura">Cobertura</a>
-    </div>
-    <div class="footer-col" role="navigation" aria-label="Ayuda">
-      <h4>Ayuda</h4>
-      <a href="ayuda.html">Centro de ayuda</a>
-      <a href="#faq">Preguntas frecuentes</a>
-      <a href="#quienes-somos">Quiénes somos</a>
-    </div>
-    <div class="footer-col" role="navigation" aria-label="Enlaces legales">
-      <h4>Enlaces legales</h4>
-      <a href="terminos.html">Términos y condiciones</a>
-      <a href="privacidad.html">Política de privacidad</a>
-      <a href="cancelacion.html">Política de cancelación y reembolso</a>
-    </div>
-    <div class="footer-col">
-      <h4>Datos de contacto</h4>
-      <dl class="footer-contact">
-        <dt>Empresa:</dt>
-        <dd>Connecting — Agente independiente de servicios móviles</dd>
-        <dt>Teléfono:</dt>
-        <dd><a href="tel:+18884702820">+1 (888) 470-2820</a></dd>
-        <dt>Horario de atención:</dt>
-        <dd>Lun a dom 8:00 a.m. – 9:00 p.m. (hora de Texas, CT)</dd>
-        <dt>Ubicación:</dt>
-        <dd>Texas, Estados Unidos</dd>
+<section class="nosotros seccion" id="quienes-somos">
+  <div class="contenedor nosotros-grid">
+    <h2>Quién está detrás de esta página.</h2>
+    <div class="nosotros-texto">
+      <p class="destacado">Connecting es un agente independiente de servicios móviles. Ayudamos a personas en Estados Unidos a conocer sus opciones de telefonía móvil y a contratar con proveedores participantes. No somos una compañía de red móvil y no representamos a ningún operador, salvo que se indique expresamente.</p>
+      <p>No dependemos de un solo operador: comparamos planes de varios proveedores y te mostramos el que mejor encaja con tu zona, tu presupuesto y tu consumo. Nuestros asesores hablan español, revisan la señal en tu dirección y te explican cada opción antes de contratar. El contrato de servicio lo haces directamente con el proveedor que elijas.</p>
+      <p>Las marcas, nombres comerciales y logotipos de terceros que aparecen en este sitio son de sus respectivos dueños. Cada proveedor fija sus planes, precios y disponibilidad, y puede cambiarlos sin aviso previo.</p>
+      <dl class="nosotros-datos">
+        <div><dt>Empresa</dt><dd>Connecting</dd></div>
+        <div><dt>Operamos desde</dt><dd>Texas, Estados Unidos</dd></div>
+        <div><dt>Teléfono</dt><dd><a href="tel:+18884702820">+1 (888) 470-2820</a></dd></div>
       </dl>
     </div>
   </div>
-  <a href="tel:+18884702820" class="footer-call" aria-label="Llamar gratis al +1 (888) 470-2820, atención en español"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Llamar Gratis — Atención en Español</span></a>
+</section>
 
-  <div class="footer-bottom">
-    <span>© 2026 Connecting. Todos los derechos reservados.</span>
+<!-- PREGUNTAS -->
+<section class="seccion" id="preguntas">
+  <div class="contenedor faq-grid">
+    <div class="faq-lateral">
+      <h2>Lo que más nos preguntan.</h2>
+      <p>Si tu duda no está aquí, un asesor te la responde por teléfono.</p>
+      <a href="tel:+18884702820" class="btn btn-tinta"><svg aria-hidden="true"><use href="#i-tel"/></svg>Preguntar a un asesor</a>
+    </div>
+    <div class="faq-lista">
+      <details>
+        <summary>¿Tengo que firmar un contrato?</summary>
+        <div>No para el servicio: el plan es mes a mes y lo cancelas cuando quieras directamente con tu proveedor. El equipo es otra historia: si lo compras financiado o con descuento, el proveedor puede cobrarte lo que falte por pagar al cancelar, o pedirte que mantengas la línea un tiempo para conservar el descuento. Te lo explicamos antes de contratar.</div>
+      </details>
+      <details>
+        <summary>Soy extranjero, ¿qué necesito para contratar?</summary>
+        <div>Una identificación oficial vigente. Muchos proveedores aceptan pasaporte de otro país, aunque los documentos exactos cambian según el proveedor y el plan. Antes de empezar el trámite te confirmamos cuáles te van a pedir.</div>
+      </details>
+      <details>
+        <summary>¿Me va a subir la factura con el tiempo?</summary>
+        <div>Antes de contratar te damos el precio total estimado: el plan más los impuestos y cargos regulatorios, que cambian según tu estado y el proveedor. Si el plan tiene un descuento de promoción, te decimos cuánto dura y cuánto pagarás cuando termine. El proveedor puede ajustar sus tarifas; si lo hace, te avisa directamente.</div>
+      </details>
+      <details>
+        <summary>¿Qué significa que los datos sean "ilimitados"?</summary>
+        <div>Que no te cobran extra por consumo. Pasado cierto uso al mes, los proveedores aplican priorización de red y tu velocidad puede bajar en horas de mucha demanda. Algunos planes también limitan la calidad del video. El límite en GB y las condiciones dependen del proveedor y del plan; te los confirmamos antes de contratar.</div>
+      </details>
+      <details>
+        <summary>¿Cómo se paga el equipo?</summary>
+        <div>Depende del proveedor y del plan. Puede venir financiado a plazos, con un pago inicial o con una permanencia mínima para mantener el descuento. Nosotros no vendemos ni enviamos equipos: el proveedor fija las condiciones, la garantía y el financiamiento, y nosotros te las explicamos a detalle antes de contratar.</div>
+      </details>
+      <details>
+        <summary>¿Con qué proveedores trabajan?</summary>
+        <div>Somos un agente independiente y trabajamos con varios proveedores de servicios móviles en Estados Unidos. No somos parte de ninguno ni los representamos. Contigo revisamos cuál te conviene según tu zona, tu presupuesto y cómo usas el teléfono.</div>
+      </details>
+      <details>
+        <summary>¿Cuánto cuesta la asesoría?</summary>
+        <div>Nada. El proveedor nos paga una comisión cuando contratas a través de nosotros, y eso no cambia el precio de tu plan. Los pagos del servicio y del equipo los haces directamente al proveedor.</div>
+      </details>
+      <details>
+        <summary>¿Revisan mi crédito?</summary>
+        <div>Depende del plan. Los planes solo de servicio, sin equipo, normalmente no piden revisión de crédito. Si financias un equipo, el proveedor puede revisarlo, y él decide la aprobación y las condiciones. Si no tienes historial de crédito en Estados Unidos, algunos proveedores pueden pedirte un depósito reembolsable o un pago por adelantado.</div>
+      </details>
+      <details>
+        <summary>¿Cuánto tarda en activarse mi línea?</summary>
+        <div>Con eSIM y un teléfono compatible, normalmente queda activa el mismo día. Si necesitas SIM física o un equipo nuevo, el envío suele tardar de 24 a 72 horas hábiles después de la aprobación, y la línea se activa cuando lo recibes. El plazo final lo define el proveedor.</div>
+      </details>
+      <details>
+        <summary>¿Puedo cambiar de plan después?</summary>
+        <div>Sí. Como es mes a mes, puedes subir o bajar de plan con tu proveedor cuando lo necesites. Si prefieres pasarte a otro proveedor, llámanos y revisamos contigo las opciones para hacer una solicitud nueva.</div>
+      </details>
+      <details>
+        <summary>Ya contraté y tengo un problema, ¿a quién llamo?</summary>
+        <div>Con la línea activa, la facturación, el soporte técnico, los envíos, las devoluciones y los reembolsos los atiende directamente el proveedor. Su contacto viene en la confirmación de tu orden, en el correo de bienvenida o en tu factura. Si no sabes a quién llamar, comunícate con nosotros y te ayudamos a encontrarlo.</div>
+      </details>
+      <details>
+        <summary>¿Puedo cancelar una solicitud que hice con ustedes?</summary>
+        <div>Sí, mientras siga en proceso con nuestro equipo. Llámanos al <a href="tel:+18884702820">+1 (888) 470-2820</a> lo antes posible y la detenemos sin costo. Si el proveedor ya la procesó, la envió o la activó, tendrás que cancelarla directamente con él.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- LLAMADA FINAL -->
+<section class="cierre">
+  <div class="contenedor cierre-inner">
+    <div>
+      <h2>Un asesor te contesta en español.</h2>
+      <p>Atendemos de lunes a domingo, de 8 a.m. a 9 p.m., hora del centro (Texas).</p>
+    </div>
+    <div>
+      <a href="tel:+18884702820" class="cierre-numero">+1 (888) 470-2820</a>
+      <p class="cierre-nota">El número 888 es gratuito. Si llamas fuera de horario, te devolvemos la llamada el siguiente día hábil.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" id="contacto">
+  <div class="contenedor">
+    <a href="#inicio" class="footer-marca" aria-label="Connecting, volver al inicio">
+      <img src="/images/connecting-logo.webp" alt="" width="48" height="48" loading="lazy">
+      <span>Agente independiente de servicios móviles<small>lineas-moviles.com</small></span>
+    </a>
+    <p class="footer-aviso">
+      Connecting es un agente independiente de servicios móviles. No somos proveedores oficiales de las compañías ni actuamos en su nombre. La disponibilidad, los precios, las promociones y las condiciones finales dependen de los términos de cada proveedor. Las marcas mencionadas pertenecen a sus respectivos dueños.
+    </p>
+    <div class="footer-grid">
+      <nav class="footer-col" aria-label="Planes">
+        <h3>Planes</h3>
+        <a href="#planes">Precios</a>
+        <a href="#planes">Plan Familiar</a>
+        <a href="#equipos">Equipos</a>
+        <a href="#detalles">Cobertura</a>
+      </nav>
+      <nav class="footer-col" aria-label="Ayuda">
+        <h3>Ayuda</h3>
+        <a href="ayuda.html">Centro de ayuda</a>
+        <a href="#preguntas">Preguntas frecuentes</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#quienes-somos">Quiénes somos</a>
+      </nav>
+      <nav class="footer-col" aria-label="Enlaces legales">
+        <h3>Legal</h3>
+        <a href="terminos.html">Términos y condiciones</a>
+        <a href="privacidad.html">Política de privacidad</a>
+        <a href="cancelacion.html">Política de cancelación y reembolso</a>
+      </nav>
+      <div class="footer-col">
+        <h3>Contacto</h3>
+        <dl>
+          <div><dt>Empresa</dt><dd>Connecting, agente independiente de servicios móviles</dd></div>
+          <div><dt>Teléfono</dt><dd><a href="tel:+18884702820">+1 (888) 470-2820</a></dd></div>
+          <div><dt>Horario</dt><dd>Lunes a domingo, 8:00 a.m. a 9:00 p.m. (hora de Texas, CT)</dd></div>
+          <div><dt>Ubicación</dt><dd>Texas, Estados Unidos</dd></div>
+        </dl>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 Connecting. Todos los derechos reservados.</p>
   </div>
 </footer>
+
+<a href="tel:+18884702820" class="barra-llamada" id="barraLlamada" aria-label="Llamar gratis al +1 (888) 470-2820, atención en español"><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar gratis, atención en español</a>
 
 <!-- COOKIE BANNER -->
 <div id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
@@ -1235,90 +828,24 @@
 
 <!-- ── SCRIPTS ── -->
 <script>
-/* Reveal on scroll */
+/* Barra de llamada fija: solo cuando el bloque de llamada del hero ya no se ve */
 (function(){
-  var els = document.querySelectorAll('.reveal');
-  if(!('IntersectionObserver' in window)){
-    els.forEach(function(el){ el.classList.add('visible'); }); return;
-  }
-  var vh = window.innerHeight;
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
-  els.forEach(function(el){
-    /* Elementos ya visibles en el primer render — mostrar sin animación */
-    if(el.getBoundingClientRect().top < vh){
-      el.classList.add('visible');
-    } else {
-      io.observe(el);
-    }
-  });
+  var barra = document.getElementById('barraLlamada');
+  var hero  = document.getElementById('llamada-hero');
+  if(!('IntersectionObserver' in window)){ barra.classList.add('visible'); return; }
+  new IntersectionObserver(function(entries){
+    barra.classList.toggle('visible', !entries[0].isIntersecting);
+  }).observe(hero);
 }());
 </script>
 
 <script>
-/* Hero slideshow */
+/* Fila de equipos: flechas que desplazan una tarjeta */
 (function(){
-  var slides  = document.querySelectorAll('.hero-slide');
-  var dots    = document.querySelectorAll('.hero-dot');
-  var counter = document.getElementById('heroCurrentSlide');
-  var current = 0; var timer;
-
-  function goTo(n){
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
-    current = (n + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
-    if(counter) counter.textContent = current + 1;
-  }
-  dots.forEach(function(d){ d.addEventListener('click', function(){ goTo(+d.dataset.slide); clearInterval(timer); timer = setInterval(function(){ goTo(current+1); }, 6000); }); });
-  timer = setInterval(function(){ goTo(current+1); }, 6000);
-}());
-</script>
-
-<script>
-/* Carousel dispositivos */
-(function(){
-  var track   = document.getElementById('carouselTrack');
-  var dots    = document.querySelectorAll('.carousel-dot');
-  var counter = document.getElementById('carouselCurrent');
-  var total   = 4; var current = 0; var timer;
-
-  function goTo(n){
-    current = (n + total) % total;
-    track.style.transform = 'translateX(-' + (current * 100) + '%)';
-    dots.forEach(function(d,i){ d.classList.toggle('active', i === current); });
-    if(counter) counter.textContent = current + 1;
-  }
-  function next(){ goTo(current+1); }
-  function prev(){ goTo(current-1); }
-  function startTimer(){ timer = setInterval(next, 5000); }
-  function resetTimer(){ clearInterval(timer); startTimer(); }
-
-  document.getElementById('carouselNext').addEventListener('click', function(){ next(); resetTimer(); });
-  document.getElementById('carouselPrev').addEventListener('click', function(){ prev(); resetTimer(); });
-  dots.forEach(function(d,i){ d.addEventListener('click', function(){ goTo(i); resetTimer(); }); });
-  startTimer();
-}());
-</script>
-
-<script>
-/* FAQ accordion */
-(function(){
-  document.querySelectorAll('.faq-question').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var item   = btn.closest('.faq-item');
-      var isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(function(el){
-        el.classList.remove('open');
-        el.querySelector('.faq-question').setAttribute('aria-expanded','false');
-      });
-      if(!isOpen){ item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
-    });
-  });
+  var fila = document.getElementById('equiposFila');
+  function paso(){ var c = fila.querySelector('.equipo'); return c ? c.getBoundingClientRect().width + 20 : 300; }
+  document.getElementById('equiposNext').addEventListener('click', function(){ fila.scrollBy({ left: paso(), behavior: 'smooth' }); });
+  document.getElementById('equiposPrev').addEventListener('click', function(){ fila.scrollBy({ left: -paso(), behavior: 'smooth' }); });
 }());
 </script>
 
