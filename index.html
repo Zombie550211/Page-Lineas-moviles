@@ -86,7 +86,7 @@
   }
   .contenedor { width: 100%; max-width: var(--ancho); margin: 0 auto; padding: 0 var(--gutter); }
 
-  h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -0.02em; font-weight: 750; }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.1; letter-spacing: -0.015em; font-weight: 700; }
   h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); max-width: 18ch; }
   h3 { font-size: 1.35rem; letter-spacing: -0.01em; font-weight: 700; }
   .intro { color: var(--gris); max-width: 60ch; margin-top: 1rem; }
@@ -130,7 +130,7 @@
   /* ── HERO ── */
   .hero { padding: clamp(32px, 5vw, 64px) 0 clamp(56px, 7vw, 96px); }
   .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
-  .hero h1 { font-size: clamp(2.6rem, 5.6vw, 4.6rem); max-width: 14ch; }
+  .hero h1 { font-size: clamp(2.6rem, 5.6vw, 4.6rem); max-width: 14ch; font-weight: 650; }
   .hero-sub { font-size: 1.15rem; color: var(--gris); max-width: 46ch; margin: 22px 0 32px; }
 
   /* El elemento protagonista: el numero de telefono */
@@ -161,13 +161,6 @@
     width: 100%; aspect-ratio: 4 / 4.4; object-fit: cover; object-position: 38% center;
     border-radius: 36px 36px 36px 140px;
   }
-  .hero-nota {
-    position: absolute; right: -12px; bottom: 28px;
-    background: var(--blanco); border-radius: 20px; padding: 14px 18px;
-    box-shadow: 0 10px 30px rgba(11,42,60,.14);
-    font-size: .92rem; max-width: 230px; line-height: 1.4;
-  }
-  .hero-nota strong { display: block; font-family: var(--display); font-size: 1.5rem; line-height: 1.1; }
 
   /* ── PLANES ── */
   .planes { background: var(--blanco); border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); }
@@ -358,9 +351,8 @@
   }
   @media (max-width: 900px) {
     .hero-grid, .pasos-grid, .nosotros-grid, .faq-grid { grid-template-columns: 1fr; }
-    .hero-foto { order: 2; }
-    .hero-foto img { aspect-ratio: 4 / 3; border-radius: 28px 28px 28px 96px; }
-    .hero-nota { right: 12px; bottom: 16px; }
+    .hero-foto { order: -1; }
+    .hero-foto img { aspect-ratio: 16 / 10; border-radius: 24px 24px 24px 72px; }
     .plan-familiar { grid-template-columns: 1fr; padding: 32px 24px; }
     .equipos-fila { grid-auto-columns: calc((100% - 20px) / 2); }
     .pasos-foto { display: none; }
@@ -371,7 +363,15 @@
     body { font-size: 1rem; }
     .nav-logo span { display: none; }
     .nav-call .solo-escritorio { display: none; }
-    .llamada { padding: 18px 20px 20px; border-radius: 24px; }
+    .hero { padding-top: 16px; }
+    .hero-grid { gap: 24px; }
+    .hero h1 { font-size: 2.1rem; line-height: 1.15; letter-spacing: -0.01em; }
+    .hero-sub { font-size: 1.02rem; margin: 14px 0 22px; }
+    .llamada { padding: 16px 20px 18px; border-radius: 22px; }
+    .llamada-label { font-size: .92rem; }
+    .llamada-numero { font-size: 2.1rem; margin: 4px 0 2px; }
+    .llamada-horario { font-size: .85rem; }
+    .hero-datos { margin-top: 20px; }
     .planes-grid, .saber-grid { grid-template-columns: 1fr; }
     .saber-item.con-foto { grid-row: auto; }
     .saber-item.con-foto img { aspect-ratio: 16 / 10; height: auto; min-height: 0; }
@@ -445,7 +445,6 @@
            sizes="(max-width: 900px) 100vw, 50vw"
            width="1600" height="1067" fetchpriority="high"
            alt="Padre y dos hijos en casa, cada uno usando su propio teléfono">
-      <p class="hero-nota"><strong>$37.50</strong>por línea con el plan Familiar de 4 líneas, más impuestos</p>
     </div>
   </div>
 </section>
@@ -462,9 +461,9 @@
         <div class="plan-cabecera">
           <span class="plan-sello">El que más ahorra por línea</span>
           <h3 class="plan-nombre">Familiar, 4 líneas</h3>
-          <div class="plan-precio"><strong>$150</strong><span>/mes</span></div>
+          <div class="plan-precio"><strong>$150</strong><span>/mes por las 4 líneas</span></div>
           <p class="plan-impuestos">Más impuestos y cargos regulatorios</p>
-          <p class="plan-por-linea">Cada línea sale en $37.50</p>
+          <p class="plan-por-linea">Equivale a $37.50 por línea</p>
         </div>
         <div class="plan-cuerpo">
           <ul class="plan-lista">
@@ -558,7 +557,7 @@
         <img src="/images/ahorro-900.webp" width="900" height="657" loading="lazy" alt="Mujer sosteniendo billetes en una mano y su teléfono en la otra">
         <div>
           <h3>Más líneas, menos por línea</h3>
-          <p>En el plan Familiar cada línea sale en $37.50 al mes más impuestos, contra $55 en el Básico. Si son menos de 4 líneas, te cotizamos por teléfono.</p>
+          <p>Con el plan Familiar pagas $150 al mes por las 4 líneas, más impuestos: equivale a $37.50 por línea, contra $55 por línea en el Básico. Si son menos de 4 líneas, te cotizamos por teléfono.</p>
         </div>
       </article>
       <article class="saber-item">
